@@ -59,24 +59,26 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+  --font-sans: "Manrope", sans-serif;
+  --font-display: "Space Grotesk", sans-serif;
 }
 
 :root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
+  --radius: 0.25rem;
+  --background: oklch(0.985 0.004 242);
+  --foreground: oklch(0.205 0.054 253);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.129 0.042 264.695);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.129 0.042 264.695);
-  --primary: oklch(0.208 0.042 265.755);
+  --primary: oklch(0.27 0.11 248);
   --primary-foreground: oklch(0.984 0.003 247.858);
-  --secondary: oklch(0.968 0.007 247.896);
+  --secondary: oklch(0.95 0.015 238);
   --secondary-foreground: oklch(0.208 0.042 265.755);
   --muted: oklch(0.968 0.007 247.896);
   --muted-foreground: oklch(0.554 0.046 257.417);
-  --accent: oklch(0.968 0.007 247.896);
-  --accent-foreground: oklch(0.208 0.042 265.755);
+  --accent: oklch(0.72 0.18 51);
+  --accent-foreground: oklch(0.18 0.04 250);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.984 0.003 247.858);
   --border: oklch(0.929 0.013 255.508);
@@ -140,5 +142,24 @@
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
+    font-family: var(--font-sans);
+    margin: 0;
+    text-rendering: optimizeLegibility;
   }
+  h1, h2, h3 { font-family: var(--font-display); letter-spacing: 0; }
+  a { transition: color 180ms ease, background-color 180ms ease, border-color 180ms ease; }
 }
+
+@layer components {
+  .nav-link { @apply text-sm font-semibold text-foreground/75 transition hover:text-primary data-[status=active]:text-primary; }
+  .mobile-link { @apply block border-b border-border py-4 font-medium; }
+  .footer-title { @apply mb-5 text-sm font-semibold uppercase text-primary-foreground; }
+  .hero-band { @apply relative overflow-hidden bg-primary text-primary-foreground; background-image: linear-gradient(115deg, color-mix(in oklch, var(--primary) 95%, transparent), color-mix(in oklch, var(--primary) 75%, transparent)), repeating-linear-gradient(90deg, transparent 0 89px, color-mix(in oklch, var(--primary-foreground) 5%, transparent) 90px); }
+  .eyebrow { @apply text-xs font-bold uppercase text-accent; letter-spacing: .16em; }
+  .section { @apply py-20 lg:py-28; }
+  .section-title { @apply mt-4 max-w-3xl text-3xl font-semibold leading-tight md:text-5xl; }
+  .section-copy { @apply mt-5 max-w-2xl text-lg leading-8 text-muted-foreground; }
+  .font-display { font-family: var(--font-display); }
+}
+
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; } }
