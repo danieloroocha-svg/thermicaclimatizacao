@@ -1,0 +1,10 @@
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { useState, type FormEvent } from "react";
+import { Loader2, LockKeyhole } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { supabase } from "@/integrations/supabase/client";
+import { meta } from "@/lib/site-data";
+export const Route=createFileRoute("/acesso")({head:()=>meta("Acesso restrito | THÉRMICA","Acesso restrito à equipe comercial THÉRMICA."),component:Page});
+function Page(){const navigate=useNavigate({from:"/acesso"});const[loading,setLoading]=useState(false);const[error,setError]=useState("");async function submit(e:FormEvent<HTMLFormElement>){e.preventDefault();setLoading(true);setError("");const f=new FormData(e.currentTarget);const{error:authError}=await supabase.auth.signInWithPassword({email:String(f.get("email")),password:String(f.get("password"))});if(authError){setError("E-mail ou senha inválidos.");setLoading(false);return}await navigate({to:"/painel"})}return <section className="section min-h-[70vh]"><div className="mx-auto max-w-md px-5"><LockKeyhole className="size-8 text-accent"/><p className="eyebrow mt-6 text-primary">Área restrita</p><h1 className="mt-3 text-3xl font-semibold">Acesso da equipe</h1><form onSubmit={submit} className="mt-8 space-y-5"><div><Label htmlFor="email">E-mail</Label><Input id="email" name="email" type="email" required className="mt-2"/></div><div><Label htmlFor="password">Senha</Label><Input id="password" name="password" type="password" required minLength={8} className="mt-2"/></div>{error&&<p role="alert" className="text-sm text-destructive">{error}</p>}<Button disabled={loading} className="w-full">{loading&&<Loader2 className="animate-spin"/>}Entrar</Button></form></div></section>}

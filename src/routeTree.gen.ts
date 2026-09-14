@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ContatoRouteImport } from './routes/contato'
 import { Route as ConteudoRouteImport } from './routes/conteudo'
 import { Route as EmpresaRouteImport } from './routes/empresa'
 import { Route as InstalacaoVrvVrfRouteImport } from './routes/instalacao-vrv-vrf'
@@ -23,6 +24,11 @@ import { Route as ObrasSlugRouteImport } from './routes/obras.$slug'
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContatoRoute = ContatoRouteImport.update({
+  id: '/contato',
+  path: '/contato',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ConteudoRoute = ConteudoRouteImport.update({
@@ -73,6 +79,7 @@ const ObrasSlugRoute = ObrasSlugRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/contato': typeof ContatoRoute
   '/conteudo': typeof ConteudoRouteWithChildren
   '/empresa': typeof EmpresaRoute
   '/instalacao-vrv-vrf': typeof InstalacaoVrvVrfRoute
@@ -85,6 +92,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/contato': typeof ContatoRoute
   '/conteudo': typeof ConteudoRouteWithChildren
   '/empresa': typeof EmpresaRoute
   '/instalacao-vrv-vrf': typeof InstalacaoVrvVrfRoute
@@ -98,6 +106,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/contato': typeof ContatoRoute
   '/conteudo': typeof ConteudoRouteWithChildren
   '/empresa': typeof EmpresaRoute
   '/instalacao-vrv-vrf': typeof InstalacaoVrvVrfRoute
@@ -112,6 +121,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/contato'
     | '/conteudo'
     | '/empresa'
     | '/instalacao-vrv-vrf'
@@ -124,6 +134,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/contato'
     | '/conteudo'
     | '/empresa'
     | '/instalacao-vrv-vrf'
@@ -136,6 +147,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/contato'
     | '/conteudo'
     | '/empresa'
     | '/instalacao-vrv-vrf'
@@ -149,6 +161,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ContatoRoute: typeof ContatoRoute
   ConteudoRoute: typeof ConteudoRouteWithChildren
   EmpresaRoute: typeof EmpresaRoute
   InstalacaoVrvVrfRoute: typeof InstalacaoVrvVrfRoute
@@ -165,6 +178,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contato': {
+      id: '/contato'
+      path: '/contato'
+      fullPath: '/contato'
+      preLoaderRoute: typeof ContatoRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/conteudo': {
@@ -257,6 +277,7 @@ const ObrasRouteWithChildren = ObrasRoute._addFileChildren(ObrasRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ContatoRoute: ContatoRoute,
   ConteudoRoute: ConteudoRouteWithChildren,
   EmpresaRoute: EmpresaRoute,
   InstalacaoVrvVrfRoute: InstalacaoVrvVrfRoute,
