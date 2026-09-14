@@ -6,8 +6,10 @@ Construir um site B2B multipágina, responsivo e orientado à geração de oport
 ## Estrutura e navegação
 - Criar as páginas: **Início**, **A THÉRMICA**, **Sistemas VRV/VRF**, **Instalação VRV/VRF**, **Retrofit VRV/VRF**, **Obras**, **Qualificação Técnica**, **Conteúdo Técnico** e **Contato**.
 - Criar sete páginas individuais de obras, ligadas aos cards e à página geral de Obras.
-- Manter o menu principal solicitado e organizar páginas complementares em menus contextuais e chamadas internas, sem poluir o cabeçalho.
-- Adicionar cabeçalho fixo, navegação mobile acessível, rodapé institucional e CTAs consistentes.
+- Usar exatamente o menu principal **Home | Empresa | Soluções | Obras | Conteúdo | Contato**.
+- Criar em **Soluções** um dropdown com **Sistemas VRV/VRF**, **Nova Instalação** e **Retrofit**, direcionando às respectivas páginas.
+- Exibir **Conteúdo Técnico** no menu como **Conteúdo** e manter **Qualificação Técnica** fora do menu principal, acessível pela Home, Empresa e rodapé.
+- Adicionar cabeçalho fixo com CTA destacado **Solicitar Avaliação Técnica**, navegação mobile acessível com a mesma hierarquia e **Soluções** expansível, rodapé institucional e CTAs consistentes.
 
 ## Direção visual
 - Aplicar azul-marinho, azul-ciano, laranja, branco e cinzas conforme o MIV enviado, sem redesenhar a marca.
