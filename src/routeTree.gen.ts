@@ -10,11 +10,13 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AcessoRouteImport } from './routes/acesso'
 import { Route as ContatoRouteImport } from './routes/contato'
 import { Route as ConteudoRouteImport } from './routes/conteudo'
 import { Route as EmpresaRouteImport } from './routes/empresa'
 import { Route as InstalacaoVrvVrfRouteImport } from './routes/instalacao-vrv-vrf'
 import { Route as ObrasRouteImport } from './routes/obras'
+import { Route as PainelRouteImport } from './routes/painel'
 import { Route as QualificacaoTecnicaRouteImport } from './routes/qualificacao-tecnica'
 import { Route as RetrofitVrvVrfRouteImport } from './routes/retrofit-vrv-vrf'
 import { Route as SistemasVrvVrfRouteImport } from './routes/sistemas-vrv-vrf'
@@ -24,6 +26,11 @@ import { Route as ObrasSlugRouteImport } from './routes/obras.$slug'
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AcessoRoute = AcessoRouteImport.update({
+  id: '/acesso',
+  path: '/acesso',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContatoRoute = ContatoRouteImport.update({
@@ -49,6 +56,11 @@ const InstalacaoVrvVrfRoute = InstalacaoVrvVrfRouteImport.update({
 const ObrasRoute = ObrasRouteImport.update({
   id: '/obras',
   path: '/obras',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PainelRoute = PainelRouteImport.update({
+  id: '/painel',
+  path: '/painel',
   getParentRoute: () => rootRouteImport,
 } as any)
 const QualificacaoTecnicaRoute = QualificacaoTecnicaRouteImport.update({
@@ -79,11 +91,13 @@ const ObrasSlugRoute = ObrasSlugRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/acesso': typeof AcessoRoute
   '/contato': typeof ContatoRoute
   '/conteudo': typeof ConteudoRouteWithChildren
   '/empresa': typeof EmpresaRoute
   '/instalacao-vrv-vrf': typeof InstalacaoVrvVrfRoute
   '/obras': typeof ObrasRouteWithChildren
+  '/painel': typeof PainelRoute
   '/qualificacao-tecnica': typeof QualificacaoTecnicaRoute
   '/retrofit-vrv-vrf': typeof RetrofitVrvVrfRoute
   '/sistemas-vrv-vrf': typeof SistemasVrvVrfRoute
@@ -92,11 +106,13 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/acesso': typeof AcessoRoute
   '/contato': typeof ContatoRoute
   '/conteudo': typeof ConteudoRouteWithChildren
   '/empresa': typeof EmpresaRoute
   '/instalacao-vrv-vrf': typeof InstalacaoVrvVrfRoute
   '/obras': typeof ObrasRouteWithChildren
+  '/painel': typeof PainelRoute
   '/qualificacao-tecnica': typeof QualificacaoTecnicaRoute
   '/retrofit-vrv-vrf': typeof RetrofitVrvVrfRoute
   '/sistemas-vrv-vrf': typeof SistemasVrvVrfRoute
@@ -106,11 +122,13 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/acesso': typeof AcessoRoute
   '/contato': typeof ContatoRoute
   '/conteudo': typeof ConteudoRouteWithChildren
   '/empresa': typeof EmpresaRoute
   '/instalacao-vrv-vrf': typeof InstalacaoVrvVrfRoute
   '/obras': typeof ObrasRouteWithChildren
+  '/painel': typeof PainelRoute
   '/qualificacao-tecnica': typeof QualificacaoTecnicaRoute
   '/retrofit-vrv-vrf': typeof RetrofitVrvVrfRoute
   '/sistemas-vrv-vrf': typeof SistemasVrvVrfRoute
@@ -121,11 +139,13 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/acesso'
     | '/contato'
     | '/conteudo'
     | '/empresa'
     | '/instalacao-vrv-vrf'
     | '/obras'
+    | '/painel'
     | '/qualificacao-tecnica'
     | '/retrofit-vrv-vrf'
     | '/sistemas-vrv-vrf'
@@ -134,11 +154,13 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/acesso'
     | '/contato'
     | '/conteudo'
     | '/empresa'
     | '/instalacao-vrv-vrf'
     | '/obras'
+    | '/painel'
     | '/qualificacao-tecnica'
     | '/retrofit-vrv-vrf'
     | '/sistemas-vrv-vrf'
@@ -147,11 +169,13 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/acesso'
     | '/contato'
     | '/conteudo'
     | '/empresa'
     | '/instalacao-vrv-vrf'
     | '/obras'
+    | '/painel'
     | '/qualificacao-tecnica'
     | '/retrofit-vrv-vrf'
     | '/sistemas-vrv-vrf'
@@ -161,11 +185,13 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AcessoRoute: typeof AcessoRoute
   ContatoRoute: typeof ContatoRoute
   ConteudoRoute: typeof ConteudoRouteWithChildren
   EmpresaRoute: typeof EmpresaRoute
   InstalacaoVrvVrfRoute: typeof InstalacaoVrvVrfRoute
   ObrasRoute: typeof ObrasRouteWithChildren
+  PainelRoute: typeof PainelRoute
   QualificacaoTecnicaRoute: typeof QualificacaoTecnicaRoute
   RetrofitVrvVrfRoute: typeof RetrofitVrvVrfRoute
   SistemasVrvVrfRoute: typeof SistemasVrvVrfRoute
@@ -178,6 +204,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/acesso': {
+      id: '/acesso'
+      path: '/acesso'
+      fullPath: '/acesso'
+      preLoaderRoute: typeof AcessoRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contato': {
@@ -213,6 +246,13 @@ declare module '@tanstack/react-router' {
       path: '/obras'
       fullPath: '/obras'
       preLoaderRoute: typeof ObrasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/painel': {
+      id: '/painel'
+      path: '/painel'
+      fullPath: '/painel'
+      preLoaderRoute: typeof PainelRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/qualificacao-tecnica': {
@@ -277,11 +317,13 @@ const ObrasRouteWithChildren = ObrasRoute._addFileChildren(ObrasRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AcessoRoute: AcessoRoute,
   ContatoRoute: ContatoRoute,
   ConteudoRoute: ConteudoRouteWithChildren,
   EmpresaRoute: EmpresaRoute,
   InstalacaoVrvVrfRoute: InstalacaoVrvVrfRoute,
   ObrasRoute: ObrasRouteWithChildren,
+  PainelRoute: PainelRoute,
   QualificacaoTecnicaRoute: QualificacaoTecnicaRoute,
   RetrofitVrvVrfRoute: RetrofitVrvVrfRoute,
   SistemasVrvVrfRoute: SistemasVrvVrfRoute,
