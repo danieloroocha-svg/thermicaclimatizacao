@@ -25,7 +25,7 @@ Construir um site B2B multipágina, responsivo e orientado à geração de oport
 - **Obras:** galeria completa e filtros simples por segmento ou tecnologia, sem expor contratantes.
 - **Qualificação:** registros profissionais, normas de segurança e treinamentos de fabricantes em grupos separados.
 - **Conteúdo Técnico:** quatro artigos completos e úteis: fundamentos de VRV/VRF, quando optar por retrofit, o que envolve uma avaliação técnica e etapas de uma implantação.
-- **Contato:** formulário completo, canais oficiais e reforço de que possuir projeto não é obrigatório.
+- **Contato:** formulário completo, endereço oficial, WhatsApp, e-mail comercial, mapa/localização e reforço de que possuir projeto não é obrigatório.
 
 ## Obras e imagens
 - Usar as sete imagens fornecidas como capas dos respectivos cases, com tratamento responsivo e sem alterar os textos incorporados às imagens.
@@ -39,7 +39,8 @@ Construir um site B2B multipágina, responsivo e orientado à geração de oport
 - Criar uma área administrativa protegida para consultar, filtrar e atualizar o status das solicitações; o acesso administrativo será vinculado ao e-mail oficial `comercial@thermicaclimatizacao.com.br` após cadastro verificado.
 - Enviar aviso de nova solicitação para `comercial@thermicaclimatizacao.com.br` e confirmação ao solicitante.
 - Preparar os e-mails com a identidade THÉRMICA; o envio começará quando o domínio remetente da empresa estiver configurado e verificado.
-- Fazer o CTA secundário abrir um e-mail para o endereço comercial, pois não foi informado número de WhatsApp.
+- Fazer o CTA secundário abrir diretamente o WhatsApp `+55 11 95591-3582`, com a mensagem inicial: “Olá! Entrei em contato pelo site da THÉRMICA e gostaria de falar sobre uma demanda de climatização.”
+- Manter o WhatsApp como canal alternativo e imediato, sem substituir o formulário, o painel ou os avisos por e-mail.
 
 ## SEO, desempenho e qualidade
 - Criar título, descrição, dados sociais e URL canônica exclusivos para cada página e cada obra.
@@ -49,6 +50,9 @@ Construir um site B2B multipágina, responsivo e orientado à geração de oport
 - Validar navegação, formulário, painel, e-mails preparados, anexos e apresentação visual em diferentes larguras antes da entrega.
 
 ## Premissas
-- O e-mail comercial fornecido será o canal oficial visível e o destinatário dos contatos.
-- Endereço físico, telefone, WhatsApp, depoimentos, números técnicos e dados não fornecidos não serão inventados nem exibidos.
+- O e-mail `comercial@thermicaclimatizacao.com.br` será o destinatário dos contatos e aparecerá junto ao WhatsApp comercial `(11) 95591-3582`.
+- Exibir na página Contato e no rodapé: **THÉRMICA Soluções em Climatização Ltda.**, Estrada das Lágrimas, 489 — Ipiranga, São Paulo — SP, CEP 04232-000.
+- Incluir mapa/localização do endereço na página Contato, quando o serviço de mapas estiver disponível.
+- Reservar no rodapé espaço para CNPJ e registros técnicos, sem inventar valores até que sejam fornecidos.
+- Depoimentos, números técnicos e demais dados não fornecidos não serão inventados nem exibidos.
 - As imagens enviadas são representativas e serão identificadas dessa forma no conteúdo dos cases.
