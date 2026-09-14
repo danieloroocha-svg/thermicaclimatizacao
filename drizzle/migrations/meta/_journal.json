@@ -8,6 +8,13 @@
       "when": 1789360081360,
       "tag": "0000_create_contact_requests_and_roles",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1789360290203,
+      "tag": "0001_secure_contact_documents_and_admin_claim",
+      "breakpoints": true
     }
   ]
 }
