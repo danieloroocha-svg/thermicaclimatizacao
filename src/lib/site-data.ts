@@ -1,5 +1,5 @@
 import logo from "@/assets/thermica-logo.png.asset.json";
-import headerLogo from "@/assets/thermica-logo-header.png.asset.json";
+import headerLogo from "@/assets/thermica-logo-header-oficial.png.asset.json";
 import osasco from "@/assets/obra-osasco.webp.asset.json";
 import lapa from "@/assets/obra-lapa.png.asset.json";
 import indaiatuba from "@/assets/obra-indaiatuba.webp.asset.json";
