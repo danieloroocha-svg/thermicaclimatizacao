@@ -5,4 +5,4 @@
 - [x] Criar páginas de obras e conteúdo técnico
 - [x] Ativar Cloud, formulário, anexos e painel protegido
 - [ ] Configurar avisos por e-mail — bloqueado até o domínio de envio ser configurado
-- [ ] Validar SEO, responsividade e fluxos
+- [x] Validar SEO, responsividade e fluxos
