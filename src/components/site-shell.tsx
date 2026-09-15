@@ -44,7 +44,7 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
     <main className="pt-20">{children}</main>
     <footer className="bg-primary text-primary-foreground">
       <div className="mx-auto grid max-w-7xl gap-10 px-5 py-14 md:grid-cols-[1.4fr_1fr_1fr] lg:px-8">
-        <div><img src={SITE.logo} alt="THÉRMICA" className="h-16 w-auto brightness-0 invert" /><p className="mt-5 max-w-md text-sm leading-7 text-primary-foreground/70">Engenharia, instalação, retrofit e modernização de sistemas VRV/VRF para operações corporativas e empreendimentos.</p></div>
+        <div><p className="text-2xl font-bold tracking-tight">THÉRMICA</p><p className="mt-5 max-w-md text-sm leading-7 text-primary-foreground/70">Engenharia, instalação, retrofit e modernização de sistemas VRV/VRF para operações corporativas e empreendimentos.</p></div>
         <div><h2 className="footer-title">Navegação</h2><div className="grid gap-2 text-sm text-primary-foreground/75"><Link to="/empresa">Empresa</Link><Link to="/obras">Obras</Link><Link to="/qualificacao-tecnica">Qualificação técnica</Link><Link to="/conteudo">Conteúdo</Link><Link to="/contato">Contato</Link></div></div>
         <div><h2 className="footer-title">Contato</h2><div className="space-y-3 text-sm text-primary-foreground/75"><p className="flex gap-2"><MapPin className="mt-1 size-4 shrink-0 text-accent" />{SITE.address}</p><a href={SITE.whatsapp} target="_blank" rel="noreferrer" className="flex gap-2"><MessageCircle className="size-4 text-accent" />{SITE.phone}</a><a href={`mailto:${SITE.email}`} className="flex gap-2 break-all"><Mail className="size-4 shrink-0 text-accent" />{SITE.email}</a><p className="pt-2 text-xs">CNPJ e registros técnicos: a informar.</p></div></div>
       </div>
