@@ -17,7 +17,7 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
   return <div className="min-h-screen bg-background text-foreground">
     <header className="fixed inset-x-0 top-0 z-50 border-b border-border/70 bg-background/95 backdrop-blur">
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-5 lg:px-8">
-        <Link to="/" aria-label="THÉRMICA — Home"><img src={SITE.logo} alt="THÉRMICA" className="h-12 w-auto max-w-44 object-contain" /></Link>
+        <Link to="/" aria-label="THÉRMICA — Home" className="shrink-0"><img src={SITE.headerLogo} alt="THÉRMICA — Soluções em Refrigeração, Ar Condicionado e Elétrica" className="h-14 w-auto max-w-48 object-contain" /></Link>
         <nav aria-label="Navegação principal" className="hidden items-center gap-7 lg:flex">
           <Link to="/" activeOptions={{ exact: true }} className="nav-link">Home</Link>
           <Link to="/empresa" className="nav-link">Empresa</Link>
