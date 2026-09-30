@@ -40,6 +40,9 @@
   --color-muted-foreground: var(--muted-foreground);
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
+  --color-whatsapp: var(--whatsapp);
+  --color-whatsapp-strong: var(--whatsapp-strong);
+  --color-whatsapp-foreground: var(--whatsapp-foreground);
   --color-destructive: var(--destructive);
   --color-destructive-foreground: var(--destructive-foreground);
   --color-border: var(--border);
@@ -79,6 +82,9 @@
   --muted-foreground: oklch(0.554 0.046 257.417);
   --accent: oklch(0.72 0.18 51);
   --accent-foreground: oklch(0.18 0.04 250);
+  --whatsapp: oklch(0.761 0.2015 149.74);
+  --whatsapp-strong: oklch(0.7036 0.1851 150.22);
+  --whatsapp-foreground: oklch(1 0 0);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.984 0.003 247.858);
   --border: oklch(0.929 0.013 255.508);
@@ -114,6 +120,9 @@
   --muted-foreground: oklch(0.704 0.04 256.788);
   --accent: oklch(0.279 0.041 260.031);
   --accent-foreground: oklch(0.984 0.003 247.858);
+  --whatsapp: oklch(0.761 0.2015 149.74);
+  --whatsapp-strong: oklch(0.7036 0.1851 150.22);
+  --whatsapp-foreground: oklch(1 0 0);
   --destructive: oklch(0.704 0.191 22.216);
   --destructive-foreground: oklch(0.984 0.003 247.858);
   --border: oklch(1 0 0 / 10%);
@@ -160,6 +169,21 @@
   .section-title { @apply mt-4 max-w-3xl text-3xl font-semibold leading-tight md:text-5xl; }
   .section-copy { @apply mt-5 max-w-2xl text-lg leading-8 text-muted-foreground; }
   .font-display { font-family: var(--font-display); }
+
+  .wa-fab {
+    @apply fixed bottom-5 right-5 z-40 flex items-center rounded-full bg-whatsapp p-3 text-whatsapp-foreground shadow-lg shadow-whatsapp/35 ring-1 ring-whatsapp-foreground/20 transition duration-300 hover:bg-whatsapp-strong hover:shadow-2xl hover:shadow-whatsapp/45 active:scale-[.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 sm:bottom-6 sm:right-6 sm:p-3.5;
+    animation: wa-fab-in 700ms cubic-bezier(.16, 1, .3, 1) 450ms backwards;
+  }
+  .wa-fab-label {
+    @apply hidden max-w-0 overflow-hidden opacity-0 transition-all duration-300 ease-out group-hover:max-w-64 group-hover:opacity-100 group-focus-visible:max-w-64 group-focus-visible:opacity-100 sm:block;
+  }
+  .wa-fab-halo {
+    @apply pointer-events-none absolute -inset-1.5 rounded-full border border-whatsapp;
+    animation: wa-fab-halo 3.2s cubic-bezier(.2, .6, .3, 1) infinite;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; } }
+
+@keyframes wa-fab-in { from { opacity: 0; transform: translateY(16px) scale(.92); } to { opacity: 1; transform: none; } }
+@keyframes wa-fab-halo { 0% { opacity: .5; transform: scale(.9); } 60%, 100% { opacity: 0; transform: scale(1.8); } }
