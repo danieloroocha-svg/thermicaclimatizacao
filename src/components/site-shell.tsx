@@ -3,6 +3,7 @@ import { ChevronDown, Mail, MapPin, Menu, MessageCircle, X } from "lucide-react"
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { SITE } from "@/lib/site-data";
+import { WhatsAppButton } from "@/components/whatsapp-button";
 
 const mainLinks = [
   ["/", "Home"], ["/empresa", "Empresa"], ["/obras", "Obras"], ["/conteudo", "Conteúdo"], ["/contato", "Contato"],
@@ -42,6 +43,7 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
       </nav>}
     </header>
     <main className="pt-20">{children}</main>
+    <WhatsAppButton />
     <footer className="bg-primary text-primary-foreground">
       <div className="mx-auto grid max-w-7xl gap-10 px-5 py-14 md:grid-cols-[1.4fr_1fr_1fr] lg:px-8">
         <div><p className="text-2xl font-bold tracking-tight">THÉRMICA</p><p className="mt-5 max-w-md text-sm leading-7 text-primary-foreground/70">Engenharia, instalação, retrofit e modernização de sistemas VRV/VRF para operações corporativas e empreendimentos.</p></div>
