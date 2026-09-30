@@ -1,9 +1,10 @@
 import { useState, type FormEvent } from "react";
-import { Loader2, MessageCircle } from "lucide-react";
+import { Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { WhatsAppGlyph } from "@/components/whatsapp-icon";
 import { supabase } from "@/integrations/supabase/client";
 
 const NUMBER = "5511955913582";
@@ -16,8 +17,15 @@ function currentPage() {
 
 export function WhatsAppButton() {
   const [open, setOpen] = useState(false);
+  const [page, setPage] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+
+  function openDialog() {
+    setPage(currentPage());
+    setError("");
+    setOpen(true);
+  }
 
   async function submit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -30,7 +38,6 @@ export function WhatsAppButton() {
       company: String(f.get("company")).trim(),
       phone: String(f.get("phone")).trim(),
     };
-    const page = currentPage();
     const win = window.open("", "_blank");
     const { error: err } = await supabase.from("whatsapp_leads").insert({ ...lead, page_title: page, page_url: location.href });
     if (err) {
@@ -47,20 +54,41 @@ export function WhatsAppButton() {
   }
 
   return <>
-    <button type="button" onClick={() => setOpen(true)} aria-label="Falar com nossa equipe pelo WhatsApp" className="fixed bottom-5 right-5 z-40 flex size-14 items-center justify-center rounded-full bg-accent text-accent-foreground shadow-xl transition hover:scale-105 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-ring sm:bottom-6 sm:right-6 sm:size-16">
-      <MessageCircle className="size-7" />
+    <button type="button" onClick={openDialog} aria-label="Falar com nossa equipe pelo WhatsApp" className="group wa-fab">
+      <span className="wa-fab-label" aria-hidden="true">
+        <span className="block whitespace-nowrap pr-3 text-sm font-semibold">Falar com nossa equipe</span>
+      </span>
+      <span className="relative flex shrink-0 items-center justify-center">
+        <span className="wa-fab-halo" aria-hidden="true" />
+        <WhatsAppGlyph className="relative size-8 sm:size-9" />
+      </span>
     </button>
+
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogContent className="max-w-md">
         <DialogHeader>
-          <DialogTitle>Falar com nossa equipe</DialogTitle>
-          <DialogDescription>Informe seus dados para continuar a conversa pelo WhatsApp.</DialogDescription>
+          <div className="flex items-start gap-3.5">
+            <span className="flex size-11 shrink-0 items-center justify-center rounded-full bg-whatsapp text-whatsapp-foreground ring-1 ring-whatsapp-foreground/20">
+              <WhatsAppGlyph className="size-6" />
+            </span>
+            <div>
+              <DialogTitle>Falar com nossa equipe</DialogTitle>
+              <DialogDescription>Informe seus dados para continuar a conversa no WhatsApp.</DialogDescription>
+            </div>
+          </div>
         </DialogHeader>
+        {page && (
+          <p className="rounded-md border border-border bg-secondary/60 px-3 py-2 text-xs text-muted-foreground">
+            Assunto da conversa: <span className="font-semibold text-foreground">{page}</span>
+          </p>
+        )}
         <form onSubmit={submit} className="grid gap-4">
-          {([["name","Nome","text"],["company","Empresa","text"],["email","E-mail","email"],["phone","Telefone","tel"]] as const).map(([n,l,t]) =>
-            <div key={n}><Label htmlFor={`wa-${n}`}>{l}</Label><Input id={`wa-${n}`} name={n} type={t} required minLength={n==="phone"?8:2} maxLength={n==="phone"?40:255} className="mt-2" /></div>)}
+          {([["name", "Nome", "text"], ["company", "Empresa", "text"], ["email", "E-mail", "email"], ["phone", "Telefone", "tel"]] as const).map(([n, l, t]) =>
+            <div key={n}><Label htmlFor={`wa-${n}`}>{l}</Label><Input id={`wa-${n}`} name={n} type={t} required minLength={n === "phone" ? 8 : 2} maxLength={n === "phone" ? 40 : 255} className="mt-2" /></div>)}
           {error && <p role="alert" className="text-sm text-destructive">{error}</p>}
-          <Button disabled={loading} size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90">{loading ? <Loader2 className="animate-spin" /> : <MessageCircle />}Continuar no WhatsApp</Button>
+          <Button disabled={loading} size="lg" className="w-full gap-2 bg-whatsapp text-whatsapp-foreground hover:bg-whatsapp-strong">
+            {loading ? <Loader2 className="animate-spin" /> : <WhatsAppGlyph className="size-5" />}Continuar no WhatsApp
+          </Button>
         </form>
       </DialogContent>
     </Dialog>
