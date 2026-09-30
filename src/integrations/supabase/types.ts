@@ -80,6 +80,42 @@ export type Database = {
         }
         Relationships: []
       }
+      whatsapp_leads: {
+        Row: {
+          company: string
+          created_at: string
+          email: string
+          id: string
+          name: string
+          page_title: string | null
+          page_url: string | null
+          phone: string
+          status: string
+        }
+        Insert: {
+          company: string
+          created_at?: string
+          email: string
+          id?: string
+          name: string
+          page_title?: string | null
+          page_url?: string | null
+          phone: string
+          status?: string
+        }
+        Update: {
+          company?: string
+          created_at?: string
+          email?: string
+          id?: string
+          name?: string
+          page_title?: string | null
+          page_url?: string | null
+          phone?: string
+          status?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
