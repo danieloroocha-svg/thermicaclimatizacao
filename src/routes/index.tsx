@@ -9,7 +9,45 @@ import { projects, SITE, meta } from "@/lib/site-data";
 // __root.tsx, and ships no og:image so serve-time hosting can inject the
 // project's social preview (explicit og:image or latest screenshot).
 export const Route = createFileRoute("/")({
-  head: () => meta("Engenharia VRV/VRF em São Paulo | THÉRMICA", "Engenharia, instalação, retrofit e modernização de sistemas VRV/VRF para empresas e empreendimentos."),
+  staticData: { sitemap: true },
+  head: () => {
+    const base = meta(
+      "Engenharia VRV/VRF em São Paulo | THÉRMICA",
+      "Engenharia, instalação, retrofit e modernização de sistemas VRV/VRF para empresas e empreendimentos.",
+      "/",
+    );
+    return {
+      ...base,
+      scripts: [
+        {
+          type: "application/ld+json",
+          children: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "HVACBusiness",
+            name: SITE.name,
+            url: BASE_URL,
+            email: SITE.email,
+            telephone: "+5511955913582",
+            areaServed: "Brasil",
+            address: {
+              "@type": "PostalAddress",
+              streetAddress: "Estrada das Lágrimas, 489",
+              addressLocality: "São Paulo",
+              addressRegion: "SP",
+              postalCode: "04232-000",
+              addressCountry: "BR",
+            },
+            knowsAbout: [
+              "Sistemas VRV/VRF",
+              "Instalação de climatização",
+              "Retrofit de climatização",
+              "Engenharia de climatização",
+            ],
+          }),
+        },
+      ],
+    };
+  },
   component: Index,
 });
 
