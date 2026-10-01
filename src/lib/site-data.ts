@@ -1,7 +1,7 @@
 import logo from "@/assets/thermica-logo.png";
 import headerLogo from "@/assets/thermica-logo-header-oficial.png";
 import osasco from "@/assets/obra-osasco.webp";
-import lapa from "@/assets/obra-lapa.png";
+import lapa from "@/assets/obra-lapa.webp";
 import indaiatuba from "@/assets/obra-indaiatuba.webp";
 import baroneza from "@/assets/obra-baroneza.webp";
 import hospital from "@/assets/obra-hospital.webp";
@@ -35,13 +35,17 @@ export const articles = [
   { slug: "etapas-implantacao", title: "Etapas de implantação de um sistema VRV/VRF", excerpt: "Da compatibilização à partida: os pontos de controle de uma execução estruturada." },
 ] as const;
 
-export const meta = (title: string, description: string) => ({
+export const BASE_URL = "https://thermicaclimatizacao.lovable.app";
+
+export const meta = (title: string, description: string, path = "/") => ({
   meta: [
     { title },
     { name: "description", content: description },
     { property: "og:title", content: title },
     { property: "og:description", content: description },
     { property: "og:type", content: "website" },
+    { property: "og:url", content: `${BASE_URL}${path}` },
     { name: "twitter:card", content: "summary_large_image" },
   ],
+  links: [{ rel: "canonical", href: `${BASE_URL}${path}` }],
 });

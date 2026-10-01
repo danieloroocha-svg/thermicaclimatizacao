@@ -20,6 +20,7 @@ import { Route as PainelRouteImport } from './routes/painel'
 import { Route as QualificacaoTecnicaRouteImport } from './routes/qualificacao-tecnica'
 import { Route as RetrofitVrvVrfRouteImport } from './routes/retrofit-vrv-vrf'
 import { Route as SistemasVrvVrfRouteImport } from './routes/sistemas-vrv-vrf'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as ConteudoSlugRouteImport } from './routes/conteudo.$slug'
 import { Route as ObrasSlugRouteImport } from './routes/obras.$slug'
 
@@ -78,6 +79,11 @@ const SistemasVrvVrfRoute = SistemasVrvVrfRouteImport.update({
   path: '/sistemas-vrv-vrf',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ConteudoSlugRoute = ConteudoSlugRouteImport.update({
   id: '/$slug',
   path: '/$slug',
@@ -101,6 +107,7 @@ export interface FileRoutesByFullPath {
   '/qualificacao-tecnica': typeof QualificacaoTecnicaRoute
   '/retrofit-vrv-vrf': typeof RetrofitVrvVrfRoute
   '/sistemas-vrv-vrf': typeof SistemasVrvVrfRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/conteudo/$slug': typeof ConteudoSlugRoute
   '/obras/$slug': typeof ObrasSlugRoute
 }
@@ -116,6 +123,7 @@ export interface FileRoutesByTo {
   '/qualificacao-tecnica': typeof QualificacaoTecnicaRoute
   '/retrofit-vrv-vrf': typeof RetrofitVrvVrfRoute
   '/sistemas-vrv-vrf': typeof SistemasVrvVrfRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/conteudo/$slug': typeof ConteudoSlugRoute
   '/obras/$slug': typeof ObrasSlugRoute
 }
@@ -132,6 +140,7 @@ export interface FileRoutesById {
   '/qualificacao-tecnica': typeof QualificacaoTecnicaRoute
   '/retrofit-vrv-vrf': typeof RetrofitVrvVrfRoute
   '/sistemas-vrv-vrf': typeof SistemasVrvVrfRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/conteudo/$slug': typeof ConteudoSlugRoute
   '/obras/$slug': typeof ObrasSlugRoute
 }
@@ -149,6 +158,7 @@ export interface FileRouteTypes {
     | '/qualificacao-tecnica'
     | '/retrofit-vrv-vrf'
     | '/sistemas-vrv-vrf'
+    | '/sitemap.xml'
     | '/conteudo/$slug'
     | '/obras/$slug'
   fileRoutesByTo: FileRoutesByTo
@@ -164,6 +174,7 @@ export interface FileRouteTypes {
     | '/qualificacao-tecnica'
     | '/retrofit-vrv-vrf'
     | '/sistemas-vrv-vrf'
+    | '/sitemap.xml'
     | '/conteudo/$slug'
     | '/obras/$slug'
   id:
@@ -179,6 +190,7 @@ export interface FileRouteTypes {
     | '/qualificacao-tecnica'
     | '/retrofit-vrv-vrf'
     | '/sistemas-vrv-vrf'
+    | '/sitemap.xml'
     | '/conteudo/$slug'
     | '/obras/$slug'
   fileRoutesById: FileRoutesById
@@ -195,6 +207,7 @@ export interface RootRouteChildren {
   QualificacaoTecnicaRoute: typeof QualificacaoTecnicaRoute
   RetrofitVrvVrfRoute: typeof RetrofitVrvVrfRoute
   SistemasVrvVrfRoute: typeof SistemasVrvVrfRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -276,6 +289,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SistemasVrvVrfRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/conteudo/$slug': {
       id: '/conteudo/$slug'
       path: '/$slug'
@@ -327,6 +347,7 @@ const rootRouteChildren: RootRouteChildren = {
   QualificacaoTecnicaRoute: QualificacaoTecnicaRoute,
   RetrofitVrvVrfRoute: RetrofitVrvVrfRoute,
   SistemasVrvVrfRoute: SistemasVrvVrfRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
