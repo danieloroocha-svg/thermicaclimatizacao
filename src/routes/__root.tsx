@@ -75,7 +75,29 @@ function ErrorComponent({ error, reset }: ErrorComponentProps) {
 }
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
+  staticData: { sitemap: false },
   head: () => ({
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          name: "THÉRMICA Soluções em Climatização Ltda.",
+          url: "https://thermicaclimatizacao.lovable.app",
+          email: "comercial@thermicaclimatizacao.com.br",
+          telephone: "+5511955913582",
+          address: {
+            "@type": "PostalAddress",
+            streetAddress: "Estrada das Lágrimas, 489",
+            addressLocality: "São Paulo",
+            addressRegion: "SP",
+            postalCode: "04232-000",
+            addressCountry: "BR",
+          },
+        }),
+      },
+    ],
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
