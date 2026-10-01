@@ -3,7 +3,7 @@ import { ArrowRight, Building2, ClipboardCheck, Gauge, RefreshCcw } from "lucide
 import { Button } from "@/components/ui/button";
 import { ContactBand } from "@/components/site-shell";
 import { ProjectGrid } from "@/components/project-grid";
-import { projects, SITE, meta } from "@/lib/site-data";
+import { projects, SITE, meta, BASE_URL } from "@/lib/site-data";
 
 // No head() here: the home route inherits title/description/og/twitter from
 // __root.tsx, and ships no og:image so serve-time hosting can inject the
