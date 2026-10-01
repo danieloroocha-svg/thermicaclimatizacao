@@ -12,3 +12,7 @@ Allow: /
 
 User-agent: *
 Allow: /
+Disallow: /acesso
+Disallow: /painel
+
+Sitemap: https://thermicaclimatizacao.lovable.app/sitemap.xml
