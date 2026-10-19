@@ -27,7 +27,7 @@ export const Route = createFileRoute("/")({
             name: SITE.name,
             url: BASE_URL,
             email: SITE.email,
-            telephone: "+5511955913582",
+            telephone: "+5511955046147",
             areaServed: "Brasil",
             address: {
               "@type": "PostalAddress",

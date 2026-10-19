@@ -86,7 +86,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           name: "THÉRMICA Soluções em Climatização Ltda.",
           url: "https://thermicaclimatizacao.lovable.app",
           email: "comercial@thermicaclimatizacao.com.br",
-          telephone: "+5511955913582",
+          telephone: "+5511955046147",
           address: {
             "@type": "PostalAddress",
             streetAddress: "Estrada das Lágrimas, 489",

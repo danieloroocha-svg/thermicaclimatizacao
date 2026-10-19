@@ -11,11 +11,11 @@ import universidade from "@/assets/obra-universidade.webp";
 export const SITE = {
   name: "THÉRMICA Soluções em Climatização Ltda.",
   email: "comercial@thermicaclimatizacao.com.br",
-  phone: "(11) 95591-3582",
+  phone: "(11) 95504-6147",
   address: "Estrada das Lágrimas, 489 — Ipiranga, São Paulo — SP, CEP 04232-000",
   logo: logo,
   headerLogo: headerLogo,
-  whatsapp: "https://wa.me/5511955913582?text=Ol%C3%A1%21%20Entrei%20em%20contato%20pelo%20site%20da%20TH%C3%89RMICA%20e%20gostaria%20de%20falar%20sobre%20uma%20demanda%20de%20climatiza%C3%A7%C3%A3o.",
+  whatsapp: "https://wa.me/5511955046147?text=Ol%C3%A1%21%20Entrei%20em%20contato%20pelo%20site%20da%20TH%C3%89RMICA%20e%20gostaria%20de%20falar%20sobre%20uma%20demanda%20de%20climatiza%C3%A7%C3%A3o.",
 } as const;
 
 export const projects = [
