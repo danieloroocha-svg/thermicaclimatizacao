@@ -7,7 +7,7 @@ import { Label } from "@/components/ui/label";
 import { WhatsAppGlyph } from "@/components/whatsapp-icon";
 import { supabase } from "@/integrations/supabase/client";
 
-const NUMBER = "5511955913582";
+const NUMBER = "5511955046147";
 
 function currentPage() {
   const title = document.title.split("|")[0]?.trim();
