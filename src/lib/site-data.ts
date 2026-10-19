@@ -1,7 +1,8 @@
-import logo from "@/assets/thermica-logo.png";
-import headerLogo from "@/assets/thermica-logo-header-oficial.png";
+import headerLogo from "@/assets/thermica-logo-header.webp";
 import osasco from "@/assets/obra-osasco.webp";
 import lapa from "@/assets/obra-lapa.webp";
+import osascoMobile from "@/assets/obra-osasco-mobile.webp";
+export const HERO_MOBILE = osascoMobile;
 import indaiatuba from "@/assets/obra-indaiatuba.webp";
 import baroneza from "@/assets/obra-baroneza.webp";
 import hospital from "@/assets/obra-hospital.webp";
@@ -13,7 +14,6 @@ export const SITE = {
   email: "comercial@thermicaclimatizacao.com.br",
   phone: "(11) 95504-6147",
   address: "Estrada das Lágrimas, 489 — Ipiranga, São Paulo — SP, CEP 04232-000",
-  logo: logo,
   headerLogo: headerLogo,
   whatsapp: "https://wa.me/5511955046147?text=Ol%C3%A1%21%20Entrei%20em%20contato%20pelo%20site%20da%20TH%C3%89RMICA%20e%20gostaria%20de%20falar%20sobre%20uma%20demanda%20de%20climatiza%C3%A7%C3%A3o.",
 } as const;
