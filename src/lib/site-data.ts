@@ -35,7 +35,7 @@ export const articles = [
   { slug: "etapas-implantacao", title: "Etapas de implantação de um sistema VRV/VRF", excerpt: "Da compatibilização à partida: os pontos de controle de uma execução estruturada." },
 ] as const;
 
-export const BASE_URL = "https://thermicaclimatizacao.lovable.app";
+export const BASE_URL = "https://thermicaclimatizacao.com.br";
 
 export const meta = (title: string, description: string, path = "/") => ({
   meta: [
