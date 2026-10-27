@@ -140,6 +140,11 @@ const relatedSolutions = [
   { path: "/projeto-de-ar-condicionado-central-para-empresas", label: "Projeto de ar condicionado central para empresas" },
   { path: "/instalacao-de-vrv-comercial-sao-paulo", label: "Instalação de VRV comercial em São Paulo" },
   { path: "/instalacao-de-ar-condicionado-vrf-campinas", label: "Instalação de ar condicionado VRF em Campinas" },
+  { path: "/retrofit-de-ar-condicionado-predial-sao-paulo", label: "Retrofit de ar condicionado predial em São Paulo" },
+  { path: "/projeto-executivo-de-climatizacao-comercial", label: "Projeto executivo de climatização comercial" },
+  { path: "/projeto-de-ar-condicionado-vrf-para-escritorio", label: "Projeto de ar condicionado VRF para escritório" },
+  { path: "/empresa-de-climatizacao-para-construtoras-sp", label: "Climatização para construtoras em SP" },
+  { path: "/climatizacao-para-galpoes-logisticos-sao-paulo", label: "Climatização para galpões logísticos em São Paulo" },
 ];
 
 function WhatsAppAction({ label }: { label: string }) {
@@ -201,7 +206,7 @@ export function SeoKeywordLanding({ page }: { page: SeoKeywordPage }) {
             <p className="eyebrow text-primary">Engenharia e contratação técnica</p>
             <h2 id="escopo-heading" className="section-title first-letter:uppercase">{page.keyword}: {page.scopeHeading}</h2>
             <p className="mt-6 text-lg leading-8 text-muted-foreground">
-              {page.keyword.startsWith("projeto ") ? "O" : "A"}{" "}
+              {page.keyword.startsWith("projeto ") || page.keyword.startsWith("retrofit ") ? "O" : "A"}{" "}
               <strong className="text-foreground">{page.keyword}</strong> exige planejamento consistente. {page.scopeText}
             </p>
             <h3 className="mt-8 text-2xl font-semibold">{page.scopeDetailHeading}</h3>
