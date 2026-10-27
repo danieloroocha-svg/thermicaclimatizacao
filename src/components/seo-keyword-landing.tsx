@@ -145,6 +145,11 @@ const relatedSolutions = [
   { path: "/projeto-de-ar-condicionado-vrf-para-escritorio", label: "Projeto de ar condicionado VRF para escritório" },
   { path: "/empresa-de-climatizacao-para-construtoras-sp", label: "Climatização para construtoras em SP" },
   { path: "/climatizacao-para-galpoes-logisticos-sao-paulo", label: "Climatização para galpões logísticos em São Paulo" },
+  { path: "/instalacao-de-ar-condicionado-hospitalar-sp", label: "Instalação de ar condicionado hospitalar SP" },
+  { path: "/empresa-credenciada-daikin-vrv-sao-paulo", label: "Qualificação e instalação Daikin VRV em São Paulo" },
+  { path: "/empresa-instaladora-de-vrf-sao-paulo", label: "Empresa instaladora de VRF São Paulo" },
+  { path: "/sistema-vrf-para-edificios-corporativos-sp", label: "Sistema VRF para edifícios corporativos SP" },
+  { path: "/instalacao-vrf-mitsubishi-electric-sp", label: "Instalação VRF Mitsubishi Electric SP" },
 ];
 
 function WhatsAppAction({ label }: { label: string }) {
@@ -177,7 +182,7 @@ export function SeoKeywordLanding({ page }: { page: SeoKeywordPage }) {
           <p className="eyebrow">{page.badge} • Atendimento empresarial</p>
           <h1 className="mt-5 max-w-4xl text-4xl font-semibold leading-tight first-letter:uppercase md:text-6xl">{page.keyword}</h1>
           <p className="mt-7 max-w-3xl text-lg leading-8 text-primary-foreground/85">
-            A THÉRMICA analisa e desenvolve soluções de <strong>{page.keyword}</strong>. {page.introduction}
+            {page.keyword.startsWith("empresa ") ? "Se sua equipe pesquisa por" : "A THÉRMICA analisa e desenvolve soluções de"}{" "}<strong>{page.keyword}</strong>{page.keyword.startsWith("empresa ") ? ", a THÉRMICA pode avaliar o escopo do seu empreendimento." : "."} {page.introduction}
           </p>
           <div className="mt-9 flex flex-wrap items-center gap-4">
             <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90">
@@ -206,8 +211,8 @@ export function SeoKeywordLanding({ page }: { page: SeoKeywordPage }) {
             <p className="eyebrow text-primary">Engenharia e contratação técnica</p>
             <h2 id="escopo-heading" className="section-title first-letter:uppercase">{page.keyword}: {page.scopeHeading}</h2>
             <p className="mt-6 text-lg leading-8 text-muted-foreground">
-              {page.keyword.startsWith("projeto ") || page.keyword.startsWith("retrofit ") ? "O" : "A"}{" "}
-              <strong className="text-foreground">{page.keyword}</strong> exige planejamento consistente. {page.scopeText}
+              {page.keyword.startsWith("empresa ") ? "A busca por" : page.keyword.startsWith("projeto ") || page.keyword.startsWith("retrofit ") || page.keyword.startsWith("sistema ") ? "O" : "A"}{" "}
+              <strong className="text-foreground">{page.keyword}</strong> {page.keyword.startsWith("empresa ") ? "exige avaliar a qualificação técnica e o escopo." : "exige planejamento consistente."} {page.scopeText}
             </p>
             <h3 className="mt-8 text-2xl font-semibold">{page.scopeDetailHeading}</h3>
             <p className="mt-4 leading-8 text-muted-foreground">{page.scopeDetailText}</p>
@@ -223,7 +228,7 @@ export function SeoKeywordLanding({ page }: { page: SeoKeywordPage }) {
       <section className="section bg-secondary" aria-labelledby="etapas-heading">
         <div className="mx-auto max-w-7xl px-5 lg:px-8">
           <p className="eyebrow text-primary">Método técnico</p>
-          <h2 id="etapas-heading" className="section-title">Etapas de {page.keyword}</h2>
+          <h2 id="etapas-heading" className="section-title">{page.keyword.startsWith("empresa ") ? "Etapas para contratar" : "Etapas de"} {page.keyword}</h2>
           <p className="section-copy">Neste tipo de contratação, {page.stagesIntro}</p>
           <div className="mt-12 grid gap-5 md:grid-cols-2">
             {page.stages.map((stage, index) => (
