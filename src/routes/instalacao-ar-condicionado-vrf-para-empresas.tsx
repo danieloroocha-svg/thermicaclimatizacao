@@ -27,7 +27,7 @@ import healthImage from "@/assets/seo/instalacao-ar-condicionado-vrf-empresas-in
  * Os CTAs internos acionam o mesmo formulário global.
  */
 const PATH = "/instalacao-ar-condicionado-vrf-para-empresas";
-const URL = `${BASE_URL}${PATH}`;
+const PAGE_URL = `${BASE_URL}${PATH}`;
 const TITLE = "Instalação de Ar-Condicionado VRF para Empresas | THÉRMICA";
 const DESCRIPTION =
   "Instalação de ar-condicionado VRF para empresas em todo o Brasil. Engenharia, testes, comissionamento e entrega técnica. Solicite orçamento à THÉRMICA.";
@@ -37,23 +37,23 @@ const serviceSchema = {
   "@graph": [
     {
       "@type": "WebPage",
-      "@id": `${URL}#pagina`,
-      url: URL,
+      "@id": `${PAGE_URL}#pagina`,
+      url: PAGE_URL,
       name: TITLE,
       description: DESCRIPTION,
       image: new URL(heroImage, BASE_URL).href,
       inLanguage: "pt-BR",
       isPartOf: { "@type": "WebSite", name: "THÉRMICA", url: BASE_URL },
-      mainEntity: { "@id": `${URL}#servico` },
+      mainEntity: { "@id": `${PAGE_URL}#servico` },
     },
     {
       "@type": "Service",
-      "@id": `${URL}#servico`,
+      "@id": `${PAGE_URL}#servico`,
       name: "Instalação de ar-condicionado VRF para empresas",
       serviceType: "Engenharia e instalação de sistemas VRV/VRF corporativos",
       description:
         "Avaliação técnica, planejamento, implantação, testes e entrega de sistemas VRV/VRF para empresas, construtoras, gerenciadoras e operações corporativas.",
-      url: URL,
+      url: PAGE_URL,
       provider: {
         "@type": "Organization",
         name: SITE.name,
@@ -70,7 +70,7 @@ const serviceSchema = {
     },
     {
       "@type": "BreadcrumbList",
-      "@id": `${URL}#breadcrumb`,
+      "@id": `${PAGE_URL}#breadcrumb`,
       itemListElement: [
         { "@type": "ListItem", position: 1, name: "Home", item: BASE_URL },
         {
@@ -79,7 +79,7 @@ const serviceSchema = {
           name: "Nova instalação VRV/VRF",
           item: `${BASE_URL}/instalacao-vrv-vrf`,
         },
-        { "@type": "ListItem", position: 3, name: "Instalação VRF para empresas", item: URL },
+        { "@type": "ListItem", position: 3, name: "Instalação VRF para empresas", item: PAGE_URL },
       ],
     },
   ],
