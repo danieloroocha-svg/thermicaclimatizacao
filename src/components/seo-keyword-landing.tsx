@@ -155,6 +155,11 @@ const relatedSolutions = [
   { path: "/empresa-de-projetos-de-hvac-sao-paulo", label: "Empresa de projetos HVAC São Paulo" },
   { path: "/projeto-de-climatizacao-com-art-crea-sp", label: "Projeto de climatização com ART CREA SP" },
   { path: "/instalacao-de-ar-condicionado-para-construtora", label: "Instalação de ar condicionado para construtora" },
+  { path: "/instalacao-de-hvac-corporativo-sao-paulo", label: "Instalação de HVAC corporativo São Paulo" },
+  { path: "/climatizacao-de-precisao-para-data-center-sp", label: "Climatização de precisão para data center SP" },
+  { path: "/sistema-de-ar-condicionado-para-salas-limpas-sp", label: "Sistema de ar condicionado para salas limpas SP" },
+  { path: "/ar-condicionado-para-laboratorios-e-areas-limpas", label: "Ar condicionado para laboratórios e áreas limpas" },
+  { path: "/climatizacao-para-supermercados-e-atacarejos-sp", label: "Climatização para supermercados e atacarejos SP" },
 ];
 
 function WhatsAppAction({ label }: { label: string }) {
@@ -216,7 +221,7 @@ export function SeoKeywordLanding({ page }: { page: SeoKeywordPage }) {
             <p className="eyebrow text-primary">Engenharia e contratação técnica</p>
             <h2 id="escopo-heading" className="section-title first-letter:uppercase">{page.keyword}: {page.scopeHeading}</h2>
             <p className="mt-6 text-lg leading-8 text-muted-foreground">
-              {page.keyword.startsWith("empresa ") ? "A busca por" : page.keyword.startsWith("projeto ") || page.keyword.startsWith("retrofit ") || page.keyword.startsWith("sistema ") ? "O" : "A"}{" "}
+              {page.keyword.startsWith("empresa ") ? "A busca por" : page.keyword.startsWith("projeto ") || page.keyword.startsWith("retrofit ") || page.keyword.startsWith("sistema ") || page.keyword.startsWith("ar condicionado ") ? "O" : "A"}{" "}
               <strong className="text-foreground">{page.keyword}</strong> {page.keyword.startsWith("empresa ") ? "exige avaliar a qualificação técnica e o escopo." : "exige planejamento consistente."} {page.scopeText}
             </p>
             <h3 className="mt-8 text-2xl font-semibold">{page.scopeDetailHeading}</h3>
