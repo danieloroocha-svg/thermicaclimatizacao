@@ -85,7 +85,7 @@ const serviceSchema = {
   ],
 };
 
-export const Route = createFileRoute(PATH)({
+export const Route = createFileRoute("/instalacao-ar-condicionado-vrf-para-empresas")({
   staticData: { sitemap: true },
   head: () => {
     const base = meta(TITLE, DESCRIPTION, PATH);
