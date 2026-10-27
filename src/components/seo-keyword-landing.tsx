@@ -150,6 +150,11 @@ const relatedSolutions = [
   { path: "/empresa-instaladora-de-vrf-sao-paulo", label: "Empresa instaladora de VRF São Paulo" },
   { path: "/sistema-vrf-para-edificios-corporativos-sp", label: "Sistema VRF para edifícios corporativos SP" },
   { path: "/instalacao-vrf-mitsubishi-electric-sp", label: "Instalação VRF Mitsubishi Electric SP" },
+  { path: "/empresa-de-retrofit-de-climatizacao-sp", label: "Empresa de retrofit de climatização SP" },
+  { path: "/retrofit-de-tubulacoes-de-sistema-de-agua-gelada-sp", label: "Retrofit de tubulações de água gelada em SP" },
+  { path: "/empresa-de-projetos-de-hvac-sao-paulo", label: "Empresa de projetos HVAC São Paulo" },
+  { path: "/projeto-de-climatizacao-com-art-crea-sp", label: "Projeto de climatização com ART CREA SP" },
+  { path: "/instalacao-de-ar-condicionado-para-construtora", label: "Instalação de ar condicionado para construtora" },
 ];
 
 function WhatsAppAction({ label }: { label: string }) {
