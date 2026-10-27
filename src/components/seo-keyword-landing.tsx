@@ -53,7 +53,7 @@ export type SeoKeywordPage = {
 
 export function seoKeywordHead(page: SeoKeywordPage) {
   const pageURL = `${BASE_URL}${page.path}`;
-  const title = `${page.keyword} | THÉRMICA`;
+  const title = `${page.keyword.charAt(0).toUpperCase()}${page.keyword.slice(1)} | THÉRMICA`;
   const base = meta(title, page.description, page.path);
   const imageURL = new URL(page.pictures[0], BASE_URL).href;
   const provider = {
@@ -134,6 +134,14 @@ const regions = [
   { label: "Sul", states: [["Paraná", "PR"], ["Rio Grande do Sul", "RS"], ["Santa Catarina", "SC"]] },
 ] as const;
 
+const relatedSolutions = [
+  { path: "/instalacao-ar-condicionado-vrf-para-empresas", label: "Instalação de ar condicionado VRF para empresas" },
+  { path: "/modernizacao-de-sistema-de-climatizacao-sp", label: "Modernização de sistema de climatização" },
+  { path: "/projeto-de-ar-condicionado-central-para-empresas", label: "Projeto de ar condicionado central para empresas" },
+  { path: "/instalacao-de-vrv-comercial-sao-paulo", label: "Instalação de VRV comercial em São Paulo" },
+  { path: "/instalacao-de-ar-condicionado-vrf-campinas", label: "Instalação de ar condicionado VRF em Campinas" },
+];
+
 function WhatsAppAction({ label }: { label: string }) {
   return (
     <Button
@@ -162,7 +170,7 @@ export function SeoKeywordLanding({ page }: { page: SeoKeywordPage }) {
             <span aria-current="page">{page.breadcrumb}</span>
           </nav>
           <p className="eyebrow">{page.badge} • Atendimento empresarial</p>
-          <h1 className="mt-5 max-w-4xl text-4xl font-semibold leading-tight md:text-6xl">{page.keyword}</h1>
+          <h1 className="mt-5 max-w-4xl text-4xl font-semibold leading-tight first-letter:uppercase md:text-6xl">{page.keyword}</h1>
           <p className="mt-7 max-w-3xl text-lg leading-8 text-primary-foreground/85">
             A THÉRMICA analisa e desenvolve soluções de <strong>{page.keyword}</strong>. {page.introduction}
           </p>
@@ -191,9 +199,10 @@ export function SeoKeywordLanding({ page }: { page: SeoKeywordPage }) {
         <div className="mx-auto grid max-w-7xl gap-12 px-5 lg:grid-cols-[1.1fr_.9fr] lg:px-8">
           <div>
             <p className="eyebrow text-primary">Engenharia e contratação técnica</p>
-            <h2 id="escopo-heading" className="section-title">{page.keyword}: {page.scopeHeading}</h2>
+            <h2 id="escopo-heading" className="section-title first-letter:uppercase">{page.keyword}: {page.scopeHeading}</h2>
             <p className="mt-6 text-lg leading-8 text-muted-foreground">
-              A <strong className="text-foreground">{page.keyword}</strong> exige planejamento consistente. {page.scopeText}
+              {page.keyword.startsWith("projeto ") ? "O" : "A"}{" "}
+              <strong className="text-foreground">{page.keyword}</strong> exige planejamento consistente. {page.scopeText}
             </p>
             <h3 className="mt-8 text-2xl font-semibold">{page.scopeDetailHeading}</h3>
             <p className="mt-4 leading-8 text-muted-foreground">{page.scopeDetailText}</p>
@@ -227,7 +236,7 @@ export function SeoKeywordLanding({ page }: { page: SeoKeywordPage }) {
         <div className="mx-auto grid max-w-7xl gap-12 px-5 lg:grid-cols-[1.15fr_.85fr] lg:px-8">
           <div>
             <p className="eyebrow text-primary">Aplicação em imóveis corporativos</p>
-            <h2 id="aplicacoes-heading" className="section-title">{page.keyword}: {page.applicationsHeading}</h2>
+            <h2 id="aplicacoes-heading" className="section-title first-letter:uppercase">{page.keyword}: {page.applicationsHeading}</h2>
             <p className="mt-6 leading-8 text-muted-foreground">Para avaliar <strong className="text-foreground">{page.keyword}</strong>, {page.applicationsText}</p>
             <h3 className="mt-8 text-2xl font-semibold">{page.applicationsDetailHeading}</h3>
             <p className="mt-4 leading-8 text-muted-foreground">{page.applicationsDetailText}</p>
@@ -244,7 +253,7 @@ export function SeoKeywordLanding({ page }: { page: SeoKeywordPage }) {
           <div className="grid gap-12 lg:grid-cols-[.8fr_1.2fr]">
             <div>
               <p className="eyebrow text-primary">Escopo e controle de qualidade</p>
-              <h2 id="qualidade-heading" className="section-title">{page.keyword}: critérios para execução e entrega</h2>
+              <h2 id="qualidade-heading" className="section-title first-letter:uppercase">{page.keyword}: critérios para execução e entrega</h2>
               <p className="section-copy">Na contratação de <strong>{page.keyword}</strong>, {page.qualityText}</p>
               <p className="mt-5 text-sm leading-7 text-muted-foreground">Os requisitos documentais, testes, ART e garantias são especificados em cada contrato. O desempenho e eventuais economias dependem de estudo técnico e condições reais do empreendimento.</p>
             </div>
@@ -349,6 +358,18 @@ export function SeoKeywordLanding({ page }: { page: SeoKeywordPage }) {
           <p className="mt-8 text-sm leading-7 text-muted-foreground">
             Conheça nossas soluções de <Link to="/sistemas-vrv-vrf" className="font-semibold text-primary underline">sistemas VRV/VRF</Link>, <Link to="/retrofit-vrv-vrf" className="font-semibold text-primary underline">retrofit</Link> e <Link to="/qualificacao-tecnica" className="font-semibold text-primary underline">qualificação técnica</Link>.
           </p>
+          <div className="mt-7 border-t border-border pt-6">
+            <h3 className="text-lg font-semibold text-primary">Outras soluções de engenharia da THÉRMICA</h3>
+            <ul className="mt-4 grid gap-3 sm:grid-cols-2">
+              {relatedSolutions.filter((solution) => solution.path !== page.path).map((solution) => (
+                <li key={solution.path}>
+                  <a href={solution.path} className="inline-flex items-start gap-2 text-sm font-medium text-primary hover:underline">
+                    <ArrowRight aria-hidden="true" className="mt-0.5 size-4 shrink-0 text-accent" />{solution.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
           <p className="mt-6 text-xs leading-6 text-muted-foreground">Conteúdo técnico institucional da THÉRMICA, sob orientação de Daniel Rocha, engenheiro mecânico. Normas, responsabilidades e requisitos de cada fabricante devem ser conferidos para o projeto contratado.</p>
         </div>
       </section>
