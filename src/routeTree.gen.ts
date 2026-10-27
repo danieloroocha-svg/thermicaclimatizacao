@@ -15,6 +15,7 @@ import { Route as ContatoRouteImport } from './routes/contato'
 import { Route as ConteudoRouteImport } from './routes/conteudo'
 import { Route as EmpresaRouteImport } from './routes/empresa'
 import { Route as InstalacaoVrvVrfRouteImport } from './routes/instalacao-vrv-vrf'
+import { Route as InstalacaoArCondicionadoVrfParaEmpresasRouteImport } from './routes/instalacao-ar-condicionado-vrf-para-empresas'
 import { Route as ObrasRouteImport } from './routes/obras'
 import { Route as PainelRouteImport } from './routes/painel'
 import { Route as QualificacaoTecnicaRouteImport } from './routes/qualificacao-tecnica'
@@ -52,6 +53,11 @@ const EmpresaRoute = EmpresaRouteImport.update({
 const InstalacaoVrvVrfRoute = InstalacaoVrvVrfRouteImport.update({
   id: '/instalacao-vrv-vrf',
   path: '/instalacao-vrv-vrf',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InstalacaoArCondicionadoVrfParaEmpresasRoute = InstalacaoArCondicionadoVrfParaEmpresasRouteImport.update({
+  id: '/instalacao-ar-condicionado-vrf-para-empresas',
+  path: '/instalacao-ar-condicionado-vrf-para-empresas',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ObrasRoute = ObrasRouteImport.update({
@@ -102,6 +108,7 @@ export interface FileRoutesByFullPath {
   '/conteudo': typeof ConteudoRouteWithChildren
   '/empresa': typeof EmpresaRoute
   '/instalacao-vrv-vrf': typeof InstalacaoVrvVrfRoute
+  '/instalacao-ar-condicionado-vrf-para-empresas': typeof InstalacaoArCondicionadoVrfParaEmpresasRoute
   '/obras': typeof ObrasRouteWithChildren
   '/painel': typeof PainelRoute
   '/qualificacao-tecnica': typeof QualificacaoTecnicaRoute
@@ -118,6 +125,7 @@ export interface FileRoutesByTo {
   '/conteudo': typeof ConteudoRouteWithChildren
   '/empresa': typeof EmpresaRoute
   '/instalacao-vrv-vrf': typeof InstalacaoVrvVrfRoute
+  '/instalacao-ar-condicionado-vrf-para-empresas': typeof InstalacaoArCondicionadoVrfParaEmpresasRoute
   '/obras': typeof ObrasRouteWithChildren
   '/painel': typeof PainelRoute
   '/qualificacao-tecnica': typeof QualificacaoTecnicaRoute
@@ -135,6 +143,7 @@ export interface FileRoutesById {
   '/conteudo': typeof ConteudoRouteWithChildren
   '/empresa': typeof EmpresaRoute
   '/instalacao-vrv-vrf': typeof InstalacaoVrvVrfRoute
+  '/instalacao-ar-condicionado-vrf-para-empresas': typeof InstalacaoArCondicionadoVrfParaEmpresasRoute
   '/obras': typeof ObrasRouteWithChildren
   '/painel': typeof PainelRoute
   '/qualificacao-tecnica': typeof QualificacaoTecnicaRoute
@@ -153,6 +162,7 @@ export interface FileRouteTypes {
     | '/conteudo'
     | '/empresa'
     | '/instalacao-vrv-vrf'
+    | '/instalacao-ar-condicionado-vrf-para-empresas'
     | '/obras'
     | '/painel'
     | '/qualificacao-tecnica'
@@ -169,6 +179,7 @@ export interface FileRouteTypes {
     | '/conteudo'
     | '/empresa'
     | '/instalacao-vrv-vrf'
+    | '/instalacao-ar-condicionado-vrf-para-empresas'
     | '/obras'
     | '/painel'
     | '/qualificacao-tecnica'
@@ -185,6 +196,7 @@ export interface FileRouteTypes {
     | '/conteudo'
     | '/empresa'
     | '/instalacao-vrv-vrf'
+    | '/instalacao-ar-condicionado-vrf-para-empresas'
     | '/obras'
     | '/painel'
     | '/qualificacao-tecnica'
@@ -202,6 +214,7 @@ export interface RootRouteChildren {
   ConteudoRoute: typeof ConteudoRouteWithChildren
   EmpresaRoute: typeof EmpresaRoute
   InstalacaoVrvVrfRoute: typeof InstalacaoVrvVrfRoute
+  InstalacaoArCondicionadoVrfParaEmpresasRoute: typeof InstalacaoArCondicionadoVrfParaEmpresasRoute
   ObrasRoute: typeof ObrasRouteWithChildren
   PainelRoute: typeof PainelRoute
   QualificacaoTecnicaRoute: typeof QualificacaoTecnicaRoute
@@ -252,6 +265,13 @@ declare module '@tanstack/react-router' {
       path: '/instalacao-vrv-vrf'
       fullPath: '/instalacao-vrv-vrf'
       preLoaderRoute: typeof InstalacaoVrvVrfRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/instalacao-ar-condicionado-vrf-para-empresas': {
+      id: '/instalacao-ar-condicionado-vrf-para-empresas'
+      path: '/instalacao-ar-condicionado-vrf-para-empresas'
+      fullPath: '/instalacao-ar-condicionado-vrf-para-empresas'
+      preLoaderRoute: typeof InstalacaoArCondicionadoVrfParaEmpresasRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/obras': {
@@ -342,6 +362,7 @@ const rootRouteChildren: RootRouteChildren = {
   ConteudoRoute: ConteudoRouteWithChildren,
   EmpresaRoute: EmpresaRoute,
   InstalacaoVrvVrfRoute: InstalacaoVrvVrfRoute,
+  InstalacaoArCondicionadoVrfParaEmpresasRoute: InstalacaoArCondicionadoVrfParaEmpresasRoute,
   ObrasRoute: ObrasRouteWithChildren,
   PainelRoute: PainelRoute,
   QualificacaoTecnicaRoute: QualificacaoTecnicaRoute,
