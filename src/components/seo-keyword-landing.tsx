@@ -165,6 +165,11 @@ const relatedSolutions = [
   { path: "/modernizacao-de-ar-condicionado-corporativo-sp", label: "Modernização de ar condicionado corporativo SP" },
   { path: "/retrofit-ar-condicionado-edificio-comercial-sao-paulo", label: "Retrofit de ar condicionado de edifício comercial SP" },
   { path: "/empresa-de-engenharia-termica-e-climatizacao-sp", label: "Engenharia térmica e climatização SP" },
+  { path: "/projeto-avac-edificios-comerciais-sp", label: "Projeto AVAC para edifícios comerciais SP" },
+  { path: "/subempreiteira-de-ar-condicionado-para-obras", label: "Subempreiteira de ar-condicionado para obras" },
+  { path: "/empresa-de-climatizacao-para-shopping-centers-sp", label: "Climatização para shopping centers SP" },
+  { path: "/climatizacao-para-condominios-corporativos-sao-paulo", label: "Climatização para condomínios corporativos SP" },
+  { path: "/instalacao-de-ar-condicionado-para-hotelaria-sp", label: "Instalação de ar-condicionado para hotelaria SP" },
 ];
 
 function WhatsAppAction({ label }: { label: string }) {
