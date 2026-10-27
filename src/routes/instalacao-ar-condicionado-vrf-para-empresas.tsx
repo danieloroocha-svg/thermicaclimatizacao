@@ -284,7 +284,9 @@ function InstallationForBusiness() {
         <div className="mx-auto grid max-w-7xl gap-12 px-5 lg:grid-cols-[1.1fr_.9fr] lg:px-8">
           <div>
             <p className="eyebrow text-primary">Instalação corporativa de VRF</p>
-            <h2 id="escopo-heading" className="section-title">Uma obra de climatização exige mais que montar equipamentos.</h2>
+            <h2 id="escopo-heading" className="section-title">
+              Instalação de ar-condicionado VRF para empresas: por que a engenharia importa
+            </h2>
             <p className="mt-6 text-lg leading-8 text-muted-foreground">
               A <strong className="text-foreground">instalação de ar-condicionado VRF para empresas</strong> envolve
               interfaces entre o projeto térmico, arquitetura, alimentação elétrica, drenagem,
@@ -329,7 +331,9 @@ function InstallationForBusiness() {
       <section className="section bg-secondary" aria-labelledby="etapas-heading">
         <div className="mx-auto max-w-7xl px-5 lg:px-8">
           <p className="eyebrow text-primary">Método executivo</p>
-          <h2 id="etapas-heading" className="section-title">Como conduzimos uma instalação VRF empresarial</h2>
+          <h2 id="etapas-heading" className="section-title">
+            Etapas da instalação de ar-condicionado VRF para empresas
+          </h2>
           <p className="section-copy">
             Na instalação de ar-condicionado VRF para empresas, cada contrato possui
             premissas próprias. Estas são as frentes avaliadas para estruturar uma execução
@@ -352,7 +356,7 @@ function InstallationForBusiness() {
           <div>
             <p className="eyebrow text-primary">Aplicação e decisão de engenharia</p>
             <h2 id="aplicacoes-heading" className="section-title">
-              Instalação de sistemas VRF em edifícios corporativos: quando faz sentido?
+              Instalação de ar-condicionado VRF para empresas: aplicações e requisitos
             </h2>
             <p className="mt-6 leading-8 text-muted-foreground">
               A instalação de ar-condicionado VRF para empresas pode atender diversos ambientes
@@ -475,7 +479,9 @@ function InstallationForBusiness() {
           </figure>
           <div>
             <p className="eyebrow text-primary">Cotação técnica</p>
-            <h2 id="proposta-heading" className="section-title">O que influencia o orçamento de instalação VRF?</h2>
+            <h2 id="proposta-heading" className="section-title">
+              Orçamento para instalação de ar-condicionado VRF para empresas
+            </h2>
             <p className="mt-6 leading-8 text-muted-foreground">
               Uma proposta responsável considera mais do que a quantidade de evaporadoras. O custo
               varia com capacidade, configuração, extensão das redes, altura da edificação,
@@ -575,7 +581,7 @@ function InstallationForBusiness() {
           <div>
             <p className="eyebrow">Sua próxima obra VRV/VRF</p>
             <h2 id="contato-final-heading" className="mt-3 text-3xl font-semibold md:text-4xl">
-              Precisa de uma empresa para instalação VRF corporativa?
+              Precisa de instalação de ar-condicionado VRF para empresas?
             </h2>
             <p className="mt-4 max-w-2xl leading-8 text-primary-foreground/75">
               Envie localização, plantas, quantitativos e cronograma, se disponíveis.
@@ -602,12 +608,6 @@ function InstallationForBusiness() {
             A THÉRMICA recebe consultas para implantação de sistemas VRV/VRF em todas as
             unidades federativas. A execução em cada cidade depende de avaliação prévia de
             distância, escopo, infraestrutura de apoio, disponibilidade e mobilização.
-            A relação abaixo indica localidades para as quais podemos analisar solicitações,
-            e não a existência de filial ou equipe permanente em cada estado.
-          </p>
-          <p className="mt-3 text-sm leading-7 text-muted-foreground">
-            Clique em um estado para consultar a relação completa de municípios, organizada
-            em ordem alfabética. A lista segue a base de códigos de localidades do IBGE.
           </p>
           <div className="mt-9 space-y-9">
             {coverageRegions.map((region) => (
