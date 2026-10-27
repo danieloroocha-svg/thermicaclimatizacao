@@ -219,7 +219,7 @@ export function SeoKeywordLanding({ page }: { page: SeoKeywordPage }) {
         <div className="mx-auto max-w-7xl px-5 lg:px-8">
           <p className="eyebrow text-primary">Método técnico</p>
           <h2 id="etapas-heading" className="section-title">Etapas de {page.keyword}</h2>
-          <p className="section-copy">Em contratos de <strong>{page.keyword}</strong>, {page.stagesIntro}</p>
+          <p className="section-copy">Neste tipo de contratação, {page.stagesIntro}</p>
           <div className="mt-12 grid gap-5 md:grid-cols-2">
             {page.stages.map((stage, index) => (
               <article key={stage.title} className="border border-border bg-background p-7">
@@ -379,7 +379,7 @@ export function SeoKeywordLanding({ page }: { page: SeoKeywordPage }) {
           <div>
             <p className="eyebrow">Sua próxima obra corporativa</p>
             <h2 id="contato-final-heading" className="mt-3 text-3xl font-semibold md:text-4xl">Precisa de {page.keyword}?</h2>
-            <p className="mt-4 max-w-2xl leading-8 text-primary-foreground/75">A THÉRMICA recebe pedidos de <strong>{page.keyword}</strong> com informações de localização, planta, sistema existente ou projetado, prazo e escopo previsto. Após a análise técnica, definimos a viabilidade e os próximos passos comerciais.</p>
+            <p className="mt-4 max-w-2xl leading-8 text-primary-foreground/75">A THÉRMICA recebe solicitações de empresas com informações de localização, planta, sistema existente ou projetado, prazo e escopo previsto. Após a análise técnica, definimos a viabilidade e os próximos passos comerciais.</p>
           </div>
           <div className="flex shrink-0 flex-wrap gap-3">
             <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90"><Link to="/contato">Solicitar orçamento técnico <ArrowRight className="size-4" /></Link></Button>
