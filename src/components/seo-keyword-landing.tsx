@@ -175,6 +175,11 @@ const relatedSolutions = [
   { path: "/instalacao-de-sistema-vrf-alphaville-barueri", label: "Instalação de sistema VRF Alphaville Barueri" },
   { path: "/fornecedor-de-sistema-vrf-para-construtora-sp", label: "Fornecedor de sistema VRF para construtora SP" },
   { path: "/retrofit-de-ar-condicionado-hospitalar-sp", label: "Retrofit de ar-condicionado hospitalar SP" },
+  { path: "/modernizacao-de-central-de-agua-gelada-cag-sp", label: "Modernização de central de água gelada CAG SP" },
+  { path: "/compatibilizacao-bim-projetos-de-climatizacao-vrf", label: "Compatibilização BIM de projetos VRF" },
+  { path: "/contrato-de-climatizacao-predial-para-facilities-sp", label: "Contrato de climatização predial para facilities SP" },
+  { path: "/gestao-de-obras-de-climatizacao-sao-paulo", label: "Gestão de obras de climatização em São Paulo" },
+  { path: "/empresa-de-ar-condicionado-para-gerenciadoras-de-obras", label: "Ar-condicionado para gerenciadoras de obras" },
 ];
 
 function WhatsAppAction({ label }: { label: string }) {
@@ -236,7 +241,7 @@ export function SeoKeywordLanding({ page }: { page: SeoKeywordPage }) {
             <p className="eyebrow text-primary">Engenharia e contratação técnica</p>
             <h2 id="escopo-heading" className="section-title first-letter:uppercase">{page.keyword}: {page.scopeHeading}</h2>
             <p className="mt-6 text-lg leading-8 text-muted-foreground">
-              {page.keyword.startsWith("empresa ") ? "A busca por" : page.keyword.startsWith("projeto ") || page.keyword.startsWith("retrofit ") || page.keyword.startsWith("sistema ") || page.keyword.startsWith("ar condicionado ") || page.keyword.startsWith("orçamento ") ? "O" : "A"}{" "}
+              {page.keyword.startsWith("empresa ") ? "A busca por" : page.keyword.startsWith("projeto ") || page.keyword.startsWith("retrofit ") || page.keyword.startsWith("sistema ") || page.keyword.startsWith("ar condicionado ") || page.keyword.startsWith("orçamento ") || page.keyword.startsWith("contrato ") ? "O" : "A"}{" "}
               <strong className="text-foreground">{page.keyword}</strong> {page.keyword.startsWith("empresa ") ? "exige avaliar a qualificação técnica e o escopo." : "exige planejamento consistente."} {page.scopeText}
             </p>
             <h3 className="mt-8 text-2xl font-semibold">{page.scopeDetailHeading}</h3>
