@@ -3,6 +3,7 @@ import {
   ArrowRight,
   Building2,
   CheckCircle2,
+  ChevronDown,
   ClipboardCheck,
   FileCheck2,
   Gauge,
@@ -19,6 +20,7 @@ import heroImage from "@/assets/seo/instalacao-ar-condicionado-vrf-empresas-edif
 import officeImage from "@/assets/seo/instalacao-ar-condicionado-vrf-empresas-escritorio-industrial.webp";
 import retrofitImage from "@/assets/seo/instalacao-ar-condicionado-vrf-empresas-retrofit-escritorio.webp";
 import healthImage from "@/assets/seo/instalacao-ar-condicionado-vrf-empresas-instituicao-saude.webp";
+import municipiosPorEstado from "@/data/municipios-por-estado.json";
 
 /**
  * Destino no repositório: src/routes/instalacao-ar-condicionado-vrf-para-empresas.tsx
@@ -186,28 +188,23 @@ const audiences = [
 const coverageRegions = [
   {
     label: "Norte",
-    states: ["Acre (AC)", "Amapá (AP)", "Amazonas (AM)", "Pará (PA)", "Rondônia (RO)", "Roraima (RR)", "Tocantins (TO)"],
-    cities: "Rio Branco, Macapá, Manaus, Belém, Porto Velho, Boa Vista e Palmas",
+    states: [["Acre", "AC"], ["Amapá", "AP"], ["Amazonas", "AM"], ["Pará", "PA"], ["Rondônia", "RO"], ["Roraima", "RR"], ["Tocantins", "TO"]],
   },
   {
     label: "Nordeste",
-    states: ["Alagoas (AL)", "Bahia (BA)", "Ceará (CE)", "Maranhão (MA)", "Paraíba (PB)", "Pernambuco (PE)", "Piauí (PI)", "Rio Grande do Norte (RN)", "Sergipe (SE)"],
-    cities: "Maceió, Salvador, Fortaleza, São Luís, João Pessoa, Recife, Teresina, Natal e Aracaju",
+    states: [["Alagoas", "AL"], ["Bahia", "BA"], ["Ceará", "CE"], ["Maranhão", "MA"], ["Paraíba", "PB"], ["Pernambuco", "PE"], ["Piauí", "PI"], ["Rio Grande do Norte", "RN"], ["Sergipe", "SE"]],
   },
   {
     label: "Centro-Oeste",
-    states: ["Distrito Federal (DF)", "Goiás (GO)", "Mato Grosso (MT)", "Mato Grosso do Sul (MS)"],
-    cities: "Brasília, Goiânia, Cuiabá e Campo Grande",
+    states: [["Distrito Federal", "DF"], ["Goiás", "GO"], ["Mato Grosso", "MT"], ["Mato Grosso do Sul", "MS"]],
   },
   {
     label: "Sudeste",
-    states: ["Espírito Santo (ES)", "Minas Gerais (MG)", "Rio de Janeiro (RJ)", "São Paulo (SP)"],
-    cities: "Vitória, Belo Horizonte, Rio de Janeiro, São Paulo, Campinas, Sorocaba, Jundiaí, Barueri e Ribeirão Preto",
+    states: [["Espírito Santo", "ES"], ["Minas Gerais", "MG"], ["Rio de Janeiro", "RJ"], ["São Paulo", "SP"]],
   },
   {
     label: "Sul",
-    states: ["Paraná (PR)", "Rio Grande do Sul (RS)", "Santa Catarina (SC)"],
-    cities: "Curitiba, Porto Alegre e Florianópolis",
+    states: [["Paraná", "PR"], ["Rio Grande do Sul", "RS"], ["Santa Catarina", "SC"]],
   },
 ] as const;
 
@@ -333,7 +330,11 @@ function InstallationForBusiness() {
         <div className="mx-auto max-w-7xl px-5 lg:px-8">
           <p className="eyebrow text-primary">Método executivo</p>
           <h2 id="etapas-heading" className="section-title">Como conduzimos uma instalação VRF empresarial</h2>
-          <p className="section-copy">Cada contrato tem suas premissas. Estas são as frentes normalmente avaliadas para estruturar uma execução segura.</p>
+          <p className="section-copy">
+            Na instalação de ar-condicionado VRF para empresas, cada contrato possui
+            premissas próprias. Estas são as frentes avaliadas para estruturar uma execução
+            coordenada, do levantamento à entrega técnica.
+          </p>
           <div className="mt-12 grid gap-5 md:grid-cols-2">
             {stages.map((stage) => (
               <article key={stage.n} className="border border-border bg-background p-7">
@@ -354,7 +355,7 @@ function InstallationForBusiness() {
               Instalação de sistemas VRF em edifícios corporativos: quando faz sentido?
             </h2>
             <p className="mt-6 leading-8 text-muted-foreground">
-              Um sistema de fluxo de refrigerante variável pode atender diversos ambientes
+              A instalação de ar-condicionado VRF para empresas pode atender diversos ambientes
               independentes, com controle por zonas e modulação conforme a carga térmica.
               Essa característica torna a tecnologia relevante para escritórios com salas de
               reunião, pavimentos de ocupação variável, hotéis, escolas e áreas administrativas.
@@ -405,7 +406,11 @@ function InstallationForBusiness() {
             <div>
               <p className="eyebrow text-primary">Controle de qualidade</p>
               <h2 id="qualidade-heading" className="section-title">Pontos técnicos que importam na entrega</h2>
-              <p className="section-copy">Os critérios de execução são definidos pelo projeto, normas aplicáveis e instruções específicas de cada sistema e fabricante.</p>
+              <p className="section-copy">
+                Na instalação de ar-condicionado VRF para empresas, os critérios de execução
+                são definidos pelo projeto, pelas normas aplicáveis e pelas instruções
+                específicas de cada sistema e fabricante.
+              </p>
               <p className="mt-5 text-sm leading-7 text-muted-foreground">
                 As exigências de ART, ensaios, documentação e entrega são verificadas em cada contratação.
                 Não adotamos promessas genéricas de economia ou desempenho sem análise de engenharia.
@@ -574,8 +579,8 @@ function InstallationForBusiness() {
             </h2>
             <p className="mt-4 max-w-2xl leading-8 text-primary-foreground/75">
               Envie localização, plantas, quantitativos e cronograma, se disponíveis.
-              A equipe da THÉRMICA avaliará o escopo de instalação de ar-condicionado VRF
-              para sua empresa e os próximos passos comerciais.
+              A equipe da THÉRMICA avaliará o escopo da instalação de ar-condicionado VRF para empresas,
+              com responsabilidades e próximos passos comerciais definidos.
             </p>
           </div>
           <div className="flex shrink-0 flex-wrap gap-3">
@@ -600,20 +605,43 @@ function InstallationForBusiness() {
             A relação abaixo indica localidades para as quais podemos analisar solicitações,
             e não a existência de filial ou equipe permanente em cada estado.
           </p>
-          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+          <p className="mt-3 text-sm leading-7 text-muted-foreground">
+            Clique em um estado para consultar a relação completa de municípios, organizada
+            em ordem alfabética. A lista segue a base de códigos de localidades do IBGE.
+          </p>
+          <div className="mt-9 space-y-9">
             {coverageRegions.map((region) => (
-              <details key={region.label} open className="border border-border bg-background p-5">
-                <summary className="cursor-pointer font-display text-lg font-semibold text-primary">
-                  {region.label} <span className="text-sm text-muted-foreground">({region.states.length})</span>
-                </summary>
-                <ul className="mt-4 space-y-2 text-sm leading-6 text-foreground/80">
-                  {region.states.map((state) => <li key={state}>{state}</li>)}
-                </ul>
-                <details className="mt-4 border-t border-border pt-3">
-                  <summary className="cursor-pointer text-xs font-semibold text-primary">Exemplos de municípios</summary>
-                  <p className="mt-2 text-xs leading-6 text-muted-foreground">{region.cities}. Outras cidades podem ser avaliadas.</p>
-                </details>
-              </details>
+              <div key={region.label}>
+                <p className="mb-4 font-display text-xl font-semibold text-primary">
+                  Região {region.label} <span className="text-sm font-normal text-muted-foreground">({region.states.length} unidades federativas)</span>
+                </p>
+                <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                  {region.states.map(([stateName, uf]) => {
+                    const municipios = municipiosPorEstado[uf];
+                    return (
+                      <details key={uf} className="group min-w-0 border border-border bg-background open:sm:col-span-2 open:lg:col-span-3">
+                        <summary className="flex cursor-pointer list-none items-center justify-between gap-3 p-5 marker:hidden">
+                          <span className="font-semibold text-primary">{stateName} <span className="font-normal text-muted-foreground">({uf})</span></span>
+                          <span className="ml-auto whitespace-nowrap text-xs text-muted-foreground">
+                            {uf === "DF" ? "Brasília" : `${municipios.length} municípios`}
+                          </span>
+                          <ChevronDown aria-hidden="true" className="size-5 shrink-0 text-primary transition-transform group-open:rotate-180" />
+                        </summary>
+                        <div className="border-t border-border px-5 pb-6 pt-4">
+                          <p className="text-sm leading-6 text-muted-foreground">
+                            {uf === "DF"
+                              ? "O Distrito Federal não se divide em municípios. Brasília consta na base nacional de localidades do IBGE."
+                              : `Relação completa dos ${municipios.length} municípios de ${stateName}, em ordem alfabética. Role a lista para conferir todos os nomes.`}
+                          </p>
+                          <ul className="mt-5 grid max-h-[32rem] grid-cols-1 gap-x-8 gap-y-2 overflow-y-auto border-l-2 border-accent pl-4 text-sm leading-6 text-foreground/85 sm:grid-cols-2 lg:grid-cols-4">
+                            {municipios.map((municipio) => <li key={municipio}>{municipio}</li>)}
+                          </ul>
+                        </div>
+                      </details>
+                    );
+                  })}
+                </div>
+              </div>
             ))}
           </div>
         </div>
