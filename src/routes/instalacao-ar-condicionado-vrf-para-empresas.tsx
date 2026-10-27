@@ -16,10 +16,10 @@ import {
   SITE,
   meta,
 } from "@/lib/site-data";
-import heroImage from "@/assets/seo/instalacao-ar-condicionado-vrf-empresas-edificio-corporativo.webp";
-import officeImage from "@/assets/seo/instalacao-ar-condicionado-vrf-empresas-escritorio-industrial.webp";
-import retrofitImage from "@/assets/seo/instalacao-ar-condicionado-vrf-empresas-retrofit-escritorio.webp";
-import healthImage from "@/assets/seo/instalacao-ar-condicionado-vrf-empresas-instituicao-saude.webp";
+import heroImage from "@/assets/seo/instalacao-ar-condicionado-vrf-para-empresas-cobertura.webp";
+import teamImage from "@/assets/seo/instalacao-ar-condicionado-vrf-para-empresas-equipe.webp";
+import corporateOfficeImage from "@/assets/seo/instalacao-ar-condicionado-vrf-para-empresas-escritorio.webp";
+import retrofitImage from "@/assets/seo/instalacao-ar-condicionado-vrf-para-empresas-retrofit.webp";
 import municipiosPorEstado from "@/data/municipios-por-estado.json";
 
 /**
@@ -98,7 +98,7 @@ export const Route = createFileRoute("/instalacao-ar-condicionado-vrf-para-empre
         ...base.meta,
         { property: "og:locale", content: "pt_BR" },
         { property: "og:image", content: imageURL },
-        { property: "og:image:alt", content: "Obra corporativa com sistema VRF" },
+        { property: "og:image:alt", content: "Unidades VRF em cobertura corporativa — imagem ilustrativa THÉRMICA" },
         { name: "author", content: SITE.name },
         { name: "twitter:image", content: imageURL },
         { name: "robots", content: "index,follow,max-image-preview:large" },
@@ -227,10 +227,10 @@ function InstallationForBusiness() {
       <section className="relative overflow-hidden bg-primary text-primary-foreground">
         <img
           src={heroImage}
-          width={1448}
-          height={1086}
+          width={1672}
+          height={941}
           fetchPriority="high"
-          alt="Instalação de sistema VRF em edifício administrativo, referência de obra corporativa da THÉRMICA"
+          alt="Instalação de ar-condicionado VRF para empresas em cobertura corporativa, ilustração da THÉRMICA"
           className="absolute inset-0 h-full w-full object-cover opacity-35"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/90 to-primary/35" />
@@ -313,16 +313,16 @@ function InstallationForBusiness() {
           </div>
           <figure className="overflow-hidden bg-secondary">
             <img
-              src={officeImage}
-              width={1448}
-              height={1086}
+              src={teamImage}
+              width={1672}
+              height={941}
               loading="lazy"
               decoding="async"
-              alt="Empreendimento empresarial em Indaiatuba com instalação de sistema VRV Daikin"
+              alt="Equipe técnica trabalhando na instalação de ar-condicionado VRF para empresas, imagem ilustrativa"
               className="h-full min-h-72 w-full object-cover"
             />
             <figcaption className="px-5 py-3 text-xs leading-6 text-muted-foreground">
-              Referência de obra: escritório em Indaiatuba, sistema VRV Daikin.
+              Imagem ilustrativa de equipe técnica em instalação de climatização corporativa.
             </figcaption>
           </figure>
         </div>
@@ -388,17 +388,17 @@ function InstallationForBusiness() {
           </div>
           <figure className="overflow-hidden bg-secondary">
             <img
-              src={healthImage}
-              width={1448}
-              height={1086}
+              src={corporateOfficeImage}
+              width={1672}
+              height={941}
               loading="lazy"
               decoding="async"
-              alt="Sistema VRF Trane em edificação hospitalar na Vila Clementino, São Paulo, referência de obra da THÉRMICA"
+              alt="Escritório corporativo com climatização integrada e sistema VRF, imagem ilustrativa da THÉRMICA"
               className="h-full min-h-72 w-full object-cover"
             />
             <figcaption className="px-5 py-3 text-xs leading-6 text-muted-foreground">
-              Referência de obra: edificação hospitalar na Vila Clementino, sistema VRF Trane.
-              A aplicação técnica depende das exigências de cada ambiente.
+              Imagem ilustrativa de ambiente corporativo climatizado. A aplicação técnica
+              depende das exigências de cada ambiente.
             </figcaption>
           </figure>
         </div>
@@ -466,15 +466,15 @@ function InstallationForBusiness() {
           <figure className="overflow-hidden bg-secondary">
             <img
               src={retrofitImage}
-              width={1448}
-              height={1086}
+              width={1672}
+              height={941}
               loading="lazy"
               decoding="async"
-              alt="Retrofit corporativo executado em escritório na Lapa com sistema VRV Daikin"
+              alt="Modernização de infraestrutura VRF em cobertura corporativa, imagem ilustrativa de retrofit"
               className="h-full min-h-80 w-full object-cover"
             />
             <figcaption className="px-5 py-3 text-xs leading-6 text-muted-foreground">
-              Referência de obra: retrofit corporativo na Lapa, São Paulo.
+              Imagem ilustrativa de retrofit de climatização em empreendimento corporativo.
             </figcaption>
           </figure>
           <div>
