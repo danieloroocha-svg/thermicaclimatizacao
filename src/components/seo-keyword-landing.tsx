@@ -170,6 +170,11 @@ const relatedSolutions = [
   { path: "/empresa-de-climatizacao-para-shopping-centers-sp", label: "Climatização para shopping centers SP" },
   { path: "/climatizacao-para-condominios-corporativos-sao-paulo", label: "Climatização para condomínios corporativos SP" },
   { path: "/instalacao-de-ar-condicionado-para-hotelaria-sp", label: "Instalação de ar-condicionado para hotelaria SP" },
+  { path: "/climatizacao-para-industria-farmaceutica-sp", label: "Climatização para indústria farmacêutica SP" },
+  { path: "/sistema-vrf-para-hospitais-e-clinicas-sp", label: "Sistema VRF para hospitais e clínicas SP" },
+  { path: "/instalacao-de-sistema-vrf-alphaville-barueri", label: "Instalação de sistema VRF Alphaville Barueri" },
+  { path: "/fornecedor-de-sistema-vrf-para-construtora-sp", label: "Fornecedor de sistema VRF para construtora SP" },
+  { path: "/retrofit-de-ar-condicionado-hospitalar-sp", label: "Retrofit de ar-condicionado hospitalar SP" },
 ];
 
 function WhatsAppAction({ label }: { label: string }) {
