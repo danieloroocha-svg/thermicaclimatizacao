@@ -14,10 +14,14 @@ import { Route as AcessoRouteImport } from './routes/acesso'
 import { Route as ContatoRouteImport } from './routes/contato'
 import { Route as ConteudoRouteImport } from './routes/conteudo'
 import { Route as EmpresaRouteImport } from './routes/empresa'
-import { Route as InstalacaoVrvVrfRouteImport } from './routes/instalacao-vrv-vrf'
 import { Route as InstalacaoArCondicionadoVrfParaEmpresasRouteImport } from './routes/instalacao-ar-condicionado-vrf-para-empresas'
+import { Route as InstalacaoDeArCondicionadoVrfCampinasRouteImport } from './routes/instalacao-de-ar-condicionado-vrf-campinas'
+import { Route as InstalacaoDeVrvComercialSaoPauloRouteImport } from './routes/instalacao-de-vrv-comercial-sao-paulo'
+import { Route as InstalacaoVrvVrfRouteImport } from './routes/instalacao-vrv-vrf'
+import { Route as ModernizacaoDeSistemaDeClimatizacaoSpRouteImport } from './routes/modernizacao-de-sistema-de-climatizacao-sp'
 import { Route as ObrasRouteImport } from './routes/obras'
 import { Route as PainelRouteImport } from './routes/painel'
+import { Route as ProjetoDeArCondicionadoCentralParaEmpresasRouteImport } from './routes/projeto-de-ar-condicionado-central-para-empresas'
 import { Route as QualificacaoTecnicaRouteImport } from './routes/qualificacao-tecnica'
 import { Route as RetrofitVrvVrfRouteImport } from './routes/retrofit-vrv-vrf'
 import { Route as SistemasVrvVrfRouteImport } from './routes/sistemas-vrv-vrf'
@@ -50,16 +54,35 @@ const EmpresaRoute = EmpresaRouteImport.update({
   path: '/empresa',
   getParentRoute: () => rootRouteImport,
 } as any)
+const InstalacaoArCondicionadoVrfParaEmpresasRoute =
+  InstalacaoArCondicionadoVrfParaEmpresasRouteImport.update({
+    id: '/instalacao-ar-condicionado-vrf-para-empresas',
+    path: '/instalacao-ar-condicionado-vrf-para-empresas',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const InstalacaoDeArCondicionadoVrfCampinasRoute =
+  InstalacaoDeArCondicionadoVrfCampinasRouteImport.update({
+    id: '/instalacao-de-ar-condicionado-vrf-campinas',
+    path: '/instalacao-de-ar-condicionado-vrf-campinas',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const InstalacaoDeVrvComercialSaoPauloRoute =
+  InstalacaoDeVrvComercialSaoPauloRouteImport.update({
+    id: '/instalacao-de-vrv-comercial-sao-paulo',
+    path: '/instalacao-de-vrv-comercial-sao-paulo',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const InstalacaoVrvVrfRoute = InstalacaoVrvVrfRouteImport.update({
   id: '/instalacao-vrv-vrf',
   path: '/instalacao-vrv-vrf',
   getParentRoute: () => rootRouteImport,
 } as any)
-const InstalacaoArCondicionadoVrfParaEmpresasRoute = InstalacaoArCondicionadoVrfParaEmpresasRouteImport.update({
-  id: '/instalacao-ar-condicionado-vrf-para-empresas',
-  path: '/instalacao-ar-condicionado-vrf-para-empresas',
-  getParentRoute: () => rootRouteImport,
-} as any)
+const ModernizacaoDeSistemaDeClimatizacaoSpRoute =
+  ModernizacaoDeSistemaDeClimatizacaoSpRouteImport.update({
+    id: '/modernizacao-de-sistema-de-climatizacao-sp',
+    path: '/modernizacao-de-sistema-de-climatizacao-sp',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const ObrasRoute = ObrasRouteImport.update({
   id: '/obras',
   path: '/obras',
@@ -70,6 +93,12 @@ const PainelRoute = PainelRouteImport.update({
   path: '/painel',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProjetoDeArCondicionadoCentralParaEmpresasRoute =
+  ProjetoDeArCondicionadoCentralParaEmpresasRouteImport.update({
+    id: '/projeto-de-ar-condicionado-central-para-empresas',
+    path: '/projeto-de-ar-condicionado-central-para-empresas',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const QualificacaoTecnicaRoute = QualificacaoTecnicaRouteImport.update({
   id: '/qualificacao-tecnica',
   path: '/qualificacao-tecnica',
@@ -107,10 +136,14 @@ export interface FileRoutesByFullPath {
   '/contato': typeof ContatoRoute
   '/conteudo': typeof ConteudoRouteWithChildren
   '/empresa': typeof EmpresaRoute
-  '/instalacao-vrv-vrf': typeof InstalacaoVrvVrfRoute
   '/instalacao-ar-condicionado-vrf-para-empresas': typeof InstalacaoArCondicionadoVrfParaEmpresasRoute
+  '/instalacao-de-ar-condicionado-vrf-campinas': typeof InstalacaoDeArCondicionadoVrfCampinasRoute
+  '/instalacao-de-vrv-comercial-sao-paulo': typeof InstalacaoDeVrvComercialSaoPauloRoute
+  '/instalacao-vrv-vrf': typeof InstalacaoVrvVrfRoute
+  '/modernizacao-de-sistema-de-climatizacao-sp': typeof ModernizacaoDeSistemaDeClimatizacaoSpRoute
   '/obras': typeof ObrasRouteWithChildren
   '/painel': typeof PainelRoute
+  '/projeto-de-ar-condicionado-central-para-empresas': typeof ProjetoDeArCondicionadoCentralParaEmpresasRoute
   '/qualificacao-tecnica': typeof QualificacaoTecnicaRoute
   '/retrofit-vrv-vrf': typeof RetrofitVrvVrfRoute
   '/sistemas-vrv-vrf': typeof SistemasVrvVrfRoute
@@ -124,10 +157,14 @@ export interface FileRoutesByTo {
   '/contato': typeof ContatoRoute
   '/conteudo': typeof ConteudoRouteWithChildren
   '/empresa': typeof EmpresaRoute
-  '/instalacao-vrv-vrf': typeof InstalacaoVrvVrfRoute
   '/instalacao-ar-condicionado-vrf-para-empresas': typeof InstalacaoArCondicionadoVrfParaEmpresasRoute
+  '/instalacao-de-ar-condicionado-vrf-campinas': typeof InstalacaoDeArCondicionadoVrfCampinasRoute
+  '/instalacao-de-vrv-comercial-sao-paulo': typeof InstalacaoDeVrvComercialSaoPauloRoute
+  '/instalacao-vrv-vrf': typeof InstalacaoVrvVrfRoute
+  '/modernizacao-de-sistema-de-climatizacao-sp': typeof ModernizacaoDeSistemaDeClimatizacaoSpRoute
   '/obras': typeof ObrasRouteWithChildren
   '/painel': typeof PainelRoute
+  '/projeto-de-ar-condicionado-central-para-empresas': typeof ProjetoDeArCondicionadoCentralParaEmpresasRoute
   '/qualificacao-tecnica': typeof QualificacaoTecnicaRoute
   '/retrofit-vrv-vrf': typeof RetrofitVrvVrfRoute
   '/sistemas-vrv-vrf': typeof SistemasVrvVrfRoute
@@ -142,10 +179,14 @@ export interface FileRoutesById {
   '/contato': typeof ContatoRoute
   '/conteudo': typeof ConteudoRouteWithChildren
   '/empresa': typeof EmpresaRoute
-  '/instalacao-vrv-vrf': typeof InstalacaoVrvVrfRoute
   '/instalacao-ar-condicionado-vrf-para-empresas': typeof InstalacaoArCondicionadoVrfParaEmpresasRoute
+  '/instalacao-de-ar-condicionado-vrf-campinas': typeof InstalacaoDeArCondicionadoVrfCampinasRoute
+  '/instalacao-de-vrv-comercial-sao-paulo': typeof InstalacaoDeVrvComercialSaoPauloRoute
+  '/instalacao-vrv-vrf': typeof InstalacaoVrvVrfRoute
+  '/modernizacao-de-sistema-de-climatizacao-sp': typeof ModernizacaoDeSistemaDeClimatizacaoSpRoute
   '/obras': typeof ObrasRouteWithChildren
   '/painel': typeof PainelRoute
+  '/projeto-de-ar-condicionado-central-para-empresas': typeof ProjetoDeArCondicionadoCentralParaEmpresasRoute
   '/qualificacao-tecnica': typeof QualificacaoTecnicaRoute
   '/retrofit-vrv-vrf': typeof RetrofitVrvVrfRoute
   '/sistemas-vrv-vrf': typeof SistemasVrvVrfRoute
@@ -161,10 +202,14 @@ export interface FileRouteTypes {
     | '/contato'
     | '/conteudo'
     | '/empresa'
-    | '/instalacao-vrv-vrf'
     | '/instalacao-ar-condicionado-vrf-para-empresas'
+    | '/instalacao-de-ar-condicionado-vrf-campinas'
+    | '/instalacao-de-vrv-comercial-sao-paulo'
+    | '/instalacao-vrv-vrf'
+    | '/modernizacao-de-sistema-de-climatizacao-sp'
     | '/obras'
     | '/painel'
+    | '/projeto-de-ar-condicionado-central-para-empresas'
     | '/qualificacao-tecnica'
     | '/retrofit-vrv-vrf'
     | '/sistemas-vrv-vrf'
@@ -178,10 +223,14 @@ export interface FileRouteTypes {
     | '/contato'
     | '/conteudo'
     | '/empresa'
-    | '/instalacao-vrv-vrf'
     | '/instalacao-ar-condicionado-vrf-para-empresas'
+    | '/instalacao-de-ar-condicionado-vrf-campinas'
+    | '/instalacao-de-vrv-comercial-sao-paulo'
+    | '/instalacao-vrv-vrf'
+    | '/modernizacao-de-sistema-de-climatizacao-sp'
     | '/obras'
     | '/painel'
+    | '/projeto-de-ar-condicionado-central-para-empresas'
     | '/qualificacao-tecnica'
     | '/retrofit-vrv-vrf'
     | '/sistemas-vrv-vrf'
@@ -195,10 +244,14 @@ export interface FileRouteTypes {
     | '/contato'
     | '/conteudo'
     | '/empresa'
-    | '/instalacao-vrv-vrf'
     | '/instalacao-ar-condicionado-vrf-para-empresas'
+    | '/instalacao-de-ar-condicionado-vrf-campinas'
+    | '/instalacao-de-vrv-comercial-sao-paulo'
+    | '/instalacao-vrv-vrf'
+    | '/modernizacao-de-sistema-de-climatizacao-sp'
     | '/obras'
     | '/painel'
+    | '/projeto-de-ar-condicionado-central-para-empresas'
     | '/qualificacao-tecnica'
     | '/retrofit-vrv-vrf'
     | '/sistemas-vrv-vrf'
@@ -213,10 +266,14 @@ export interface RootRouteChildren {
   ContatoRoute: typeof ContatoRoute
   ConteudoRoute: typeof ConteudoRouteWithChildren
   EmpresaRoute: typeof EmpresaRoute
-  InstalacaoVrvVrfRoute: typeof InstalacaoVrvVrfRoute
   InstalacaoArCondicionadoVrfParaEmpresasRoute: typeof InstalacaoArCondicionadoVrfParaEmpresasRoute
+  InstalacaoDeArCondicionadoVrfCampinasRoute: typeof InstalacaoDeArCondicionadoVrfCampinasRoute
+  InstalacaoDeVrvComercialSaoPauloRoute: typeof InstalacaoDeVrvComercialSaoPauloRoute
+  InstalacaoVrvVrfRoute: typeof InstalacaoVrvVrfRoute
+  ModernizacaoDeSistemaDeClimatizacaoSpRoute: typeof ModernizacaoDeSistemaDeClimatizacaoSpRoute
   ObrasRoute: typeof ObrasRouteWithChildren
   PainelRoute: typeof PainelRoute
+  ProjetoDeArCondicionadoCentralParaEmpresasRoute: typeof ProjetoDeArCondicionadoCentralParaEmpresasRoute
   QualificacaoTecnicaRoute: typeof QualificacaoTecnicaRoute
   RetrofitVrvVrfRoute: typeof RetrofitVrvVrfRoute
   SistemasVrvVrfRoute: typeof SistemasVrvVrfRoute
@@ -260,6 +317,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EmpresaRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/instalacao-ar-condicionado-vrf-para-empresas': {
+      id: '/instalacao-ar-condicionado-vrf-para-empresas'
+      path: '/instalacao-ar-condicionado-vrf-para-empresas'
+      fullPath: '/instalacao-ar-condicionado-vrf-para-empresas'
+      preLoaderRoute: typeof InstalacaoArCondicionadoVrfParaEmpresasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/instalacao-de-ar-condicionado-vrf-campinas': {
+      id: '/instalacao-de-ar-condicionado-vrf-campinas'
+      path: '/instalacao-de-ar-condicionado-vrf-campinas'
+      fullPath: '/instalacao-de-ar-condicionado-vrf-campinas'
+      preLoaderRoute: typeof InstalacaoDeArCondicionadoVrfCampinasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/instalacao-de-vrv-comercial-sao-paulo': {
+      id: '/instalacao-de-vrv-comercial-sao-paulo'
+      path: '/instalacao-de-vrv-comercial-sao-paulo'
+      fullPath: '/instalacao-de-vrv-comercial-sao-paulo'
+      preLoaderRoute: typeof InstalacaoDeVrvComercialSaoPauloRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/instalacao-vrv-vrf': {
       id: '/instalacao-vrv-vrf'
       path: '/instalacao-vrv-vrf'
@@ -267,11 +345,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof InstalacaoVrvVrfRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/instalacao-ar-condicionado-vrf-para-empresas': {
-      id: '/instalacao-ar-condicionado-vrf-para-empresas'
-      path: '/instalacao-ar-condicionado-vrf-para-empresas'
-      fullPath: '/instalacao-ar-condicionado-vrf-para-empresas'
-      preLoaderRoute: typeof InstalacaoArCondicionadoVrfParaEmpresasRouteImport
+    '/modernizacao-de-sistema-de-climatizacao-sp': {
+      id: '/modernizacao-de-sistema-de-climatizacao-sp'
+      path: '/modernizacao-de-sistema-de-climatizacao-sp'
+      fullPath: '/modernizacao-de-sistema-de-climatizacao-sp'
+      preLoaderRoute: typeof ModernizacaoDeSistemaDeClimatizacaoSpRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/obras': {
@@ -286,6 +364,13 @@ declare module '@tanstack/react-router' {
       path: '/painel'
       fullPath: '/painel'
       preLoaderRoute: typeof PainelRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/projeto-de-ar-condicionado-central-para-empresas': {
+      id: '/projeto-de-ar-condicionado-central-para-empresas'
+      path: '/projeto-de-ar-condicionado-central-para-empresas'
+      fullPath: '/projeto-de-ar-condicionado-central-para-empresas'
+      preLoaderRoute: typeof ProjetoDeArCondicionadoCentralParaEmpresasRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/qualificacao-tecnica': {
@@ -361,10 +446,18 @@ const rootRouteChildren: RootRouteChildren = {
   ContatoRoute: ContatoRoute,
   ConteudoRoute: ConteudoRouteWithChildren,
   EmpresaRoute: EmpresaRoute,
+  InstalacaoArCondicionadoVrfParaEmpresasRoute:
+    InstalacaoArCondicionadoVrfParaEmpresasRoute,
+  InstalacaoDeArCondicionadoVrfCampinasRoute:
+    InstalacaoDeArCondicionadoVrfCampinasRoute,
+  InstalacaoDeVrvComercialSaoPauloRoute: InstalacaoDeVrvComercialSaoPauloRoute,
   InstalacaoVrvVrfRoute: InstalacaoVrvVrfRoute,
-  InstalacaoArCondicionadoVrfParaEmpresasRoute: InstalacaoArCondicionadoVrfParaEmpresasRoute,
+  ModernizacaoDeSistemaDeClimatizacaoSpRoute:
+    ModernizacaoDeSistemaDeClimatizacaoSpRoute,
   ObrasRoute: ObrasRouteWithChildren,
   PainelRoute: PainelRoute,
+  ProjetoDeArCondicionadoCentralParaEmpresasRoute:
+    ProjetoDeArCondicionadoCentralParaEmpresasRoute,
   QualificacaoTecnicaRoute: QualificacaoTecnicaRoute,
   RetrofitVrvVrfRoute: RetrofitVrvVrfRoute,
   SistemasVrvVrfRoute: SistemasVrvVrfRoute,

@@ -381,7 +381,7 @@ function InstallationForBusiness() {
               limites do sistema precisam ser respeitados. Na instalação de VRF comercial,
               a qualidade da infraestrutura é tão importante quanto a escolha das unidades
               internas e externas. Veja também nossas orientações sobre{" "}
-              <Link to="/conteudo/etapas-implantacao" className="font-semibold text-primary underline">
+              <Link to="/conteudo/$slug" params={{ slug: "etapas-implantacao" }} className="font-semibold text-primary underline">
                 etapas de implantação VRV/VRF
               </Link>.
             </p>
@@ -566,7 +566,7 @@ function InstallationForBusiness() {
             Explore também: <Link to="/sistemas-vrv-vrf" className="font-semibold text-primary underline">sistemas VRV/VRF</Link>,{" "}
             <Link to="/instalacao-vrv-vrf" className="font-semibold text-primary underline">nova instalação</Link>,{" "}
             <Link to="/retrofit-vrv-vrf" className="font-semibold text-primary underline">retrofit</Link> e{" "}
-            <Link to="/conteudo/etapas-implantacao" className="font-semibold text-primary underline">etapas de implantação</Link>.
+            <Link to="/conteudo/$slug" params={{ slug: "etapas-implantacao" }} className="font-semibold text-primary underline">etapas de implantação</Link>.
           </p>
           <p className="mt-6 text-xs leading-6 text-muted-foreground">
             Conteúdo técnico institucional da THÉRMICA, sob orientação de Daniel Rocha,
