@@ -13,6 +13,7 @@ import { Button } from "@/components/ui/button";
 import { WhatsAppGlyph } from "@/components/whatsapp-icon";
 import { BASE_URL, SITE, meta } from "@/lib/site-data";
 import municipiosPorEstado from "@/data/municipios-por-estado.json";
+import { seoSiteEntries } from "@/lib/seo-site-directory";
 
 type TextBlock = { title: string; text: string };
 
@@ -134,58 +135,7 @@ const regions = [
   { label: "Sul", states: [["Paraná", "PR"], ["Rio Grande do Sul", "RS"], ["Santa Catarina", "SC"]] },
 ] as const;
 
-const relatedSolutions = [
-  { path: "/instalacao-ar-condicionado-vrf-para-empresas", label: "Instalação de ar condicionado VRF para empresas" },
-  { path: "/modernizacao-de-sistema-de-climatizacao-sp", label: "Modernização de sistema de climatização" },
-  { path: "/projeto-de-ar-condicionado-central-para-empresas", label: "Projeto de ar condicionado central para empresas" },
-  { path: "/instalacao-de-vrv-comercial-sao-paulo", label: "Instalação de VRV comercial em São Paulo" },
-  { path: "/instalacao-de-ar-condicionado-vrf-campinas", label: "Instalação de ar condicionado VRF em Campinas" },
-  { path: "/retrofit-de-ar-condicionado-predial-sao-paulo", label: "Retrofit de ar condicionado predial em São Paulo" },
-  { path: "/projeto-executivo-de-climatizacao-comercial", label: "Projeto executivo de climatização comercial" },
-  { path: "/projeto-de-ar-condicionado-vrf-para-escritorio", label: "Projeto de ar condicionado VRF para escritório" },
-  { path: "/empresa-de-climatizacao-para-construtoras-sp", label: "Climatização para construtoras em SP" },
-  { path: "/climatizacao-para-galpoes-logisticos-sao-paulo", label: "Climatização para galpões logísticos em São Paulo" },
-  { path: "/instalacao-de-ar-condicionado-hospitalar-sp", label: "Instalação de ar condicionado hospitalar SP" },
-  { path: "/empresa-credenciada-daikin-vrv-sao-paulo", label: "Qualificação e instalação Daikin VRV em São Paulo" },
-  { path: "/empresa-instaladora-de-vrf-sao-paulo", label: "Empresa instaladora de VRF São Paulo" },
-  { path: "/sistema-vrf-para-edificios-corporativos-sp", label: "Sistema VRF para edifícios corporativos SP" },
-  { path: "/instalacao-vrf-mitsubishi-electric-sp", label: "Instalação VRF Mitsubishi Electric SP" },
-  { path: "/empresa-de-retrofit-de-climatizacao-sp", label: "Empresa de retrofit de climatização SP" },
-  { path: "/retrofit-de-tubulacoes-de-sistema-de-agua-gelada-sp", label: "Retrofit de tubulações de água gelada em SP" },
-  { path: "/empresa-de-projetos-de-hvac-sao-paulo", label: "Empresa de projetos HVAC São Paulo" },
-  { path: "/projeto-de-climatizacao-com-art-crea-sp", label: "Projeto de climatização com ART CREA SP" },
-  { path: "/instalacao-de-ar-condicionado-para-construtora", label: "Instalação de ar condicionado para construtora" },
-  { path: "/instalacao-de-hvac-corporativo-sao-paulo", label: "Instalação de HVAC corporativo São Paulo" },
-  { path: "/climatizacao-de-precisao-para-data-center-sp", label: "Climatização de precisão para data center SP" },
-  { path: "/sistema-de-ar-condicionado-para-salas-limpas-sp", label: "Sistema de ar condicionado para salas limpas SP" },
-  { path: "/ar-condicionado-para-laboratorios-e-areas-limpas", label: "Ar condicionado para laboratórios e áreas limpas" },
-  { path: "/climatizacao-para-supermercados-e-atacarejos-sp", label: "Climatização para supermercados e atacarejos SP" },
-  { path: "/orcamento-instalacao-vrf-corporativo-sp", label: "Orçamento de instalação VRF corporativo SP" },
-  { path: "/retrofit-de-chiller-para-vrf", label: "Retrofit de chiller para VRF" },
-  { path: "/modernizacao-de-ar-condicionado-corporativo-sp", label: "Modernização de ar condicionado corporativo SP" },
-  { path: "/retrofit-ar-condicionado-edificio-comercial-sao-paulo", label: "Retrofit de ar condicionado de edifício comercial SP" },
-  { path: "/empresa-de-engenharia-termica-e-climatizacao-sp", label: "Engenharia térmica e climatização SP" },
-  { path: "/projeto-avac-edificios-comerciais-sp", label: "Projeto AVAC para edifícios comerciais SP" },
-  { path: "/subempreiteira-de-ar-condicionado-para-obras", label: "Subempreiteira de ar-condicionado para obras" },
-  { path: "/empresa-de-climatizacao-para-shopping-centers-sp", label: "Climatização para shopping centers SP" },
-  { path: "/climatizacao-para-condominios-corporativos-sao-paulo", label: "Climatização para condomínios corporativos SP" },
-  { path: "/instalacao-de-ar-condicionado-para-hotelaria-sp", label: "Instalação de ar-condicionado para hotelaria SP" },
-  { path: "/climatizacao-para-industria-farmaceutica-sp", label: "Climatização para indústria farmacêutica SP" },
-  { path: "/sistema-vrf-para-hospitais-e-clinicas-sp", label: "Sistema VRF para hospitais e clínicas SP" },
-  { path: "/instalacao-de-sistema-vrf-alphaville-barueri", label: "Instalação de sistema VRF Alphaville Barueri" },
-  { path: "/fornecedor-de-sistema-vrf-para-construtora-sp", label: "Fornecedor de sistema VRF para construtora SP" },
-  { path: "/retrofit-de-ar-condicionado-hospitalar-sp", label: "Retrofit de ar-condicionado hospitalar SP" },
-  { path: "/modernizacao-de-central-de-agua-gelada-cag-sp", label: "Modernização de central de água gelada CAG SP" },
-  { path: "/compatibilizacao-bim-projetos-de-climatizacao-vrf", label: "Compatibilização BIM de projetos VRF" },
-  { path: "/contrato-de-climatizacao-predial-para-facilities-sp", label: "Contrato de climatização predial para facilities SP" },
-  { path: "/gestao-de-obras-de-climatizacao-sao-paulo", label: "Gestão de obras de climatização em São Paulo" },
-  { path: "/empresa-de-ar-condicionado-para-gerenciadoras-de-obras", label: "Ar-condicionado para gerenciadoras de obras" },
-  { path: "/automacao-de-sistema-vrf-bms-sao-paulo", label: "automação de sistema vrf bms são paulo" },
-  { path: "/empresa-de-ar-condicionado-homologada-suprimentos", label: "empresa de ar condicionado homologada suprimentos" },
-  { path: "/retrofit-de-ar-condicionado-central-sp", label: "retrofit de ar condicionado central sp" },
-  { path: "/instalacao-de-sistema-vrf-sao-paulo", label: "instalação de sistema vrf são paulo" },
-  { path: "/engenharia-de-climatizacao-sao-paulo", label: "engenharia de climatização são paulo" },
-];
+const relatedSolutions = seoSiteEntries.map(({ path, keyword }) => ({ path, label: keyword }));
 
 function WhatsAppAction({ label }: { label: string }) {
   return (
