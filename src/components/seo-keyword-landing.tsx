@@ -180,6 +180,11 @@ const relatedSolutions = [
   { path: "/contrato-de-climatizacao-predial-para-facilities-sp", label: "Contrato de climatização predial para facilities SP" },
   { path: "/gestao-de-obras-de-climatizacao-sao-paulo", label: "Gestão de obras de climatização em São Paulo" },
   { path: "/empresa-de-ar-condicionado-para-gerenciadoras-de-obras", label: "Ar-condicionado para gerenciadoras de obras" },
+  { path: "/automacao-de-sistema-vrf-bms-sao-paulo", label: "automação de sistema vrf bms são paulo" },
+  { path: "/empresa-de-ar-condicionado-homologada-suprimentos", label: "empresa de ar condicionado homologada suprimentos" },
+  { path: "/retrofit-de-ar-condicionado-central-sp", label: "retrofit de ar condicionado central sp" },
+  { path: "/instalacao-de-sistema-vrf-sao-paulo", label: "instalação de sistema vrf são paulo" },
+  { path: "/engenharia-de-climatizacao-sao-paulo", label: "engenharia de climatização são paulo" },
 ];
 
 function WhatsAppAction({ label }: { label: string }) {
