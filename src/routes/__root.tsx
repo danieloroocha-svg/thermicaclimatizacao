@@ -101,6 +101,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
+      { name: "msvalidate.01", content: "D228FB1E04A598DD381DF3D488F05462" },
        { name: "author", content: "THÉRMICA Soluções em Climatização Ltda." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
