@@ -1,4 +1,4 @@
-/** Índice público das 50 páginas de SEO B2B da THÉRMICA; palavras-chave literais do estudo. */
+/** Índice público das páginas de SEO B2B da THÉRMICA; palavras-chave literais do estudo. */
 export type SeoDirectoryEntry = { number: number; path: string; keyword: string };
 export type SeoDirectoryGroup = { slug: string; title: string; description: string; items: SeoDirectoryEntry[] };
 
@@ -196,6 +196,11 @@ export const seoSiteGroups: SeoDirectoryGroup[] = [
         "number": 50,
         "path": "/engenharia-de-climatizacao-sao-paulo",
         "keyword": "engenharia de climatização são paulo"
+      },
+      {
+        "number": 51,
+        "path": "/calculo-de-carga-termica-ar-condicionado",
+        "keyword": "calculo de carga termica ar condicionado"
       }
     ]
   },
