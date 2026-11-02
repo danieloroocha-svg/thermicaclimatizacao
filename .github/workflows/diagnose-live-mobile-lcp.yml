@@ -16,7 +16,7 @@ jobs:
           which google-chrome || which chromium || true
       - name: Run isolated Lighthouse mobile trace
         run: |
-          npx --yes lighthouse@12.8.2 https://thermicaclimatizacao.com.br/ --only-categories=performance --form-factor=mobile --screenEmulation.mobile --throttling-method=simulate --chrome-flags="--headless --no-sandbox --disable-dev-shm-usage" --output=json --output-path=/tmp/thermica-mobile-lighthouse.json --quiet
+          xvfb-run -a npx --yes lighthouse@12.8.2 https://thermicaclimatizacao.com.br/ --only-categories=performance --form-factor=mobile --screenEmulation.mobile --throttling-method=simulate --chrome-flags="--no-sandbox --disable-dev-shm-usage --disable-blink-features=AutomationControlled" --output=json --output-path=/tmp/thermica-mobile-lighthouse.json --quiet
       - name: Print exact LCP element and network breakdown
         run: |
           node - <<'NODE'
