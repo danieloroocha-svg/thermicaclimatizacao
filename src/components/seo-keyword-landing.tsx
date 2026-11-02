@@ -120,7 +120,7 @@ export function seoKeywordHead(page: SeoKeywordPage) {
   };
   return {
     ...base,
-    links: [...base.links, { rel: "preload", as: "image", href: page.pictures[0], type: "image/webp", fetchPriority: "high" }],
+    links: [...base.links, { rel: "preload", as: "image", href: page.pictures[0], type: "image/webp", fetchPriority: "high" as const }],
     meta: [
       ...base.meta,
       { property: "og:locale", content: "pt_BR" },

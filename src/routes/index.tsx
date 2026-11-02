@@ -18,7 +18,7 @@ export const Route = createFileRoute("/")({
     );
     return {
       ...base,
-      links: [...base.links, { rel: "preload", as: "image", href: HERO_MOBILE, imageSrcSet: `${HERO_MOBILE} 828w, ${projects[0].image} 1448w`, imageSizes: "100vw", type: "image/webp", fetchPriority: "high" }],
+      links: [...base.links, { rel: "preload", as: "image", href: HERO_MOBILE, imageSrcSet: `${HERO_MOBILE} 828w, ${projects[0].image} 1448w`, imageSizes: "100vw", type: "image/webp", fetchPriority: "high" as const }],
       scripts: [
         {
           type: "application/ld+json",
