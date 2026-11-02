@@ -1,0 +1,64 @@
+name: Validate smaller mobile hero image
+on:
+  push:
+    branches:
+      - perf/hero-mobile-further-compression-2026-11
+permissions:
+  contents: write
+jobs:
+  optimize-and-verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Generate compressed WebP without changing dimensions
+        if: "!contains(github.event.head_commit.message, 'optimized mobile LCP image')"
+        run: |
+          python -m pip install --disable-pip-version-check pillow
+          python - <<'PY'
+          from PIL import Image, ImageChops, ImageStat
+          from pathlib import Path
+          p=Path("src/assets/obra-osasco-mobile.webp")
+          original=p.read_bytes()
+          with Image.open(p) as img:
+              rgb=img.convert("RGB")
+              dims=rgb.size
+              rgb.save(p,"WEBP",quality=43,method=6)
+              with Image.open(p) as result:
+                  new=result.convert("RGB")
+                  assert new.size==dims,"Dimensions must remain identical"
+                  diff=ImageStat.Stat(ImageChops.difference(rgb,new))
+                  mean=sum(diff.mean)/len(diff.mean)
+          reduction=1-p.stat().st_size/len(original)
+          print(f'ORIGINAL_BYTES={len(original)} OPTIMIZED_BYTES={p.stat().st_size} REDUCTION={reduction:.2%} MEAN_RGB_ERROR={mean:.2f} DIMENSIONS={dims}')
+          if reduction<.20 or mean>12:
+              raise SystemExit("Compression insufficient or visually too destructive")
+          PY
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+      - name: Install frozen dependencies
+        run: bun install --frozen-lockfile --ignore-scripts
+      - name: Build production
+        run: bun run build
+      - name: TypeScript
+        run: bunx tsc --noEmit
+      - name: Check image still referenced by mobile hero
+        run: |
+          grep -q 'srcSet={HERO_MOBILE}' src/routes/index.tsx
+          grep -q 'href: HERO_MOBILE' src/routes/index.tsx
+          node -e "const fs=require('fs');const p='src/assets/obra-osasco-mobile.webp';console.log('New bytes:',fs.statSync(p).size)"
+      - name: Commit optimized source image after tests
+        if: "!contains(github.event.head_commit.message, 'optimized mobile LCP image')"
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add src/assets/obra-osasco-mobile.webp
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "perf(images): optimized mobile LCP image"
+          BASIC=$(printf "x-access-token:%s" "$GH_TOKEN" | base64 -w0)
+          git -c "http.extraheader=AUTHORIZATION: basic $BASIC" push origin HEAD:perf/hero-mobile-further-compression-2026-11
