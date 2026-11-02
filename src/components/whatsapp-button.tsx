@@ -5,7 +5,7 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } f
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { WhatsAppGlyph } from "@/components/whatsapp-icon";
-import { supabase } from "@/integrations/supabase/client";
+
 
 /** Destino no projeto: src/components/whatsapp-button.tsx */
 const NUMBER = "5511955046147";
@@ -53,6 +53,8 @@ export function WhatsAppButton() {
     // O popup nasce do gesto do usuário para não ser bloqueado após o insert.
     const win = window.open("", "_blank");
     const sourceUrl = pageUrl || window.location.href;
+    // Load CRM only after the user explicitly submits the form.
+    const { supabase } = await import("@/integrations/supabase/client");
     const { error: err } = await supabase.from("whatsapp_leads").insert({
       ...lead,
       page_title: page,
