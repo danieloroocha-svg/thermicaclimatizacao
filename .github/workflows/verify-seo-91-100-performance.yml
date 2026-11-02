@@ -1,0 +1,31 @@
+name: Verify SEO 91-100 and mobile performance
+on:
+  push:
+    branches:
+      - seo/lote-91-100-pagespeed-mobile
+permissions:
+  contents: read
+jobs:
+  build-and-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+      - name: Install frozen dependencies
+        run: bun install --frozen-lockfile --ignore-scripts
+      - name: Compile and generate typed routes
+        run: bun run build
+      - name: TypeScript check
+        run: bunx tsc --noEmit
+      - name: Validate new paths
+        run: |
+          for slug in comissionamento-de-sistemas-de-ventilacao-e-exaustao relatorio-de-comissionamento-de-ar-condicionado projeto-basico-de-ar-condicionado-para-licitacao projeto-de-exaustao-de-coifa-industrial-lanchonete laudo-pericial-de-climatizacao-ar-condicionado art-de-manutencao-preventiva-de-ar-condicionado retrocomissionamento-de-ar-condicionado-predial plano-de-comissionamento-hvac-ashrae-guideline-0 dimensionamento-de-dutos-de-ar-nbr-16401 norma-de-balanceamento-de-ar-hvac-nbr; do
+            grep -q "$slug" src/routeTree.gen.ts || exit 1
+          done
+          grep -q imageSrcSet src/routes/index.tsx
+          grep -q 'min-width: 768px' src/routes/__root.tsx

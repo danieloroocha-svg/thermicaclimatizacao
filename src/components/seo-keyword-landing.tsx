@@ -120,6 +120,7 @@ export function seoKeywordHead(page: SeoKeywordPage) {
   };
   return {
     ...base,
+    links: [...base.links, { rel: "preload", as: "image", href: page.pictures[0], type: "image/webp", fetchPriority: "high" as const }],
     meta: [
       ...base.meta,
       { property: "og:locale", content: "pt_BR" },
@@ -160,7 +161,7 @@ export function SeoKeywordLanding({ page }: { page: SeoKeywordPage }) {
   return (
     <>
       <section className="relative overflow-hidden bg-primary text-primary-foreground">
-        <img src={page.pictures[0]} width={1672} height={941} fetchPriority="high" alt={page.pictureAlt[0]} className="absolute inset-0 h-full w-full object-cover opacity-35" />
+        <img src={page.pictures[0]} width={1672} height={941} loading="eager" decoding="async" fetchPriority="high" alt={page.pictureAlt[0]} className="absolute inset-0 h-full w-full object-cover opacity-35" />
         <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/90 to-primary/35" />
         <div className="relative mx-auto max-w-7xl px-5 py-16 lg:px-8 lg:py-24">
           <nav aria-label="Caminho da página" className="mb-10 text-xs text-primary-foreground/70">

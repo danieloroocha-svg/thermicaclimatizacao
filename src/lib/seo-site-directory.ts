@@ -515,6 +515,63 @@ export const seoSiteGroups: SeoDirectoryGroup[] = [
         "keyword": "substituição de condensadora vrf sp"
       }
     ]
+  },
+  {
+    "slug": "seo-nacional-lote-91-100",
+    "title": "Comissionamento, projetos e responsabilidade técnica",
+    "description": "Páginas de engenharia HVAC, TAB, documentação, ventilação e exaustão.",
+    "items": [
+      {
+        "number": 91,
+        "path": "/comissionamento-de-sistemas-de-ventilacao-e-exaustao",
+        "keyword": "comissionamento de sistemas de ventilacao e exaustao"
+      },
+      {
+        "number": 92,
+        "path": "/relatorio-de-comissionamento-de-ar-condicionado",
+        "keyword": "relatorio de comissionamento de ar condicionado"
+      },
+      {
+        "number": 93,
+        "path": "/projeto-basico-de-ar-condicionado-para-licitacao",
+        "keyword": "projeto basico de ar condicionado para licitacao"
+      },
+      {
+        "number": 94,
+        "path": "/projeto-de-exaustao-de-coifa-industrial-lanchonete",
+        "keyword": "projeto de exaustao de coifa industrial lanchonete"
+      },
+      {
+        "number": 95,
+        "path": "/laudo-pericial-de-climatizacao-ar-condicionado",
+        "keyword": "laudo pericial de climatizacao ar condicionado"
+      },
+      {
+        "number": 96,
+        "path": "/art-de-manutencao-preventiva-de-ar-condicionado",
+        "keyword": "art de manutencao preventiva de ar condicionado"
+      },
+      {
+        "number": 97,
+        "path": "/retrocomissionamento-de-ar-condicionado-predial",
+        "keyword": "retrocomissionamento de ar condicionado predial"
+      },
+      {
+        "number": 98,
+        "path": "/plano-de-comissionamento-hvac-ashrae-guideline-0",
+        "keyword": "plano de comissionamento hvac ashrae guideline 0"
+      },
+      {
+        "number": 99,
+        "path": "/dimensionamento-de-dutos-de-ar-nbr-16401",
+        "keyword": "dimensionamento de dutos de ar nbr 16401"
+      },
+      {
+        "number": 100,
+        "path": "/norma-de-balanceamento-de-ar-hvac-nbr",
+        "keyword": "norma de balanceamento de ar hvac nbr"
+      }
+    ]
   }
 ];
 export const seoSiteEntries: SeoDirectoryEntry[] = seoSiteGroups.flatMap(group => group.items);
