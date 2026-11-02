@@ -292,6 +292,58 @@ export const seoSiteGroups: SeoDirectoryGroup[] = [
         "keyword": "empresa de ar condicionado homologada suprimentos"
       }
     ]
+  },
+  {
+    "slug": "seo-nacional-lote-51-60",
+    "title": "Projetos, PMOC, responsabilidade técnica e estudos HVAC",
+    "description": "Conteúdo técnico nacional de engenharia para instalações corporativas e industriais.",
+    "items": [
+      {
+        "number": 52,
+        "path": "/plano-de-manutencao-operacao-e-controle-pmoc",
+        "keyword": "plano de manutencao operacao e controle pmoc"
+      },
+      {
+        "number": 53,
+        "path": "/lei-do-pmoc-ar-condicionado-13589",
+        "keyword": "lei do pmoc ar condicionado 13589"
+      },
+      {
+        "number": 54,
+        "path": "/sistema-vrf-ar-condicionado-como-funciona",
+        "keyword": "sistema vrf ar condicionado como funciona"
+      },
+      {
+        "number": 55,
+        "path": "/art-para-instalacao-de-ar-condicionado",
+        "keyword": "art para instalacao de ar condicionado"
+      },
+      {
+        "number": 56,
+        "path": "/sistema-de-exaustao-mecanica-industrial",
+        "keyword": "sistema de exaustao mecanica industrial"
+      },
+      {
+        "number": 57,
+        "path": "/renovacao-de-ar-conforme-nbr-16401",
+        "keyword": "renovacao de ar conforme nbr 16401"
+      },
+      {
+        "number": 58,
+        "path": "/engenheiro-mecanico-responsavel-tecnico-ar-condicionado",
+        "keyword": "engenheiro mecanico responsavel tecnico ar condicionado"
+      },
+      {
+        "number": 59,
+        "path": "/projeto-de-ventilacao-e-exaustao-mecanica",
+        "keyword": "projeto de ventilacao e exaustao mecanica"
+      },
+      {
+        "number": 60,
+        "path": "/calculo-de-vazao-de-ar-condicionado",
+        "keyword": "calculo de vazao de ar condicionado"
+      }
+    ]
   }
 ];
 export const seoSiteEntries: SeoDirectoryEntry[] = seoSiteGroups.flatMap(group => group.items);
