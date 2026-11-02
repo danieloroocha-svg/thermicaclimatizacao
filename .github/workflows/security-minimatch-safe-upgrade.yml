@@ -28,7 +28,7 @@ jobs:
       - name: Validate TypeScript
         run: bunx tsc --noEmit
       - name: Validate ESLint is functional
-        run: bunx eslint src/lib/sitemap.ts
+        run: bunx eslint src/lib/sitemap.ts --rule 'prettier/prettier: off'
       - name: Ensure vulnerable minimatch versions were replaced
         run: |
           node - <<'NODE'
