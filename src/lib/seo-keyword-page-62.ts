@@ -16,8 +16,8 @@ export const pagina62: SeoKeywordPage = {
   "scopeLead": "Entender",
   "applicationsLead": "Para avaliar ",
   "qualityLead": "Ao avaliar",
-  "stagesHeading": "Como estruturar como fazer projeto de ar condicionado vrf em quatro etapas",
-  "estimateHeading": "Orçamento de projeto VRF: como fazer projeto de ar condicionado vrf",
+  "stagesHeading": "Planejamento: como fazer projeto de ar condicionado vrf em quatro etapas",
+  "estimateHeading": "Serviço técnico e orçamento: como fazer projeto de ar condicionado vrf",
   "introduction": "O projeto VRF precisa transformar o levantamento de cargas e a arquitetura em uma rede frigorífica e de controle que atenda limites do sistema. A THÉRMICA atua com foco em demandas comerciais e industriais, adequando o estudo e os entregáveis à realidade de cada empreendimento.",
   "scopeHeading": "o que é importante avaliar?",
   "scopeText": "Nessa demanda, a análise começa pelos dados e pela finalidade real da contratação. Zonas, cargas, plantas, rotas de cobre, desníveis, fontes elétricas, drenagem, renovação de ar e automação. A solução não deve ser presumida a partir de um único equipamento ou de uma resposta genérica, pois limitações de obra, operação e manutenção precisam ser conhecidas.",
@@ -75,7 +75,7 @@ export const pagina62: SeoKeywordPage = {
     "Registros técnicos, medições e documentos anteriores",
     "Prazos, exigências do contratante e escopo esperado"
   ],
-  "responsibilityHeading": "Onde encontrar uma empresa especializada em como fazer projeto de ar condicionado vrf?",
+  "responsibilityHeading": "Onde encontrar uma empresa que explique como fazer projeto de ar condicionado vrf?",
   "responsibilityText": "A contratação deve considerar a experiência no tipo de instalação, clareza do contrato, transparência das premissas e capacidade de documentar o trabalho. A THÉRMICA Soluções em Climatização atua em engenharia HVAC para empresas e pode analisar o projeto e a necessidade de acompanhamento técnico conforme a viabilidade operacional. Nenhum laudo, medição ou resultado é antecipadamente garantido.",
   "responsibilityNote": "Conferir critérios e softwares específicos de cada fabricante; não pressupor equivalência entre VRF e VRV. Requisitos legais, técnicos e profissionais devem ser conferidos na versão e no município de aplicação antes da publicação ou emissão de documento técnico.",
   "faq": [
