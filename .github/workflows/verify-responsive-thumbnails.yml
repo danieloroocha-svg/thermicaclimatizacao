@@ -1,0 +1,68 @@
+name: Build and validate responsive project thumbnails
+on:
+  push:
+    branches:
+      - perf/responsive-project-thumbnails-2026-11
+permissions:
+  contents: write
+jobs:
+  image-optimization:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+      - name: Generate thumbnails on initial branch push
+        if: "!contains(github.event.head_commit.message, 'generated project thumbnails')"
+        run: |
+          python -m pip install --disable-pip-version-check --upgrade pillow
+          python .github/scripts/create-project-thumbnails.py
+      - name: Verify all 14 image variants exist
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          names = ["osasco","lapa","indaiatuba","baroneza","hospital","centro-sp","universidade"]
+          sizes = []
+          for name in names:
+              for width in [480, 900]:
+                  p = Path(f'src/assets/obra-{name}-card-{width}.webp')
+                  if not p.exists() or p.stat().st_size < 1000:
+                      raise RuntimeError(f'Missing or invalid thumbnail: {p}')
+                  sizes.append(p.stat().st_size)
+          print(f'{len(sizes)} responsive cards: {sum(sizes)} bytes')
+          PY
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+      - name: Install locked dependencies
+        run: bun install --frozen-lockfile --ignore-scripts
+      - name: Production build
+        run: bun run build
+      - name: TypeScript
+        run: bunx tsc --noEmit
+      - name: Validate sitemap coverage
+        run: |
+          node - <<'NODE'
+          const fs=require('fs');
+          const xml=fs.readFileSync('public/sitemap.xml','utf8');
+          const locs=[...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map(x=>x[1]);
+          if (new Set(locs).size!==locs.length || locs.length < 120) {
+              throw new Error('Sitemap should include 100 SEO routes and institutional/works/article paths');
+          }
+          console.log('Sitemap entries:',locs.length);
+          NODE
+      - name: Commit generated images after successful validation
+        if: "!contains(github.event.head_commit.message, 'generated project thumbnails')"
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add src/assets/obra-*-card-*.webp
+          git commit -m "perf(images): generated project thumbnails"
+          BASIC=$(printf "x-access-token:%s" "$GH_TOKEN" | base64 -w0)
+          git -c "http.extraheader=AUTHORIZATION: basic $BASIC" push origin HEAD:perf/responsive-project-thumbnails-2026-11
