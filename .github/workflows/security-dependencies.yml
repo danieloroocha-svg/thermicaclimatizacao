@@ -28,10 +28,10 @@ jobs:
         run: bun audit fix --ignore-scripts || true
       - name: Install resolved lockfile and validate
         run: bun install --frozen-lockfile --ignore-scripts
-      - name: Check TypeScript
-        run: bunx tsc --noEmit
-      - name: Build website
+      - name: Build website and generate typed route tree
         run: bun run build
+      - name: Check TypeScript after route generation
+        run: bunx tsc --noEmit
       - name: Audit final dependencies
         run: |
           bun audit --json > security-audit.json || true
