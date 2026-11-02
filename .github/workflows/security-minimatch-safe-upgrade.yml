@@ -28,7 +28,7 @@ jobs:
       - name: Validate TypeScript
         run: bunx tsc --noEmit
       - name: Validate ESLint is functional
-        run: bunx eslint src/lib/seo-keyword-page-80.ts
+        run: bunx eslint src/lib/sitemap.ts
       - name: Ensure vulnerable minimatch versions were replaced
         run: |
           node - <<'NODE'
