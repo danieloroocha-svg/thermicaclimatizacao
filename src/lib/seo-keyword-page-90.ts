@@ -22,7 +22,7 @@ export const pagina90: SeoKeywordPage = {
   "scopeText": "O escopo de substituição de condensadora vrf sp começa com informações verificáveis: Modelo, série, idade, evaporadoras, refrigerante, controles, histórico de alarmes, tubulações, desníveis e documentação do sistema. Os dados fornecidos e as medições efetivas devem ser diferenciados de hipóteses de projeto.",
   "scopeDetailHeading": "O que pode comprometer o resultado?",
   "scopeDetailText": "Trocar somente a unidade externa sem diagnosticar rede, compressores, controle ou refrigerante pode repetir a falha e comprometer garantia. Os riscos precisam ser considerados no planejamento, junto com acesso, interferências, cronograma e responsabilidade dos envolvidos.",
-  "stagesIntro": "uma metodologia organizada favorece rastreabilidade técnica. O planejamento de substituição de condensadora vrf sp deve explicitar verificações, etapas executivas e limites do serviço.",
+  "stagesIntro": "uma metodologia organizada favorece rastreabilidade técnica. O planejamento desse serviço deve explicitar verificações, etapas executivas e limites do serviço.",
   "stages": [
     {
       "title": "Levantamento e premissas",
@@ -42,7 +42,7 @@ export const pagina90: SeoKeywordPage = {
     }
   ],
   "applicationsHeading": "em quais situações pode ser aplicado?",
-  "applicationsText": "a tecnologia e a ocupação precisam orientar a solução. As demandas de substituição de condensadora vrf sp envolvem hotéis, clínicas, prédios comerciais e instalações VRF existentes em São Paulo; o porte, a rotina da operação e os requisitos específicos definem o método.",
+  "applicationsText": "a tecnologia e a ocupação precisam orientar a solução. As principais demandas envolvem hotéis, clínicas, prédios comerciais e instalações VRF existentes em São Paulo; o porte, a rotina da operação e os requisitos específicos definem o método.",
   "applicationsDetailHeading": "Como as condições do empreendimento alteram a proposta?",
   "applicationsDetailText": "Não há equivalência universal entre condensadoras de marcas, gerações e refrigerantes; a troca parcial pode não ser viável. Cada instalação exige análise própria de restrições, interferências e viabilidade operacional.",
   "qualityText": "é importante estabelecer critérios de aceite para substituição de condensadora vrf sp. Laudo de diagnóstico quando contratado, compatibilidade documentada, plano de retirada, ensaios, startup e registro da intervenção. A simples relação de tarefas não comprova desempenho não medido.",
@@ -64,8 +64,8 @@ export const pagina90: SeoKeywordPage = {
       "text": "Conferir normas aplicáveis, manuais, requisitos legais e necessidade de ART conforme escopo, atividade e atribuições profissionais."
     }
   ],
-  "buyersText": "A THÉRMICA recebe solicitações de construtoras, gerenciadoras, indústrias e facilities. Em serviços de substituição de condensadora vrf sp, o comprador deve examinar entregáveis, qualificações, logística e serviços fora do escopo.",
-  "estimateText": "Para substituição de condensadora vrf sp, o custo depende do porte, das condições encontradas, da logística, dos materiais, da complexidade de acesso e do alcance técnico contratado. Não há preço único universal.",
+  "buyersText": "A THÉRMICA recebe solicitações de construtoras, gerenciadoras, indústrias e facilities. Nessa contratação, o comprador deve examinar entregáveis, qualificações, logística e serviços fora do escopo.",
+  "estimateText": "O custo do serviço depende do porte, das condições encontradas, da logística, dos materiais, da complexidade de acesso e do alcance técnico contratado. Não há preço único universal.",
   "estimateDetail": "comparar itens de projeto, instalação, análise, equipamentos, materiais, testes, visitas, documentos, ART e exclusões antes da aprovação.",
   "estimateItems": [
     "Localização, finalidade e situação do empreendimento",

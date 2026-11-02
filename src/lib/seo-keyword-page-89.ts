@@ -22,7 +22,7 @@ export const pagina89: SeoKeywordPage = {
   "scopeText": "O escopo de empresa de climatização vrf jundiaí e região começa com informações verificáveis: Endereço, ocupação, cargas térmicas, fabricantes, rotas de cobre, equipamentos, elétrica, drenagem e período de montagem. Os dados fornecidos e as medições efetivas devem ser diferenciados de hipóteses de projeto.",
   "scopeDetailHeading": "O que pode comprometer o resultado?",
   "scopeDetailText": "Orçamento limitado ao número de unidades pode deixar de fora içamento, suportes, comunicação, ensaios e partida. Os riscos precisam ser considerados no planejamento, junto com acesso, interferências, cronograma e responsabilidade dos envolvidos.",
-  "stagesIntro": "uma metodologia organizada favorece rastreabilidade técnica. O planejamento de empresa de climatização vrf jundiaí e região deve explicitar verificações, etapas executivas e limites do serviço.",
+  "stagesIntro": "uma metodologia organizada favorece rastreabilidade técnica. O planejamento desse serviço deve explicitar verificações, etapas executivas e limites do serviço.",
   "stages": [
     {
       "title": "Levantamento e premissas",
@@ -42,7 +42,7 @@ export const pagina89: SeoKeywordPage = {
     }
   ],
   "applicationsHeading": "em quais situações pode ser aplicado?",
-  "applicationsText": "a tecnologia e a ocupação precisam orientar a solução. As demandas de empresa de climatização vrf jundiaí e região envolvem Jundiaí, Itupeva, Louveira, Várzea Paulista e estabelecimentos da região; o porte, a rotina da operação e os requisitos específicos definem o método.",
+  "applicationsText": "a tecnologia e a ocupação precisam orientar a solução. As principais demandas envolvem Jundiaí, Itupeva, Louveira, Várzea Paulista e estabelecimentos da região; o porte, a rotina da operação e os requisitos específicos definem o método.",
   "applicationsDetailHeading": "Como as condições do empreendimento alteram a proposta?",
   "applicationsDetailText": "A mobilização regional depende de porte e cronograma. Citar municípios não representa equipe permanente ou filial. Cada instalação exige análise própria de restrições, interferências e viabilidade operacional.",
   "qualityText": "é importante estabelecer critérios de aceite para empresa de climatização vrf jundiaí e região. Escopo de instalação, matriz de responsabilidades, lista de materiais, inspeções, startup e documentação prevista. A simples relação de tarefas não comprova desempenho não medido.",
@@ -64,8 +64,8 @@ export const pagina89: SeoKeywordPage = {
       "text": "Conferir normas aplicáveis, manuais, requisitos legais e necessidade de ART conforme escopo, atividade e atribuições profissionais."
     }
   ],
-  "buyersText": "A THÉRMICA recebe solicitações de construtoras, gerenciadoras, indústrias e facilities. Em serviços de empresa de climatização vrf jundiaí e região, o comprador deve examinar entregáveis, qualificações, logística e serviços fora do escopo.",
-  "estimateText": "Para empresa de climatização vrf jundiaí e região, o custo depende do porte, das condições encontradas, da logística, dos materiais, da complexidade de acesso e do alcance técnico contratado. Não há preço único universal.",
+  "buyersText": "A THÉRMICA recebe solicitações de construtoras, gerenciadoras, indústrias e facilities. Nessa contratação, o comprador deve examinar entregáveis, qualificações, logística e serviços fora do escopo.",
+  "estimateText": "O custo do serviço depende do porte, das condições encontradas, da logística, dos materiais, da complexidade de acesso e do alcance técnico contratado. Não há preço único universal.",
   "estimateDetail": "comparar itens de projeto, instalação, análise, equipamentos, materiais, testes, visitas, documentos, ART e exclusões antes da aprovação.",
   "estimateItems": [
     "Localização, finalidade e situação do empreendimento",

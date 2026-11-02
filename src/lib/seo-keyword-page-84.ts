@@ -22,7 +22,7 @@ export const pagina84: SeoKeywordPage = {
   "scopeText": "O escopo de instalação de ar condicionado central para escolas e faculdades começa com informações verificáveis: Ocupação por sala, horários, cargas térmicas, laboratórios, auditórios, rede elétrica, acústica e espaços de manutenção. Os dados fornecidos e as medições efetivas devem ser diferenciados de hipóteses de projeto.",
   "scopeDetailHeading": "O que pode comprometer o resultado?",
   "scopeDetailText": "Calcular somente BTU por metro quadrado ignora o número de pessoas, a renovação de ar e a variação do calendário letivo. Os riscos precisam ser considerados no planejamento, junto com acesso, interferências, cronograma e responsabilidade dos envolvidos.",
-  "stagesIntro": "uma metodologia organizada favorece rastreabilidade técnica. O planejamento de instalação de ar condicionado central para escolas e faculdades deve explicitar verificações, etapas executivas e limites do serviço.",
+  "stagesIntro": "uma metodologia organizada favorece rastreabilidade técnica. O planejamento desse serviço deve explicitar verificações, etapas executivas e limites do serviço.",
   "stages": [
     {
       "title": "Levantamento e premissas",
@@ -42,7 +42,7 @@ export const pagina84: SeoKeywordPage = {
     }
   ],
   "applicationsHeading": "em quais situações pode ser aplicado?",
-  "applicationsText": "a tecnologia e a ocupação precisam orientar a solução. As demandas de instalação de ar condicionado central para escolas e faculdades envolvem escolas, faculdades, universidades, auditórios e centros de formação; o porte, a rotina da operação e os requisitos específicos definem o método.",
+  "applicationsText": "a tecnologia e a ocupação precisam orientar a solução. As principais demandas envolvem escolas, faculdades, universidades, auditórios e centros de formação; o porte, a rotina da operação e os requisitos específicos definem o método.",
   "applicationsDetailHeading": "Como as condições do empreendimento alteram a proposta?",
   "applicationsDetailText": "As intervenções devem proteger alunos e equipes; obras durante aulas dependem de medidas de segurança e autorização da instituição. Cada instalação exige análise própria de restrições, interferências e viabilidade operacional.",
   "qualityText": "é importante estabelecer critérios de aceite para instalação de ar condicionado central para escolas e faculdades. Seleção, escopo executivo, cronograma de instalação, testes previstos e instruções de operação e manutenção. A simples relação de tarefas não comprova desempenho não medido.",
@@ -64,8 +64,8 @@ export const pagina84: SeoKeywordPage = {
       "text": "Conferir normas aplicáveis, manuais, requisitos legais e necessidade de ART conforme escopo, atividade e atribuições profissionais."
     }
   ],
-  "buyersText": "A THÉRMICA recebe solicitações de construtoras, gerenciadoras, indústrias e facilities. Em serviços de instalação de ar condicionado central para escolas e faculdades, o comprador deve examinar entregáveis, qualificações, logística e serviços fora do escopo.",
-  "estimateText": "Para instalação de ar condicionado central para escolas e faculdades, o custo depende do porte, das condições encontradas, da logística, dos materiais, da complexidade de acesso e do alcance técnico contratado. Não há preço único universal.",
+  "buyersText": "A THÉRMICA recebe solicitações de construtoras, gerenciadoras, indústrias e facilities. Nessa contratação, o comprador deve examinar entregáveis, qualificações, logística e serviços fora do escopo.",
+  "estimateText": "O custo do serviço depende do porte, das condições encontradas, da logística, dos materiais, da complexidade de acesso e do alcance técnico contratado. Não há preço único universal.",
   "estimateDetail": "comparar itens de projeto, instalação, análise, equipamentos, materiais, testes, visitas, documentos, ART e exclusões antes da aprovação.",
   "estimateItems": [
     "Localização, finalidade e situação do empreendimento",

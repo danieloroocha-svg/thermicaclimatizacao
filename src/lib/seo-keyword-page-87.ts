@@ -22,7 +22,7 @@ export const pagina87: SeoKeywordPage = {
   "scopeText": "O escopo de adequação de climatização às normas abnt nbr 16401 começa com informações verificáveis: Projeto existente, ocupação, carga térmica, dados de conforto, ventilação, qualidade do ar e alterações na instalação. Os dados fornecidos e as medições efetivas devem ser diferenciados de hipóteses de projeto.",
   "scopeDetailHeading": "O que pode comprometer o resultado?",
   "scopeDetailText": "Usar uma edição suspensa ou presumir que toda instalação antiga esteja automaticamente irregular leva a diagnósticos inadequados. Os riscos precisam ser considerados no planejamento, junto com acesso, interferências, cronograma e responsabilidade dos envolvidos.",
-  "stagesIntro": "uma metodologia organizada favorece rastreabilidade técnica. O planejamento de adequação de climatização às normas abnt nbr 16401 deve explicitar verificações, etapas executivas e limites do serviço.",
+  "stagesIntro": "uma metodologia organizada favorece rastreabilidade técnica. O planejamento desse serviço deve explicitar verificações, etapas executivas e limites do serviço.",
   "stages": [
     {
       "title": "Levantamento e premissas",
@@ -42,7 +42,7 @@ export const pagina87: SeoKeywordPage = {
     }
   ],
   "applicationsHeading": "em quais situações pode ser aplicado?",
-  "applicationsText": "a tecnologia e a ocupação precisam orientar a solução. As demandas de adequação de climatização às normas abnt nbr 16401 envolvem edifícios corporativos, hotéis, escolas e imóveis comerciais novos ou reformados; o porte, a rotina da operação e os requisitos específicos definem o método.",
+  "applicationsText": "a tecnologia e a ocupação precisam orientar a solução. As principais demandas envolvem edifícios corporativos, hotéis, escolas e imóveis comerciais novos ou reformados; o porte, a rotina da operação e os requisitos específicos definem o método.",
   "applicationsDetailHeading": "Como as condições do empreendimento alteram a proposta?",
   "applicationsDetailText": "As Partes 1 e 2 foram revisadas em 2024; a edição 2024 da Parte 3 foi suspensa em 2025. A norma vigente deve ser confirmada na fonte oficial antes do laudo. Cada instalação exige análise própria de restrições, interferências e viabilidade operacional.",
   "qualityText": "é importante estabelecer critérios de aceite para adequação de climatização às normas abnt nbr 16401. Matriz de requisitos aplicáveis, lacunas documentais, levantamentos necessários, recomendações e plano de intervenções. A simples relação de tarefas não comprova desempenho não medido.",
@@ -64,8 +64,8 @@ export const pagina87: SeoKeywordPage = {
       "text": "Conferir normas aplicáveis, manuais, requisitos legais e necessidade de ART conforme escopo, atividade e atribuições profissionais."
     }
   ],
-  "buyersText": "A THÉRMICA recebe solicitações de construtoras, gerenciadoras, indústrias e facilities. Em serviços de adequação de climatização às normas abnt nbr 16401, o comprador deve examinar entregáveis, qualificações, logística e serviços fora do escopo.",
-  "estimateText": "Para adequação de climatização às normas abnt nbr 16401, o custo depende do porte, das condições encontradas, da logística, dos materiais, da complexidade de acesso e do alcance técnico contratado. Não há preço único universal.",
+  "buyersText": "A THÉRMICA recebe solicitações de construtoras, gerenciadoras, indústrias e facilities. Nessa contratação, o comprador deve examinar entregáveis, qualificações, logística e serviços fora do escopo.",
+  "estimateText": "O custo do serviço depende do porte, das condições encontradas, da logística, dos materiais, da complexidade de acesso e do alcance técnico contratado. Não há preço único universal.",
   "estimateDetail": "comparar itens de projeto, instalação, análise, equipamentos, materiais, testes, visitas, documentos, ART e exclusões antes da aprovação.",
   "estimateItems": [
     "Localização, finalidade e situação do empreendimento",

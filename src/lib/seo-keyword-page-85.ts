@@ -22,7 +22,7 @@ export const pagina85: SeoKeywordPage = {
   "scopeText": "O escopo de empresa de climatização vrf sorocaba começa com informações verificáveis: Plantas, cargas, modelo VRF, quantidade de evaporadoras, distâncias de tubulação, desníveis, elétrica, drenagem e prazos. Os dados fornecidos e as medições efetivas devem ser diferenciados de hipóteses de projeto.",
   "scopeDetailHeading": "O que pode comprometer o resultado?",
   "scopeDetailText": "Ignorar traçados, desníveis e condicionantes da obra pode provocar incompatibilidades e custos não previstos. Os riscos precisam ser considerados no planejamento, junto com acesso, interferências, cronograma e responsabilidade dos envolvidos.",
-  "stagesIntro": "uma metodologia organizada favorece rastreabilidade técnica. O planejamento de empresa de climatização vrf sorocaba deve explicitar verificações, etapas executivas e limites do serviço.",
+  "stagesIntro": "uma metodologia organizada favorece rastreabilidade técnica. O planejamento desse serviço deve explicitar verificações, etapas executivas e limites do serviço.",
   "stages": [
     {
       "title": "Levantamento e premissas",
@@ -42,7 +42,7 @@ export const pagina85: SeoKeywordPage = {
     }
   ],
   "applicationsHeading": "em quais situações pode ser aplicado?",
-  "applicationsText": "a tecnologia e a ocupação precisam orientar a solução. As demandas de empresa de climatização vrf sorocaba envolvem escritórios, clínicas, indústrias, hotéis e lojas de Sorocaba e região; o porte, a rotina da operação e os requisitos específicos definem o método.",
+  "applicationsText": "a tecnologia e a ocupação precisam orientar a solução. As principais demandas envolvem escritórios, clínicas, indústrias, hotéis e lojas de Sorocaba e região; o porte, a rotina da operação e os requisitos específicos definem o método.",
   "applicationsDetailHeading": "Como as condições do empreendimento alteram a proposta?",
   "applicationsDetailText": "A THÉRMICA avalia demandas na região, mas mobilização, disponibilidade e escopo devem ser confirmados; não se presume unidade física local. Cada instalação exige análise própria de restrições, interferências e viabilidade operacional.",
   "qualityText": "é importante estabelecer critérios de aceite para empresa de climatização vrf sorocaba. Proposta discriminada, relação de unidades e materiais, planejamento, ensaios, configurações e documentação de entrega. A simples relação de tarefas não comprova desempenho não medido.",
@@ -64,8 +64,8 @@ export const pagina85: SeoKeywordPage = {
       "text": "Conferir normas aplicáveis, manuais, requisitos legais e necessidade de ART conforme escopo, atividade e atribuições profissionais."
     }
   ],
-  "buyersText": "A THÉRMICA recebe solicitações de construtoras, gerenciadoras, indústrias e facilities. Em serviços de empresa de climatização vrf sorocaba, o comprador deve examinar entregáveis, qualificações, logística e serviços fora do escopo.",
-  "estimateText": "Para empresa de climatização vrf sorocaba, o custo depende do porte, das condições encontradas, da logística, dos materiais, da complexidade de acesso e do alcance técnico contratado. Não há preço único universal.",
+  "buyersText": "A THÉRMICA recebe solicitações de construtoras, gerenciadoras, indústrias e facilities. Nessa contratação, o comprador deve examinar entregáveis, qualificações, logística e serviços fora do escopo.",
+  "estimateText": "O custo do serviço depende do porte, das condições encontradas, da logística, dos materiais, da complexidade de acesso e do alcance técnico contratado. Não há preço único universal.",
   "estimateDetail": "comparar itens de projeto, instalação, análise, equipamentos, materiais, testes, visitas, documentos, ART e exclusões antes da aprovação.",
   "estimateItems": [
     "Localização, finalidade e situação do empreendimento",
