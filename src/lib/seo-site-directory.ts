@@ -401,6 +401,63 @@ export const seoSiteGroups: SeoDirectoryGroup[] = [
         "keyword": "balanceamento hidraulico hvac agua gelada"
       }
     ]
+  },
+  {
+    "slug": "seo-nacional-lote-71-80",
+    "title": "Instalação VRF, dutos, retrofit e consultoria",
+    "description": "Montagem e engenharia corporativa: páginas 71 a 80.",
+    "items": [
+      {
+        "number": 71,
+        "path": "/instalacao-de-ar-condicionado-central-ribeirao-preto",
+        "keyword": "instalação de ar condicionado central ribeirão preto"
+      },
+      {
+        "number": 72,
+        "path": "/instalacao-de-rede-de-dutos-de-ar-condicionado-sp",
+        "keyword": "instalação de rede de dutos de ar condicionado sp"
+      },
+      {
+        "number": 73,
+        "path": "/instalacao-de-tubulacao-frigorifera-vrf-sp",
+        "keyword": "instalação de tubulação frigorígena vrf sp"
+      },
+      {
+        "number": 74,
+        "path": "/empresa-para-montagem-de-sistema-vrf-sp",
+        "keyword": "empresa para montagem de sistema vrf sp"
+      },
+      {
+        "number": 75,
+        "path": "/instalacao-de-duto-de-climatizacao-vrf-em-obras",
+        "keyword": "instalação de duto de climatização vrf em obras"
+      },
+      {
+        "number": 76,
+        "path": "/instalacao-de-ar-condicionado-vrf-fujitsu-sao-paulo",
+        "keyword": "instalação de ar condicionado vrf fujitsu são paulo"
+      },
+      {
+        "number": 77,
+        "path": "/instalacao-de-vrf-lg-multi-v-sao-paulo",
+        "keyword": "instalação de vrf lg multi v são paulo"
+      },
+      {
+        "number": 78,
+        "path": "/retrofit-de-fancoil-e-fancoletes-comerciais",
+        "keyword": "retrofit de fancoil e fancoletes comerciais"
+      },
+      {
+        "number": 79,
+        "path": "/reforma-de-infraestrutura-de-ar-condicionado-predial",
+        "keyword": "reforma de infraestrutura de ar condicionado predial"
+      },
+      {
+        "number": 80,
+        "path": "/consultoria-em-engenharia-de-climatizacao-sao-paulo",
+        "keyword": "consultoria em engenharia de climatização são paulo"
+      }
+    ]
   }
 ];
 export const seoSiteEntries: SeoDirectoryEntry[] = seoSiteGroups.flatMap(group => group.items);

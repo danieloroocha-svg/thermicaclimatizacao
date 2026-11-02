@@ -1,0 +1,29 @@
+name: Verify SEO pages 71-80
+on:
+  push:
+    branches:
+      - seo/lote-71-80
+permissions:
+  contents: read
+jobs:
+  build-and-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+      - name: Install locked dependencies
+        run: bun install --frozen-lockfile --ignore-scripts
+      - name: Build website and generate typed route tree
+        run: bun run build
+      - name: TypeScript validation
+        run: bunx tsc --noEmit
+      - name: Verify new routes in route tree
+        run: |
+          for route in instalacao-de-ar-condicionado-central-ribeirao-preto instalacao-de-rede-de-dutos-de-ar-condicionado-sp instalacao-de-tubulacao-frigorifera-vrf-sp empresa-para-montagem-de-sistema-vrf-sp instalacao-de-duto-de-climatizacao-vrf-em-obras instalacao-de-ar-condicionado-vrf-fujitsu-sao-paulo instalacao-de-vrf-lg-multi-v-sao-paulo retrofit-de-fancoil-e-fancoletes-comerciais reforma-de-infraestrutura-de-ar-condicionado-predial consultoria-em-engenharia-de-climatizacao-sao-paulo; do
+            grep -q "$route" src/routeTree.gen.ts || exit 1
+          done
