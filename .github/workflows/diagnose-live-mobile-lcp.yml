@@ -1,4 +1,4 @@
-name: Diagnose live mobile LCP
+name: Diagnose live HTML and image preload
 on:
   push:
     branches:
@@ -8,31 +8,43 @@ permissions:
 jobs:
   inspect:
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 12
     steps:
-      - name: Check production response
+      - name: Inspect unmodified production response and initial HTML
         run: |
-          curl -sSI --max-time 25 https://thermicaclimatizacao.com.br/ | head -25
-          which google-chrome || which chromium || true
-      - name: Run isolated Lighthouse mobile trace
-        run: |
-          xvfb-run -a npx --yes lighthouse@12.8.2 https://thermicaclimatizacao.com.br/ --only-categories=performance --form-factor=mobile --screenEmulation.mobile --throttling-method=simulate --chrome-flags="--no-sandbox --disable-dev-shm-usage --disable-blink-features=AutomationControlled" --output=json --output-path=/tmp/thermica-mobile-lighthouse.json --quiet
-      - name: Print exact LCP element and network breakdown
+          curl -sSL --max-time 35 --compressed -o /tmp/thermica-home.html -w "HTML_STATUS:%{http_code} TTFB:%{time_starttransfer} TOTAL:%{time_total} TRANSFER:%{size_download}\n" https://thermicaclimatizacao.com.br/
+          node - <<'NODE'
+          const fs=require('fs');
+          const html=fs.readFileSync('/tmp/thermica-home.html','utf8');
+          console.log('HTML_BYTES:',Buffer.byteLength(html),'HEAD:',html.slice(0,350).replace(/\n/g,' '));
+          for(const [name,re] of [
+            ['H1',/<h1\b[^>]*>[\s\S]{0,450}<\/h1>/i],
+            ['HEAD_PRELOADS',/<link[^>]+rel=["']preload["'][^>]*>/ig],
+            ['STYLESHEETS',/<link[^>]+rel=["']stylesheet["'][^>]*>/ig],
+            ['IMAGE_ELEMENT',/<picture[\s\S]{0,1800}<\/picture>/i],
+            ['SCRIPT_ELEMENTS',/<script[^>]*src=["'][^"']+["'][^>]*>/ig]
+          ]) {
+            const all=[...html.matchAll(re)];
+            console.log(name+' COUNT:',all.length);
+            for(const m of all.slice(0,8)) console.log(name+':',m[0].slice(0,1000));
+          }
+          if(!html.includes('Soluções VRV/VRF para ambientes')) console.log('WARNING: target hero heading absent from response');
+          const pic=(html.match(/<source\b[^>]*srcSet=["']([^"']+)["'][^>]*>/i)||[])[1];
+          const preloads=[...html.matchAll(/<link[^>]+rel=["']preload["'][^>]*>/ig)].map(x=>x[0]);
+          console.log('MOBILE_HERO:',pic||'NOT FOUND');
+          console.log('PRELOAD_FOR_MOBILE:',preloads.some(x=>x.includes('max-width: 767px')));
+          NODE
+      - name: Inspect image headers and transfer
         run: |
           node - <<'NODE'
           const fs=require('fs');
-          const d=JSON.parse(fs.readFileSync('/tmp/thermica-mobile-lighthouse.json','utf8'));
-          const a=d.audits||{};
-          console.log('URL:',d.finalDisplayedUrl);
-          console.log('PERFORMANCE:',d.categories?.performance?.score);
-          for (const id of ['first-contentful-paint','largest-contentful-paint','speed-index','total-blocking-time','cumulative-layout-shift','server-response-time']) {
-            console.log(id, a[id]?.displayValue, a[id]?.numericValue);
-          }
-          for(const [key,value] of Object.entries(a)){
-            if(/lcp|largest-contentful-paint-element|render-blocking|network-dependency|image-delivery|unused-javascript/i.test(key)){
-              console.log('AUDIT:',key,JSON.stringify({title:value.title,score:value.score,details:value.details}).slice(0,10000));
-            }
-          }
-          const rows=(a['network-requests']?.details?.items||[]).map(x=>({url:x.url,resourceType:x.resourceType,transferSize:x.transferSize,startTime:x.startTime,endTime:x.endTime,priority:x.priority,renderBlocking:x.renderBlockingStatus})).sort((a,b)=>(a.startTime||0)-(b.startTime||0));
-          console.log('REQUESTS:',JSON.stringify(rows.slice(0,30)).slice(0,16500));
+          const html=fs.readFileSync('/tmp/thermica-home.html','utf8');
+          const pic=(html.match(/<source\b[^>]*srcSet=["']([^"']+)["'][^>]*>/i)||[])[1];
+          if(!pic)process.exit(0);
+          const url=new URL(pic,'https://thermicaclimatizacao.com.br').toString();
+          console.log('Checking hero:',url);
+          fs.writeFileSync('/tmp/mobile-hero.url',url);
           NODE
+          if [ -s /tmp/mobile-hero.url ]; then
+            curl -sSL --max-time 35 -o /dev/null -w "IMAGE_STATUS:%{http_code} TTFB:%{time_starttransfer} TOTAL:%{time_total} BYTES:%{size_download}\n" "$(cat /tmp/mobile-hero.url)"
+          fi
