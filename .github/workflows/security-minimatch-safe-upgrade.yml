@@ -30,6 +30,10 @@ jobs:
       - name: Validate ESLint is functional
         run: |
           bunx eslint src/lib/sitemap.ts --rule 'prettier/prettier: off'
+      - name: Smoke-test esbuild consumers
+        run: |
+          bunx drizzle-kit --version
+          bunx tsx --version
       - name: Ensure vulnerable minimatch versions were replaced
         run: |
           node - <<'NODE'
@@ -39,6 +43,11 @@ jobs:
           console.log('Resolved minimatch versions:', found);
           if (!found.length || found.some(v => !/^11\./.test(v))) {
             throw new Error('The minimatch override did not resolve every vulnerable copy');
+          }
+          const esbuild = [...data.matchAll(/"[^"]*esbuild":\s*\["esbuild@([^"]+)"/g)].map(match => match[1]);
+          console.log('Resolved esbuild versions:', esbuild);
+          if (!esbuild.length || esbuild.some(v => !/^0\.28\./.test(v))) {
+            throw new Error('One or more esbuild copies remain below the target patched version');
           }
           NODE
       - name: Dependency audit report (read-only)

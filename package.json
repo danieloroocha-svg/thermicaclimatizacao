@@ -13,7 +13,8 @@
   },
   "overrides": {
     "rolldown": "1.2.1",
-    "minimatch": "11.0.1"
+    "minimatch": "11.0.1",
+    "esbuild": "0.28.2"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
