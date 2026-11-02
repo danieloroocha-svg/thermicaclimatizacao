@@ -1,4 +1,4 @@
-name: Diagnose live HTML and image preload
+name: Read Google PageSpeed LCP details
 on:
   push:
     branches:
@@ -10,41 +10,25 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 12
     steps:
-      - name: Inspect unmodified production response and initial HTML
+      - name: Request PageSpeed Insights report without API key
         run: |
-          curl -sSL --max-time 35 --compressed -o /tmp/thermica-home.html -w "HTML_STATUS:%{http_code} TTFB:%{time_starttransfer} TOTAL:%{time_total} TRANSFER:%{size_download}\n" https://thermicaclimatizacao.com.br/
+          curl -sSL --max-time 100 --get https://www.googleapis.com/pagespeedonline/v5/runPagespeed \
+            --data-urlencode "url=https://thermicaclimatizacao.com.br/" \
+            --data-urlencode "strategy=mobile" \
+            --data-urlencode "category=performance" \
+            -o /tmp/thermica-psi.json -w "PSI_HTTP_STATUS:%{http_code} TIME:%{time_total}\n"
           node - <<'NODE'
           const fs=require('fs');
-          const html=fs.readFileSync('/tmp/thermica-home.html','utf8');
-          console.log('HTML_BYTES:',Buffer.byteLength(html),'HEAD:',html.slice(0,350).replace(/\n/g,' '));
-          for(const [name,re] of [
-            ['H1',/<h1\b[^>]*>[\s\S]{0,450}<\/h1>/ig],
-            ['HEAD_PRELOADS',/<link[^>]+rel=["']preload["'][^>]*>/ig],
-            ['STYLESHEETS',/<link[^>]+rel=["']stylesheet["'][^>]*>/ig],
-            ['IMAGE_ELEMENT',/<picture[\s\S]{0,1800}<\/picture>/ig],
-            ['SCRIPT_ELEMENTS',/<script[^>]*src=["'][^"']+["'][^>]*>/ig]
-          ]) {
-            const all=[...html.matchAll(re)];
-            console.log(name+' COUNT:',all.length);
-            for(const m of all.slice(0,8)) console.log(name+':',m[0].slice(0,1000));
+          const d=JSON.parse(fs.readFileSync('/tmp/thermica-psi.json','utf8'));
+          if(d.error){
+            console.log('API_ERROR:',JSON.stringify(d.error).slice(0,2500));
+            process.exit(0);
           }
-          if(!html.includes('Soluções VRV/VRF para ambientes')) console.log('WARNING: target hero heading absent from response');
-          const pic=(html.match(/<source\b[^>]*srcSet=["']([^"']+)["'][^>]*>/i)||[])[1];
-          const preloads=[...html.matchAll(/<link[^>]+rel=["']preload["'][^>]*>/ig)].map(x=>x[0]);
-          console.log('MOBILE_HERO:',pic||'NOT FOUND');
-          console.log('PRELOAD_FOR_MOBILE:',preloads.some(x=>x.includes('max-width: 767px')));
+          const l=d.lighthouseResult||{};
+          const audits=l.audits||{};
+          console.log('PSI_SCORE:',l.categories?.performance?.score);
+          console.log('METRICS:',JSON.stringify(Object.fromEntries(['first-contentful-paint','largest-contentful-paint','total-blocking-time','speed-index','cumulative-layout-shift'].map(x=>[x,{value:audits[x]?.numericValue,display:audits[x]?.displayValue}]))));
+          for(const [key,v] of Object.entries(audits))if(/lcp|largest-contentful-paint|render-blocking|image-delivery|network-dependency|unused-javascript/i.test(key)){
+            console.log('AUDIT:',key,JSON.stringify({title:v.title,score:v.score,details:v.details}).slice(0,12000));
+          }
           NODE
-      - name: Inspect image headers and transfer
-        run: |
-          node - <<'NODE'
-          const fs=require('fs');
-          const html=fs.readFileSync('/tmp/thermica-home.html','utf8');
-          const pic=(html.match(/<source\b[^>]*srcSet=["']([^"']+)["'][^>]*>/i)||[])[1];
-          if(!pic)process.exit(0);
-          const url=new URL(pic,'https://thermicaclimatizacao.com.br').toString();
-          console.log('Checking hero:',url);
-          fs.writeFileSync('/tmp/mobile-hero.url',url);
-          NODE
-          if [ -s /tmp/mobile-hero.url ]; then
-            curl -sSL --max-time 35 -o /dev/null -w "IMAGE_STATUS:%{http_code} TTFB:%{time_starttransfer} TOTAL:%{time_total} BYTES:%{size_download}\n" "$(cat /tmp/mobile-hero.url)"
-          fi
