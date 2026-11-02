@@ -458,6 +458,63 @@ export const seoSiteGroups: SeoDirectoryGroup[] = [
         "keyword": "consultoria em engenharia de climatização são paulo"
       }
     ]
+  },
+  {
+    "slug": "seo-nacional-lote-81-90",
+    "title": "Retrofit, manutenção, climatização corporativa e comissionamento",
+    "description": "Engenharia HVAC para retrofit, operação predial, climatização e sistemas VRF.",
+    "items": [
+      {
+        "number": 81,
+        "path": "/empresa-de-climatizacao-para-retrofit-comercial",
+        "keyword": "empresa de climatização para retrofit comercial"
+      },
+      {
+        "number": 82,
+        "path": "/empresa-de-manutencao-e-operacao-de-climatizacao-predial",
+        "keyword": "empresa de manutenção e operação de climatização predial"
+      },
+      {
+        "number": 83,
+        "path": "/climatizacao-de-fabricas-e-linhas-de-producao-sp",
+        "keyword": "climatização de fábricas e linhas de produção sp"
+      },
+      {
+        "number": 84,
+        "path": "/instalacao-de-ar-condicionado-central-para-escolas-e-faculdades",
+        "keyword": "instalação de ar condicionado central para escolas e faculdades"
+      },
+      {
+        "number": 85,
+        "path": "/empresa-de-climatizacao-vrf-sorocaba",
+        "keyword": "empresa de climatização vrf sorocaba"
+      },
+      {
+        "number": 86,
+        "path": "/empresa-de-ar-condicionado-vrf-sao-jose-dos-campos",
+        "keyword": "empresa de ar condicionado vrf são josé dos campos"
+      },
+      {
+        "number": 87,
+        "path": "/adequacao-de-climatizacao-as-normas-abnt-nbr-16401",
+        "keyword": "adequação de climatização às normas abnt nbr 16401"
+      },
+      {
+        "number": 88,
+        "path": "/comissionamento-de-sistema-vrf-sao-paulo",
+        "keyword": "comissionamento de sistema vrf são paulo"
+      },
+      {
+        "number": 89,
+        "path": "/empresa-de-climatizacao-vrf-jundiai-e-regiao",
+        "keyword": "empresa de climatização vrf jundiaí e região"
+      },
+      {
+        "number": 90,
+        "path": "/substituicao-de-condensadora-vrf-sp",
+        "keyword": "substituição de condensadora vrf sp"
+      }
+    ]
   }
 ];
 export const seoSiteEntries: SeoDirectoryEntry[] = seoSiteGroups.flatMap(group => group.items);

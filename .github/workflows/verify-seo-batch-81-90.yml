@@ -1,0 +1,29 @@
+name: Verify SEO pages 81-90
+on:
+  push:
+    branches:
+      - seo/lote-81-90
+permissions:
+  contents: read
+jobs:
+  build-and-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+      - name: Install locked dependencies
+        run: bun install --frozen-lockfile --ignore-scripts
+      - name: Build site and generate typed routes
+        run: bun run build
+      - name: Check TypeScript after build
+        run: bunx tsc --noEmit
+      - name: Verify SEO route files
+        run: |
+          for route in empresa-de-climatizacao-para-retrofit-comercial empresa-de-manutencao-e-operacao-de-climatizacao-predial climatizacao-de-fabricas-e-linhas-de-producao-sp instalacao-de-ar-condicionado-central-para-escolas-e-faculdades empresa-de-climatizacao-vrf-sorocaba empresa-de-ar-condicionado-vrf-sao-jose-dos-campos adequacao-de-climatizacao-as-normas-abnt-nbr-16401 comissionamento-de-sistema-vrf-sao-paulo empresa-de-climatizacao-vrf-jundiai-e-regiao substituicao-de-condensadora-vrf-sp; do
+            grep -q "$route" src/routeTree.gen.ts || exit 1
+          done
