@@ -25,7 +25,7 @@ jobs:
           with Image.open(p) as img:
               rgb=img.convert("RGB")
               dims=rgb.size
-              rgb.save(p,"WEBP",quality=52,method=6)
+              rgb.save(p,"WEBP",quality=43,method=6)
               with Image.open(p) as result:
                   new=result.convert("RGB")
                   assert new.size==dims,"Dimensions must remain identical"
