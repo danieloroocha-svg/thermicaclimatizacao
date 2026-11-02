@@ -1,4 +1,5 @@
 import headerLogo from "@/assets/thermica-logo-header.webp";
+import headerLogoMobile from "@/assets/thermica-logo-header-mobile.webp";
 import osasco from "@/assets/obra-osasco.webp";
 import lapa from "@/assets/obra-lapa.webp";
 import osascoMobile from "@/assets/obra-osasco-mobile.webp";
@@ -24,23 +25,32 @@ import centroSpCard900 from "@/assets/obra-centro-sp-card-900.webp";
 import universidadeCard480 from "@/assets/obra-universidade-card-480.webp";
 import universidadeCard900 from "@/assets/obra-universidade-card-900.webp";
 
+import osascoCard700 from "@/assets/obra-osasco-card-700.webp";
+import lapaCard700 from "@/assets/obra-lapa-card-700.webp";
+import indaiatubaCard700 from "@/assets/obra-indaiatuba-card-700.webp";
+import baronezaCard700 from "@/assets/obra-baroneza-card-700.webp";
+import hospitalCard700 from "@/assets/obra-hospital-card-700.webp";
+import centroSpCard700 from "@/assets/obra-centro-sp-card-700.webp";
+import universidadeCard700 from "@/assets/obra-universidade-card-700.webp";
+
 export const SITE = {
   name: "THÉRMICA Soluções em Climatização Ltda.",
   email: "comercial@thermicaclimatizacao.com.br",
   phone: "(11) 95504-6147",
   address: "Estrada das Lágrimas, 489 — Ipiranga, São Paulo — SP, CEP 04232-000",
   headerLogo: headerLogo,
+  headerLogoMobile: headerLogoMobile,
   whatsapp: "https://wa.me/5511955046147?text=Ol%C3%A1%21%20Entrei%20em%20contato%20pelo%20site%20da%20TH%C3%89RMICA%20e%20gostaria%20de%20falar%20sobre%20uma%20demanda%20de%20climatiza%C3%A7%C3%A3o.",
 } as const;
 
 export const projects = [
-  { slug: "predio-administrativo-osasco", title: "Prédio administrativo em Osasco", system: "Sistema VRF Hitachi", type: "Corporativo", image: osasco, thumbSmall: osascoCard480, thumbLarge: osascoCard900 },
-  { slug: "retrofit-escritorio-lapa", title: "Retrofit de escritório na Lapa", system: "Sistema VRV Daikin", type: "Retrofit", image: lapa, thumbSmall: lapaCard480, thumbLarge: lapaCard900 },
-  { slug: "escritorio-indaiatuba", title: "Escritório em Indaiatuba — 3 andares com fábrica", system: "Sistema VRV Daikin", type: "Industrial", image: indaiatuba, thumbSmall: indaiatubaCard480, thumbLarge: indaiatubaCard900 },
-  { slug: "quinta-da-baroneza", title: "Casa de alto padrão — Quinta da Baroneza", system: "Sistema VRF Samsung", type: "Alto padrão", image: baroneza, thumbSmall: baronezaCard480, thumbLarge: baronezaCard900 },
-  { slug: "hospital-vila-clementino", title: "Hospital na Vila Clementino", system: "Sistema VRF Trane", type: "Saúde", image: hospital, thumbSmall: hospitalCard480, thumbLarge: hospitalCard900 },
-  { slug: "predio-publico-centro-sp", title: "Prédio público no centro de São Paulo", system: "Sistema VRF LG", type: "Institucional", image: centro, thumbSmall: centroSpCard480, thumbLarge: centroSpCard900 },
-  { slug: "universidade-guarulhos", title: "Universidade em Guarulhos", system: "Sistema VRF Midea", type: "Educação", image: universidade, thumbSmall: universidadeCard480, thumbLarge: universidadeCard900 },
+  { slug: "predio-administrativo-osasco", title: "Prédio administrativo em Osasco", system: "Sistema VRF Hitachi", type: "Corporativo", image: osasco, thumbSmall: osascoCard480, thumbMedium: osascoCard700, thumbLarge: osascoCard900 },
+  { slug: "retrofit-escritorio-lapa", title: "Retrofit de escritório na Lapa", system: "Sistema VRV Daikin", type: "Retrofit", image: lapa, thumbSmall: lapaCard480, thumbMedium: lapaCard700, thumbLarge: lapaCard900 },
+  { slug: "escritorio-indaiatuba", title: "Escritório em Indaiatuba — 3 andares com fábrica", system: "Sistema VRV Daikin", type: "Industrial", image: indaiatuba, thumbSmall: indaiatubaCard480, thumbMedium: indaiatubaCard700, thumbLarge: indaiatubaCard900 },
+  { slug: "quinta-da-baroneza", title: "Casa de alto padrão — Quinta da Baroneza", system: "Sistema VRF Samsung", type: "Alto padrão", image: baroneza, thumbSmall: baronezaCard480, thumbMedium: baronezaCard700, thumbLarge: baronezaCard900 },
+  { slug: "hospital-vila-clementino", title: "Hospital na Vila Clementino", system: "Sistema VRF Trane", type: "Saúde", image: hospital, thumbSmall: hospitalCard480, thumbMedium: hospitalCard700, thumbLarge: hospitalCard900 },
+  { slug: "predio-publico-centro-sp", title: "Prédio público no centro de São Paulo", system: "Sistema VRF LG", type: "Institucional", image: centro, thumbSmall: centroSpCard480, thumbMedium: centroSpCard700, thumbLarge: centroSpCard900 },
+  { slug: "universidade-guarulhos", title: "Universidade em Guarulhos", system: "Sistema VRF Midea", type: "Educação", image: universidade, thumbSmall: universidadeCard480, thumbMedium: universidadeCard700, thumbLarge: universidadeCard900 },
 ] as const;
 
 export const articles = [
