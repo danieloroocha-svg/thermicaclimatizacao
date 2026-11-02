@@ -344,6 +344,63 @@ export const seoSiteGroups: SeoDirectoryGroup[] = [
         "keyword": "calculo de vazao de ar condicionado"
       }
     ]
+  },
+  {
+    "slug": "seo-nacional-lote-61-70",
+    "title": "PMOC, projetos, comissionamento e balanceamento HVAC",
+    "description": "Novas páginas de engenharia HVAC com conteúdo técnico nacional.",
+    "items": [
+      {
+        "number": 61,
+        "path": "/pmoc-ar-condicionado-valor-por-maquina",
+        "keyword": "pmoc ar condicionado valor por maquina"
+      },
+      {
+        "number": 62,
+        "path": "/como-fazer-projeto-de-ar-condicionado-vrf",
+        "keyword": "como fazer projeto de ar condicionado vrf"
+      },
+      {
+        "number": 63,
+        "path": "/laudo-tecnico-de-ar-condicionado-crea",
+        "keyword": "laudo tecnico de ar condicionado crea"
+      },
+      {
+        "number": 64,
+        "path": "/projeto-de-climatizacao-industrial-galpao",
+        "keyword": "projeto de climatizacao industrial galpao"
+      },
+      {
+        "number": 65,
+        "path": "/comissionamento-de-sistemas-hvac",
+        "keyword": "comissionamento de sistemas hvac"
+      },
+      {
+        "number": 66,
+        "path": "/responsabilidade-tecnica-manutencao-ar-condicionado-crea",
+        "keyword": "responsabilidade tecnica manutencao ar condicionado crea"
+      },
+      {
+        "number": 67,
+        "path": "/balanceamento-de-sistemas-de-ar-condicionado",
+        "keyword": "balanceamento de sistemas de ar condicionado"
+      },
+      {
+        "number": 68,
+        "path": "/projeto-de-pressurizacao-de-escada-de-incendio",
+        "keyword": "projeto de pressurizacao de escada de incendio"
+      },
+      {
+        "number": 69,
+        "path": "/comissionamento-de-ar-condicionado-vrf",
+        "keyword": "comissionamento de ar condicionado vrf"
+      },
+      {
+        "number": 70,
+        "path": "/balanceamento-hidraulico-hvac-agua-gelada",
+        "keyword": "balanceamento hidraulico hvac agua gelada"
+      }
+    ]
   }
 ];
 export const seoSiteEntries: SeoDirectoryEntry[] = seoSiteGroups.flatMap(group => group.items);

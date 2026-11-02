@@ -25,6 +25,12 @@ export type SeoKeywordPage = {
   badge: string;
   breadcrumb: string;
   introduction: string;
+  heroLead?: string;
+  scopeLead?: string;
+  applicationsLead?: string;
+  qualityLead?: string;
+  stagesHeading?: string;
+  estimateHeading?: string;
   scopeHeading: string;
   scopeText: string;
   scopeDetailHeading: string;
@@ -167,7 +173,7 @@ export function SeoKeywordLanding({ page }: { page: SeoKeywordPage }) {
           <p className="eyebrow">{page.badge} • Atendimento empresarial</p>
           <h1 className="mt-5 max-w-4xl text-4xl font-semibold leading-tight first-letter:uppercase md:text-6xl">{page.keyword}</h1>
           <p className="mt-7 max-w-3xl text-lg leading-8 text-primary-foreground/85">
-            {page.keyword.startsWith("empresa ") ? "Se sua equipe pesquisa por" : page.keyword.startsWith("lei ") ? "A THÉRMICA oferece orientação técnica sobre" : page.keyword.startsWith("engenheiro ") ? "A THÉRMICA atende demandas por" : page.keyword.startsWith("art ") ? "A THÉRMICA avalia solicitações de" : page.keyword.startsWith("plano ") ? "A THÉRMICA desenvolve" : page.keyword.startsWith("calculo ") ? "A THÉRMICA realiza" : "A THÉRMICA analisa e desenvolve soluções de"}{" "}<strong>{page.keyword}</strong>{page.keyword.startsWith("empresa ") ? ", a THÉRMICA pode avaliar o escopo do seu empreendimento." : "."} {page.introduction}
+            {page.heroLead ?? (page.keyword.startsWith("empresa ") ? "Se sua equipe pesquisa por" : page.keyword.startsWith("lei ") ? "A THÉRMICA oferece orientação técnica sobre" : page.keyword.startsWith("engenheiro ") ? "A THÉRMICA atende demandas por" : page.keyword.startsWith("art ") ? "A THÉRMICA avalia solicitações de" : page.keyword.startsWith("plano ") ? "A THÉRMICA desenvolve" : page.keyword.startsWith("calculo ") ? "A THÉRMICA realiza" : "A THÉRMICA analisa e desenvolve soluções de")}{" "}<strong>{page.keyword}</strong>{page.keyword.startsWith("empresa ") ? ", a THÉRMICA pode avaliar o escopo do seu empreendimento." : "."} {page.introduction}
           </p>
           <div className="mt-9 flex flex-wrap items-center gap-4">
             <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90">
@@ -196,7 +202,7 @@ export function SeoKeywordLanding({ page }: { page: SeoKeywordPage }) {
             <p className="eyebrow text-primary">Engenharia e contratação técnica</p>
             <h2 id="escopo-heading" className="section-title first-letter:uppercase">{page.keyword}: {page.scopeHeading}</h2>
             <p className="mt-6 text-lg leading-8 text-muted-foreground">
-              {page.keyword.startsWith("empresa ") ? "A busca por" : page.keyword.startsWith("projeto ") || page.keyword.startsWith("retrofit ") || page.keyword.startsWith("sistema ") || page.keyword.startsWith("ar condicionado ") || page.keyword.startsWith("orçamento ") || page.keyword.startsWith("contrato ") || page.keyword.startsWith("calculo ") || page.keyword.startsWith("plano ") || page.keyword.startsWith("engenheiro ") ? "O" : "A"}{" "}
+              {page.scopeLead ?? (page.keyword.startsWith("empresa ") ? "A busca por" : page.keyword.startsWith("projeto ") || page.keyword.startsWith("retrofit ") || page.keyword.startsWith("sistema ") || page.keyword.startsWith("ar condicionado ") || page.keyword.startsWith("orçamento ") || page.keyword.startsWith("contrato ") || page.keyword.startsWith("calculo ") || page.keyword.startsWith("plano ") || page.keyword.startsWith("engenheiro ") ? "O" : "A")}{" "}
               <strong className="text-foreground">{page.keyword}</strong> {page.keyword.startsWith("empresa ") ? "exige avaliar a qualificação técnica e o escopo." : "exige planejamento consistente."} {page.scopeText}
             </p>
             <h3 className="mt-8 text-2xl font-semibold">{page.scopeDetailHeading}</h3>
@@ -213,7 +219,7 @@ export function SeoKeywordLanding({ page }: { page: SeoKeywordPage }) {
       <section className="section bg-secondary" aria-labelledby="etapas-heading">
         <div className="mx-auto max-w-7xl px-5 lg:px-8">
           <p className="eyebrow text-primary">Método técnico</p>
-          <h2 id="etapas-heading" className="section-title">{page.keyword.startsWith("empresa ") ? "Etapas para contratar" : "Etapas de"} {page.keyword}</h2>
+          <h2 id="etapas-heading" className="section-title">{page.stagesHeading ?? `${page.keyword.startsWith("empresa ") ? "Etapas para contratar" : "Etapas de"} ${page.keyword}`}</h2>
           <p className="section-copy">Neste tipo de contratação, {page.stagesIntro}</p>
           <div className="mt-12 grid gap-5 md:grid-cols-2">
             {page.stages.map((stage, index) => (
@@ -232,7 +238,7 @@ export function SeoKeywordLanding({ page }: { page: SeoKeywordPage }) {
           <div>
             <p className="eyebrow text-primary">Aplicação em imóveis corporativos</p>
             <h2 id="aplicacoes-heading" className="section-title first-letter:uppercase">{page.keyword}: {page.applicationsHeading}</h2>
-            <p className="mt-6 leading-8 text-muted-foreground">Para avaliar {["calculo ", "plano ", "projeto ", "sistema ", "engenheiro "].some(prefix => page.keyword.startsWith(prefix)) ? "o " : ["lei ", "art ", "renovacao "].some(prefix => page.keyword.startsWith(prefix)) ? "a " : ""}<strong className="text-foreground">{page.keyword}</strong>, {page.applicationsText}</p>
+            <p className="mt-6 leading-8 text-muted-foreground">{page.applicationsLead ?? `Para avaliar ${["calculo ", "plano ", "projeto ", "sistema ", "engenheiro "].some(prefix => page.keyword.startsWith(prefix)) ? "o " : ["lei ", "art ", "renovacao "].some(prefix => page.keyword.startsWith(prefix)) ? "a " : ""}`}<strong className="text-foreground">{page.keyword}</strong>, {page.applicationsText}</p>
             <h3 className="mt-8 text-2xl font-semibold">{page.applicationsDetailHeading}</h3>
             <p className="mt-4 leading-8 text-muted-foreground">{page.applicationsDetailText}</p>
           </div>
@@ -249,7 +255,7 @@ export function SeoKeywordLanding({ page }: { page: SeoKeywordPage }) {
             <div>
               <p className="eyebrow text-primary">Escopo e controle de qualidade</p>
               <h2 id="qualidade-heading" className="section-title first-letter:uppercase">{page.keyword}: critérios para execução e entrega</h2>
-              <p className="section-copy">Na contratação de <strong>{page.keyword}</strong>, {page.qualityText}</p>
+              <p className="section-copy">{page.qualityLead ?? "Na contratação de"} <strong>{page.keyword}</strong>, {page.qualityText}</p>
               <p className="mt-5 text-sm leading-7 text-muted-foreground">Os requisitos documentais, testes, ART e garantias são especificados em cada contrato. O desempenho e eventuais economias dependem de estudo técnico e condições reais do empreendimento.</p>
             </div>
             <div className="grid gap-7 sm:grid-cols-2">
@@ -300,7 +306,7 @@ export function SeoKeywordLanding({ page }: { page: SeoKeywordPage }) {
           </figure>
           <div>
             <p className="eyebrow text-primary">Proposta e fornecimento</p>
-            <h2 id="proposta-heading" className="section-title">Orçamento para {page.keyword}</h2>
+            <h2 id="proposta-heading" className="section-title">{page.estimateHeading ?? `Orçamento para ${page.keyword}`}</h2>
             <p className="mt-6 leading-8 text-muted-foreground">{page.estimateText}</p>
             <p className="mt-5 leading-8 text-muted-foreground">Para comparar propostas de <strong className="text-foreground">{page.keyword}</strong>, {page.estimateDetail}</p>
             <ul className="mt-6 space-y-4">
