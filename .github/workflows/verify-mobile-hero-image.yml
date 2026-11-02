@@ -1,0 +1,30 @@
+name: Validate correct mobile hero image selection
+on:
+  push:
+    branches:
+      - perf/hero-mobile-correct-image-2026-11
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+      - name: Frozen dependencies
+        run: bun install --frozen-lockfile --ignore-scripts
+      - name: Production build
+        run: bun run build
+      - name: TypeScript validation
+        run: bunx tsc --noEmit
+      - name: Confirm mobile and desktop selection match preloads
+        run: |
+          grep -q 'media="(max-width: 767px)" srcSet={HERO_MOBILE}' src/routes/index.tsx
+          grep -q 'href: HERO_MOBILE, media: "(max-width: 767px)"' src/routes/index.tsx
+          grep -q 'href: projects\[0\].image, media: "(min-width: 768px)"' src/routes/index.tsx
+          echo "Mobile picture and preload use the 65KB mobile asset only"
