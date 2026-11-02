@@ -1,0 +1,65 @@
+name: Safe minimatch remediation - isolated branch
+on:
+  push:
+    branches:
+      - security/minimatch-safe-upgrade-2026-11
+permissions:
+  contents: write
+jobs:
+  build-audit-commit:
+    if: "!contains(github.event.head_commit.message, '[skip ci]')"
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - name: Checkout branch without persisted credentials
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Install Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+      - name: Resolve only approved minimatch override
+        run: bun install --ignore-scripts
+      - name: Reinstall frozen updated dependency tree
+        run: bun install --frozen-lockfile --ignore-scripts
+      - name: Build production bundle and generate route types
+        run: bun run build
+      - name: Validate TypeScript
+        run: bunx tsc --noEmit
+      - name: Validate ESLint is functional
+        run: bunx eslint src/lib/seo-keyword-page-80.ts
+      - name: Ensure vulnerable minimatch versions were replaced
+        run: |
+          node - <<'NODE'
+          const fs = require('fs');
+          const data = fs.readFileSync('bun.lock', 'utf8');
+          const found = [...data.matchAll(/"[^"]*minimatch":\s*\["minimatch@([^"]+)"/g)].map(match => match[1]);
+          console.log('Resolved minimatch versions:', found);
+          if (!found.length || found.some(v => !/^11\./.test(v))) {
+            throw new Error('The minimatch override did not resolve every vulnerable copy');
+          }
+          NODE
+      - name: Dependency audit report (read-only)
+        run: |
+          bun audit --json > minimatch-security-audit.json || true
+          bun audit || true
+      - name: Upload audit report
+        uses: actions/upload-artifact@v4
+        with:
+          name: minimatch-security-audit
+          path: minimatch-security-audit.json
+      - name: Commit lockfile only after validation passes
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add bun.lock package.json
+          if git diff --cached --quiet; then
+            echo "Lockfile already consistent"
+            exit 0
+          fi
+          git commit -m "chore(security): lock tested minimatch 11 remediation [skip ci]"
+          basic=$(printf "x-access-token:%s" "$GH_TOKEN" | base64 -w0)
+          git -c "http.extraheader=AUTHORIZATION: basic $basic" push origin HEAD:security/minimatch-safe-upgrade-2026-11
