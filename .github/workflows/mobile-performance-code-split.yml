@@ -1,0 +1,35 @@
+name: Verify mobile JavaScript split
+on:
+  push:
+    branches:
+      - perf/mobile-whatsapp-code-splitting-2026-11
+permissions:
+  contents: read
+jobs:
+  safe-build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+      - name: Install locked dependencies
+        run: bun install --frozen-lockfile --ignore-scripts
+      - name: Build production client and server
+        run: bun run build
+      - name: Check TypeScript
+        run: bunx tsc --noEmit
+      - name: Ensure lazy WhatsApp chunk exists
+        run: |
+          test -n "$(find .output/public/assets -name 'whatsapp-dialog-*.js' -print -quit)"
+          echo "Lazy-loaded WhatsApp dialog bundle:"
+          find .output/public/assets -name 'whatsapp-dialog-*.js' -exec ls -lh {} \;
+          echo "Main client bundle can now load without the WhatsApp CRM chunk"
+      - name: Check WhatsApp form lead persistence
+        run: |
+          grep -q 'whatsapp_leads' src/components/whatsapp-dialog.tsx
+          grep -q 'thermica:open-whatsapp' src/components/whatsapp-button.tsx
+          grep -q 'onOpenChange(false)' src/components/whatsapp-dialog.tsx
