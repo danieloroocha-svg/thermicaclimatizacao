@@ -53,15 +53,16 @@ export function WhatsAppButton() {
     // O popup nasce do gesto do usuário para não ser bloqueado após o insert.
     const win = window.open("", "_blank");
     const sourceUrl = pageUrl || window.location.href;
-    // Load CRM only after the user explicitly submits the form.
-    const { supabase } = await import("@/integrations/supabase/client");
-    const { error: err } = await supabase.from("whatsapp_leads").insert({
-      ...lead,
-      page_title: page,
-      page_url: sourceUrl,
-    });
-
-    if (err) {
+    // Load CRM only after submission. Handle chunk loading and network errors.
+    try {
+      const { supabase } = await import("@/integrations/supabase/client");
+      const { error: err } = await supabase.from("whatsapp_leads").insert({
+        ...lead,
+        page_title: page,
+        page_url: sourceUrl,
+      });
+      if (err) throw err;
+    } catch {
       win?.close();
       setError("Não foi possível continuar agora. Tente novamente.");
       setLoading(false);
