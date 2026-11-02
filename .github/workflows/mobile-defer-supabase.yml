@@ -1,0 +1,39 @@
+name: Verify mobile Supabase on-demand loading
+on:
+  push:
+    branches:
+      - perf/defer-supabase-when-submitting-2026-11
+permissions:
+  contents: read
+jobs:
+  safe-build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+      - name: Install locked packages
+        run: bun install --frozen-lockfile --ignore-scripts
+      - name: Build
+        run: bun run build
+      - name: TypeScript
+        run: bunx tsc --noEmit
+      - name: Report initial JavaScript bundle size
+        run: |
+          node - <<'NODE'
+          const fs = require('fs'), zlib = require('zlib');
+          const path = '.output/public/assets';
+          const big = fs.readdirSync(path).filter(n => /^index-.*\.js$/.test(n)).map(n => ({n, raw: fs.readFileSync(path + '/' + n)})).sort((a,b)=>b.raw.length-a.raw.length)[0];
+          if(!big || big.raw.length < 500000) throw new Error('Main index bundle missing; inspect output');
+          const gzip = zlib.gzipSync(big.raw, {level:9}).length;
+          console.log(JSON.stringify({file:big.n, bytes:big.raw.length, gzipBytes:gzip}));
+          NODE
+      - name: Ensure lead capture and on-demand import remain intact
+        run: |
+          grep -q 'await import("@/integrations/supabase/client")' src/components/whatsapp-button.tsx
+          grep -q 'whatsapp_leads' src/components/whatsapp-button.tsx
+          grep -q 'thermica:open-whatsapp' src/components/whatsapp-button.tsx
