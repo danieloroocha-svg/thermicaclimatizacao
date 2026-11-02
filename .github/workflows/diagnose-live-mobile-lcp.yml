@@ -1,0 +1,38 @@
+name: Diagnose live mobile LCP
+on:
+  push:
+    branches:
+      - perf/lcp-mobile-diagnostic-2026-11
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - name: Check production response
+        run: |
+          curl -sSI --max-time 25 https://thermicaclimatizacao.com.br/ | head -25
+          which google-chrome || which chromium || true
+      - name: Run isolated Lighthouse mobile trace
+        run: |
+          npx --yes lighthouse@12.8.2 https://thermicaclimatizacao.com.br/ --only-categories=performance --form-factor=mobile --screenEmulation.mobile --throttling-method=simulate --chrome-flags="--headless --no-sandbox --disable-dev-shm-usage" --output=json --output-path=/tmp/thermica-mobile-lighthouse.json --quiet
+      - name: Print exact LCP element and network breakdown
+        run: |
+          node - <<'NODE'
+          const fs=require('fs');
+          const d=JSON.parse(fs.readFileSync('/tmp/thermica-mobile-lighthouse.json','utf8'));
+          const a=d.audits||{};
+          console.log('URL:',d.finalDisplayedUrl);
+          console.log('PERFORMANCE:',d.categories?.performance?.score);
+          for (const id of ['first-contentful-paint','largest-contentful-paint','speed-index','total-blocking-time','cumulative-layout-shift','server-response-time']) {
+            console.log(id, a[id]?.displayValue, a[id]?.numericValue);
+          }
+          for(const [key,value] of Object.entries(a)){
+            if(/lcp|largest-contentful-paint-element|render-blocking|network-dependency|image-delivery|unused-javascript/i.test(key)){
+              console.log('AUDIT:',key,JSON.stringify({title:value.title,score:value.score,details:value.details}).slice(0,10000));
+            }
+          }
+          const rows=(a['network-requests']?.details?.items||[]).map(x=>({url:x.url,resourceType:x.resourceType,transferSize:x.transferSize,startTime:x.startTime,endTime:x.endTime,priority:x.priority,renderBlocking:x.renderBlockingStatus})).sort((a,b)=>(a.startTime||0)-(b.startTime||0));
+          console.log('REQUESTS:',JSON.stringify(rows.slice(0,30)).slice(0,16500));
+          NODE
