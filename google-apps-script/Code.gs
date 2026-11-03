@@ -193,3 +193,62 @@ function testarIntegracao() {
     throw new Error('Teste inconclusivo: conferir planilha e e-mail comercial.');
   }
 }
+
+/**
+ * Recupera notificações pendentes sem criar registros duplicados.
+ * Pode ser agendado pelo Apps Script, com execução a cada 15 minutos.
+ */
+function reprocessarEmailsPendentes() {
+  const lock = LockService.getScriptLock();
+  lock.waitLock(20000);
+  try {
+    const sheet = SpreadsheetApp.openById(THERMICA.spreadsheetId)
+      .getSheetByName(THERMICA.sheetName);
+    const last = sheet.getLastRow();
+    if (last < 2) return;
+    const rows = sheet.getRange(2, 1, last - 1, 19).getValues();
+    let processed = 0;
+    for (let i = 0; i < rows.length && processed < 15; i++) {
+      const row = rows[i];
+      const state = String(row[18] || '');
+      if (state !== 'Pendente' && state.indexOf('Falha') !== 0) continue;
+      const lead = {
+        id: String(row[1] || ''),
+        channel: String(row[2] || ''),
+        name: String(row[3] || ''),
+        company: String(row[4] || ''),
+        phone: String(row[5] || ''),
+        email: String(row[6] || ''),
+        city: String(row[7] || ''),
+        demandType: String(row[8] || ''),
+        projectStatus: String(row[9] || ''),
+        manufacturer: String(row[10] || ''),
+        message: String(row[11] || ''),
+        pageTitle: String(row[12] || ''),
+        pageUrl: String(row[13] || ''),
+        attachment: String(row[14] || ''),
+      };
+      try {
+        enviarEmail_(lead);
+        sheet.getRange(i + 2, 19).setValue('Enviado');
+      } catch (err) {
+        sheet.getRange(i + 2, 19).setValue('Falha — verificar envio');
+        console.error('Não foi possível reenviar notificação', err);
+      }
+      processed++;
+    }
+  } finally {
+    lock.releaseLock();
+  }
+}
+
+/** Executar UMA VEZ para criar recuperação automática a cada 15 minutos. */
+function instalarRecuperacao() {
+  const existing = ScriptApp.getProjectTriggers().some(function(trigger) {
+    return trigger.getHandlerFunction() === 'reprocessarEmailsPendentes';
+  });
+  if (!existing) {
+    ScriptApp.newTrigger('reprocessarEmailsPendentes')
+      .timeBased().everyMinutes(15).create();
+  }
+}
