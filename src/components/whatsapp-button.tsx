@@ -5,6 +5,7 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } f
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { WhatsAppGlyph } from "@/components/whatsapp-icon";
+import { mirrorLeadToGoogleSheet } from "@/lib/lead-sheet-sync";
 
 
 /** Destino no projeto: src/components/whatsapp-button.tsx */
@@ -43,6 +44,7 @@ export function WhatsAppButton() {
     setLoading(true);
     setError("");
     const form = new FormData(e.currentTarget);
+    const leadId = crypto.randomUUID();
     const lead = {
       name: String(form.get("name") ?? "").trim(),
       email: String(form.get("email") ?? "").trim(),
@@ -57,11 +59,18 @@ export function WhatsAppButton() {
     try {
       const { supabase } = await import("@/integrations/supabase/client");
       const { error: err } = await supabase.from("whatsapp_leads").insert({
+        id: leadId,
         ...lead,
         page_title: page,
         page_url: sourceUrl,
       });
       if (err) throw err;
+      mirrorLeadToGoogleSheet({
+        id: leadId, channel: "WhatsApp",
+        ...lead,
+        pageTitle: page,
+        pageUrl: sourceUrl,
+      });
     } catch {
       win?.close();
       setError("Não foi possível continuar agora. Tente novamente.");
