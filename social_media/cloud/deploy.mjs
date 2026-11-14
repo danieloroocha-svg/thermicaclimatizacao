@@ -56,8 +56,11 @@ export class Cloudflare {
 export async function deploy(env=process.env) {
  const cf=new Cloudflare({token:env.CLOUDFLARE_API_TOKEN,account:env.CLOUDFLARE_ACCOUNT_ID});
  const dir=mkdtempSync(join(tmpdir(),'thermica-deploy-'));
+ let stage='Cloudflare: verificar e provisionar D1';
  try {
-  const database=await cf.database(),subdomain=await cf.subdomain();
+  const database=await cf.database();
+  stage='Cloudflare: verificar subdomínio workers.dev';
+  const subdomain=await cf.subdomain();
   if(!/^[a-z0-9][a-z0-9-]*$/.test(subdomain)) throw new Error('Subdomínio inválido');
   const base=`https://thermica-social.${subdomain}.workers.dev`;
   const config=JSON.parse(readFileSync(new URL('./wrangler.example.jsonc',import.meta.url),'utf8'));
@@ -68,8 +71,11 @@ export async function deploy(env=process.env) {
   delete config.vars.SOCIAL_CALENDAR_APPROVED_AT;
   const path=join(dir,'wrangler.jsonc');writeFileSync(path,JSON.stringify(config),{mode:0o600});
   if(!env.WRANGLER_BIN) throw new Error('Wrangler isolado não configurado');
+  stage='Wrangler: implantar Worker';
   execFileSync(env.WRANGLER_BIN,['deploy','--config',path],{env:{...env,WRANGLER_SEND_METRICS:'false'},stdio:'pipe',timeout:180000});
+  stage='Cloudflare: conferir e criar Secrets internos do Worker';
   const admin=await cf.bootstrapSecrets(database);
+  stage='Cloudflare: validar healthcheck HTTP';
   let healthy=false;
   for(let i=0;i<6;i++) {
    try {const r=await fetch(base+'/health',{redirect:'error',signal:AbortSignal.timeout(15000)});if(r.ok&&(await r.json()).status==='ok'){healthy=true;break;}}catch{}
@@ -77,6 +83,7 @@ export async function deploy(env=process.env) {
   }
   if(!healthy) throw new Error('Worker implantado; health ainda não validado');
   if(admin) {
+   stage='Cloudflare: validar pausa e relatório privativo';
    const r=await fetch(base+'/run',{method:'POST',headers:{Authorization:`Bearer ${admin}`},redirect:'error',signal:AbortSignal.timeout(15000)});
    if(!r.ok||(await r.json())[0]?.status!=='pausado') throw new Error('Pausa de publicação não confirmada');
    const report=await fetch(base+'/report',{headers:{Authorization:`Bearer ${admin}`},redirect:'error',signal:AbortSignal.timeout(15000)});
@@ -85,6 +92,11 @@ export async function deploy(env=process.env) {
   const summary=`Worker implantado: ${base}\n\nHealth validado. Publicação desligada; automação pausada. Nenhuma publicação enviada. D1 inicializado e chaves internas preservadas/criadas sem exposição. Nenhum plano pago habilitado.\n`;
   if(env.GITHUB_STEP_SUMMARY) appendFileSync(env.GITHUB_STEP_SUMMARY,summary);
   console.log('Implantação concluída. Consulte a URL e verificações no resumo do job. Publicação desligada.');
+ } catch (error) {
+  // Never log provider response bodies, credentials, authorization headers or raw CLI stderr.
+  // Only print the fixed phase name and an HTTP status that cannot reveal a token.
+  const status=Number.isInteger(error?.status)?` (HTTP ${error.status})`:'';
+  throw new Error(`Falha na etapa ${stage}${status}. Conferir privilégios e conta Cloudflare, sem expor Secrets.`);
  } finally {rmSync(dir,{recursive:true,force:true});}
 }
-if(process.argv[1]&&import.meta.url===pathToFileURL(resolve(process.argv[1])).href) deploy().catch(()=>{console.error('Implantação bloqueada. Verificar Secrets/permissões Cloudflare; nenhum upgrade pago é permitido. O instalador não autoriza qualquer publicação.');process.exitCode=1;});
+if(process.argv[1]&&import.meta.url===pathToFileURL(resolve(process.argv[1])).href) deploy().catch(error=>{console.error(error.message);console.error('Nenhum upgrade pago ou publicação real foi autorizado.');process.exitCode=1;});
