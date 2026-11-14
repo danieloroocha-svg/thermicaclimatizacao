@@ -1,4 +1,6 @@
-# Operação e limites — 14/11/2026
+# Operação e limites — runtime local anterior
+
+**Atualização:** a rota principal passou a ser Cloudflare Workers Free + D1, sem servidor permanente contratado. Ver [cloud/SETUP.md](cloud/SETUP.md). As limitações abaixo descrevem a implementação c74c1af, anterior à continuidade do PR, e não substituem o guia atual.
 
 ## Estado verificável
 

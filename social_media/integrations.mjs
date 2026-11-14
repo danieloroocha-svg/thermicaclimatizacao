@@ -1,6 +1,6 @@
 // Read-only Google APIs. Credentials and results stay outside the public repository.
 export async function googleJSON(url,token,fetcher=fetch) {
- const r=await fetcher(url,{headers:{Authorization:`Bearer ${token}`},signal:AbortSignal.timeout(30000)});
+ const r=await fetcher(url,{redirect:'error',headers:{Authorization:`Bearer ${token}`},signal:AbortSignal.timeout(30000)});
  if(!r.ok) throw new Error(`Google HTTP ${r.status}`);return r.json();
 }
 export async function driveImages(folderId,token,fetcher=fetch) {

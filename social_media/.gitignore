@@ -2,3 +2,6 @@ runtime/*
 !runtime/.gitkeep
 .env*
 __pycache__/
+cloud/wrangler.jsonc
+cloud/.dev.vars
+cloud/.wrangler/

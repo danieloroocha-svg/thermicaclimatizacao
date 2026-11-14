@@ -1,3 +1,14 @@
+export function validTimestamp(value) {
+  if (typeof value !== 'string') return false;
+  const m=/^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})(?:\.(\d{1,3}))?(Z|([+-])(\d{2}):(\d{2}))$/.exec(value);
+  if (!m) return false;
+  const [,year,month,day,hour,minute,second,,zone,,offsetHour,offsetMinute]=m;
+  const y=+year,mo=+month,d=+day;
+  const leap=y%4===0&&(y%100!==0||y%400===0);
+  const days=[31,leap?29:28,31,30,31,30,31,31,30,31,30,31];
+  return y>=2000&&mo>=1&&mo<=12&&d>=1&&d<=days[mo-1]&&+hour<24&&+minute<60&&+second<60&&
+    (zone==='Z'||(+offsetHour<=14&&+offsetMinute<60&&(+offsetHour<14||+offsetMinute===0)))&&Number.isFinite(Date.parse(value));
+}
 export const CHANNELS = new Set(["facebook", "linkedin", "instagram", "blog"]);
 export function validateQueue(queue) {
   if (!Array.isArray(queue)) throw new Error("Fila precisa ser uma lista");
@@ -9,7 +20,7 @@ export function validateQueue(queue) {
     seen.add(post.id);
     if (!["rascunho", "aprovado", "pausado"].includes(post.status)) throw new Error("Status inválido: " + post.id);
     if (typeof post.texto !== "string" || post.texto.trim().length < 30) throw new Error("Legenda muito curta: " + post.id);
-    if (typeof post.scheduled_at !== "string" || !/(Z|[+-]\d\d:\d\d)$/.test(post.scheduled_at) || Number.isNaN(Date.parse(post.scheduled_at))) throw new Error("Data ISO com fuso obrigatória: " + post.id);
+    if (!validTimestamp(post.scheduled_at)) throw new Error("Data ISO com fuso obrigatória: " + post.id);
     if (!Array.isArray(post.channels) || !post.channels.length || post.channels.some(c=>!CHANNELS.has(c))) throw new Error("Canal inválido: " + post.id);
   }
   return queue;

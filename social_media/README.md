@@ -1,5 +1,7 @@
 # THÉRMICA — Social Media Bot (piloto seguro)
 
+**Rota atual:** [Worker sem servidor permanente, conexões e operação](cloud/SETUP.md). Cloudflare Workers Free + D1 cifrado, preparação Pillow no GitHub e sincronização Google. Publicação permanece desligada até consentimento e autorização inicial.
+
 Este módulo é independente do site THÉRMICA. Não altera o front-end, o banco de dados ou o fluxo Lovable. O objetivo do piloto é indexar mídia já existente e preparar uma fila editorial para agendamento sem custos de geração de imagens.
 
 ## Resultado do inventário em 13/11/2026
@@ -43,7 +45,7 @@ A segunda linha exibe um relatório de prévia da fila (nenhum post é publicado
 
 ## Runtime implementado em 14/11/2026
 
-O serviço separado `server.mjs` implementa OAuth Instagram Login, cofre cifrado e worker de publicação. O `runner.mjs` continua exclusivamente de prévia. Instruções de configuração, autorização, testes e limitações reais: [OPERATIONS.md](OPERATIONS.md). Nada foi publicado ou hospedado nesta entrega.
+O serviço separado `server.mjs` implementa OAuth Instagram Login, cofre cifrado e worker de publicação. O `runner.mjs` continua exclusivamente de prévia. A arquitetura atual e suas limitações estão em [cloud/SETUP.md](cloud/SETUP.md); [OPERATIONS.md](OPERATIONS.md) documenta o runtime anterior. Nada foi publicado ou hospedado nesta entrega.
 
 ## Próximas integrações
 
