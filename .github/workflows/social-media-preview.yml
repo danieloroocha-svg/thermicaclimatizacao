@@ -26,7 +26,7 @@ jobs:
         with:
           node-version: "22"
       - name: Testes sem publicacao
-        run: node --test social_media/tests.mjs social_media/runtime-tests.mjs social_media/cloud-tests.mjs social_media/deploy-tests.mjs
+        run: node --test social_media/tests.mjs social_media/runtime-tests.mjs social_media/cloud-tests.mjs social_media/deploy-tests.mjs social_media/instagram-only-tests.mjs
       - name: Revisar fila editorial, sem publicar
         run: node social_media/runner.mjs
       - name: Instalar runtime de teste isolado
