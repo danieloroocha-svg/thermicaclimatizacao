@@ -91,7 +91,7 @@ export async function deploy(env=process.env) {
   }
   const summary=`Worker implantado: ${base}\n\nHealth validado. Publicação desligada; automação pausada. Nenhuma publicação enviada. D1 inicializado e chaves internas preservadas/criadas sem exposição. Nenhum plano pago habilitado.\n`;
   if(env.GITHUB_STEP_SUMMARY) appendFileSync(env.GITHUB_STEP_SUMMARY,summary);
-  console.log('Implantação concluída. Consulte a URL e verificações no resumo do job. Publicação desligada.');
+  console.log(`Implantação concluída em ${base}. Health verificado. Publicações desligadas.`);
  } catch (error) {
   // Never log provider response bodies, credentials, authorization headers or raw CLI stderr.
   // Only print the fixed phase name and an HTTP status that cannot reveal a token.
