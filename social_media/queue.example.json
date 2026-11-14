@@ -1,0 +1,41 @@
+[
+  {
+    "id": "vrf_retrofit_001",
+    "status": "rascunho",
+    "tema": "Quando avaliar um retrofit de climatização?",
+    "texto": "Em edifícios corporativos, o retrofit de climatização começa por um diagnóstico técnico: capacidade instalada, desempenho, consumo, operação e compatibilidade do sistema existente. Uma análise criteriosa ajuda a definir o escopo da modernização. Conheça a atuação da THÉRMICA em sistemas VRF/VRV e projetos de engenharia. https://thermicaclimatizacao.com.br",
+    "channels": [
+      "linkedin",
+      "facebook"
+    ],
+    "scheduled_at": "2026-11-17T09:00:00-03:00",
+    "media_id": "",
+    "observacoes": "Inserir imagem selecionada do catálogo; validar dados e marca."
+  },
+  {
+    "id": "comissionamento_vrf_002",
+    "status": "rascunho",
+    "tema": "Comissionamento de sistemas VRF",
+    "texto": "A entrega técnica de um sistema VRF envolve mais do que verificar se o equipamento liga. Inspeções, testes funcionais, registros de instalação e verificação de parâmetros fazem parte de um processo de comissionamento consistente. A THÉRMICA atua com engenharia aplicada à climatização corporativa. https://thermicaclimatizacao.com.br",
+    "channels": [
+      "linkedin",
+      "facebook"
+    ],
+    "scheduled_at": "2026-11-19T09:00:00-03:00",
+    "media_id": "",
+    "observacoes": "Post educativo; não prometer certificação ou serviço específico sem validação."
+  },
+  {
+    "id": "pmoc_empresas_003",
+    "status": "rascunho",
+    "tema": "PMOC para edificações",
+    "texto": "Manutenção de climatização e documentação técnica precisam caminhar juntas. O PMOC deve refletir os equipamentos, a operação e as responsabilidades aplicáveis à instalação. Para projetos corporativos, a análise técnica evita soluções genéricas. Saiba mais sobre a THÉRMICA: https://thermicaclimatizacao.com.br",
+    "channels": [
+      "linkedin",
+      "facebook"
+    ],
+    "scheduled_at": "2026-11-21T09:00:00-03:00",
+    "media_id": "",
+    "observacoes": "Conferir referência normativa antes da aprovação."
+  }
+]
