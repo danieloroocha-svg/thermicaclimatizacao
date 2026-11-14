@@ -1,0 +1,10 @@
+import test from "node:test";
+import assert from "node:assert/strict";
+import {validateQueue, preview} from "./lib.mjs";
+const example = {id:"vrf_001",status:"aprovado",texto:"Projeto de climatização empresarial exige avaliação técnica do espaço e dos sistemas existentes.",scheduled_at:"2026-11-16T09:00:00-03:00",channels:["linkedin"],tema:"VRF"};
+test("impede IDs duplicados",()=>assert.throws(()=>validateQueue([example, {...example}]),/duplicado/));
+test("pede timezone explícito",()=>assert.throws(()=>validateQueue([{...example,scheduled_at:"2026-11-16T09:00:00"}]),/fuso/));
+test("aprovado e vencido fica elegível",()=>assert.equal(preview([example],new Date("2026-11-18T12:00:00Z"))[0].status,"elegivel"));
+test("rascunho nunca fica elegível",()=>assert.equal(preview([{...example,status:"rascunho"}],new Date("2026-11-18T12:00:00Z"))[0].status,"aguardando_aprovacao"));
+test("post agendado para o futuro não é elegível",()=>assert.equal(preview([example],new Date("2026-11-14T12:00:00Z"))[0].status,"programado"));
+test("rejeita canal não homologado",()=>assert.throws(()=>validateQueue([{...example,channels:["grupo_facebook"]}]),/Canal inválido/));

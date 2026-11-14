@@ -1,0 +1,49 @@
+name: THERMICA Social Media - Implantar pausado
+on:
+  push:
+    branches: [feature/social-media-piloto-2026-11-13]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: social-media-cloudflare-deploy
+  cancel-in-progress: false
+jobs:
+  deploy:
+    if: github.repository == 'danieloroocha-svg/thermicaclimatizacao' && github.ref == 'refs/heads/feature/social-media-piloto-2026-11-13'
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - name: Verificar somente presenca dos Secrets
+        id: credentials
+        env:
+          CF_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CF_ACCOUNT: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          if [ -n "$CF_TOKEN" ] && [ -n "$CF_ACCOUNT" ]; then
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+            echo "Aguardando CLOUDFLARE_API_TOKEN e CLOUDFLARE_ACCOUNT_ID nos Repository Secrets. Nenhum deploy executado." >> "$GITHUB_STEP_SUMMARY"
+          fi
+      - uses: actions/checkout@v4
+        if: steps.credentials.outputs.ready == 'true'
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        if: steps.credentials.outputs.ready == 'true'
+        with:
+          node-version: '22'
+      - name: Validar antes da implantacao
+        if: steps.credentials.outputs.ready == 'true'
+        run: node --test social_media/tests.mjs social_media/runtime-tests.mjs social_media/cloud-tests.mjs social_media/deploy-tests.mjs social_media/instagram-only-tests.mjs
+      - name: Instalar Wrangler isolado
+        if: steps.credentials.outputs.ready == 'true'
+        run: npm --cache "$RUNNER_TEMP/npm-cache" install --prefix "$RUNNER_TEMP/social-tools" wrangler@4.162.0 --no-audit --no-fund
+      - name: Implantar D1 e Worker com publicacao desligada
+        if: steps.credentials.outputs.ready == 'true'
+        run: node social_media/cloud/deploy.mjs
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          WRANGLER_BIN: ${{ runner.temp }}/social-tools/node_modules/.bin/wrangler

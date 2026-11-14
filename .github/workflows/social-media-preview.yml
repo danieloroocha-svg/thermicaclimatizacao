@@ -1,0 +1,37 @@
+name: THERMICA Social Media - Revisao segura
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - "social_media/**"
+      - ".github/workflows/social-media-preview.yml"
+      - ".github/workflows/social-media-operation.yml"
+      - ".github/workflows/social-media-deploy.yml"
+  schedule:
+    - cron: "0 12 * * *"
+permissions:
+  contents: read
+concurrency:
+  group: social-media-preview
+  cancel-in-progress: false
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Testes sem publicacao
+        run: node --test social_media/tests.mjs social_media/runtime-tests.mjs social_media/cloud-tests.mjs social_media/deploy-tests.mjs social_media/instagram-only-tests.mjs
+      - name: Revisar fila editorial, sem publicar
+        run: node social_media/runner.mjs
+      - name: Instalar runtime de teste isolado
+        run: npm --cache "$RUNNER_TEMP/npm-cache" install --prefix "$RUNNER_TEMP/social-tools" wrangler@4.162.0 --no-audit --no-fund
+      - name: Smoke do worker local sem credenciais
+        run: node social_media/smoke-cloud.mjs
+        env:
+          WRANGLER_BIN: ${{ runner.temp }}/social-tools/node_modules/.bin/wrangler

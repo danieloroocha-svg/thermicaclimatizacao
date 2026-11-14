@@ -1,0 +1,33 @@
+name: THERMICA Social Media - Preparacao autonoma
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '15 10 * * *'
+permissions:
+  contents: read
+concurrency:
+  group: social-media-preparation
+  cancel-in-progress: false
+jobs:
+  prepare:
+    if: github.repository == 'danieloroocha-svg/thermicaclimatizacao' && (github.ref == 'refs/heads/feature/social-media-piloto-2026-11-13' || github.ref == 'refs/heads/main') && vars.SOCIAL_PREPARE_ENABLED == 'true'
+    environment: social-media
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install Pillow==13.0.0
+      - name: Preparar apenas midias aprovadas
+        run: node social_media/prepare-media.mjs
+        env:
+          SOCIAL_WORKER_URL: ${{ secrets.SOCIAL_WORKER_URL }}
+          SOCIAL_ADMIN_TOKEN: ${{ secrets.SOCIAL_ADMIN_TOKEN }}
+          GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
