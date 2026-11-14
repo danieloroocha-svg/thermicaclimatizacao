@@ -41,6 +41,10 @@ A segunda linha exibe um relatório de prévia da fila (nenhum post é publicado
 - Nunca usar imagens de obras identificáveis sem confirmar autorização de divulgação.
 - O `main` do site permanece inalterado até aprovação do pull request.
 
+## Runtime implementado em 14/11/2026
+
+O serviço separado `server.mjs` implementa OAuth Instagram Login, cofre cifrado e worker de publicação. O `runner.mjs` continua exclusivamente de prévia. Instruções de configuração, autorização, testes e limitações reais: [OPERATIONS.md](OPERATIONS.md). Nada foi publicado ou hospedado nesta entrega.
+
 ## Próximas integrações
 
 Facebook Pages (Graph API), LinkedIn Pages (Posts API), Instagram Professional, métricas e status de publicação. Para publicação real, implementar `publisher`, autenticação e reexecução segura sem duplicações. O Plus/Codex ajuda no desenvolvimento, mas não fornece uma API de IA ilimitada ao robô.

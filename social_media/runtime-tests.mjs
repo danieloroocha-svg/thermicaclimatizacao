@@ -1,0 +1,23 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {mkdtempSync,readFileSync,rmSync} from 'node:fs';
+import {tmpdir} from 'node:os';
+import {join} from 'node:path';
+import {Store} from './store.mjs';
+import {run} from './worker.mjs';
+import {Meta} from './meta.mjs';
+import {calendar} from './editorial.mjs';
+const env={SOCIAL_PUBLISH_ENABLED:'true',SOCIAL_CALENDAR_APPROVED_AT:'2026-11-14'};
+const post={id:'teste_001',status:'aprovado',scheduled_at:'2026-11-01T09:00:00-03:00',texto:'Engenharia de climatização: https://thermicaclimatizacao.com.br/',channels:['instagram'],media_approved:true,media_url:'https://example.com/image.jpg',media_sha256:'a'.repeat(64)};
+async function fixture(fn) {const dir=mkdtempSync(join(tmpdir(),'thermica-'));const store=new Store(dir,'ab'.repeat(32));store.write('tokens',{instagram:{access_token:'PRIVATE',user_id:'123',issued_at:Date.now(),expires_at:Date.now()+40*86400000}});try{await fn(store,dir);}finally{rmSync(dir,{recursive:true,force:true});}}
+const fake=()=>({create:async()=>({id:'container'}),status:async()=>({status_code:'FINISHED'}),publish:async()=>({id:'remote'}),receipt:async()=>({permalink:'https://instagram.com/p/test'})});
+test('segredos cifrados e corrupção bloqueia',()=>fixture(async(s,d)=>{assert(!readFileSync(join(d,'tokens.json'),'utf8').includes('PRIVATE'));assert.throws(()=>new Store(d,'cd'.repeat(32)).read('tokens'),/ilegível/);}));
+test('publica e persiste recibo sem duplicar',()=>fixture(async(store)=>{let calls=0;const meta={...fake(),publish:async()=>{calls++;return {id:'remote'};}};await run({queue:[post],store,meta,env});await run({queue:[post],store,meta,env});assert.equal(calls,1);assert.equal(store.read('ledger')['teste_001:instagram'].url,'https://instagram.com/p/test');}));
+test('timeout de publicação exige reconciliação sem reenviar',()=>fixture(async(store)=>{let calls=0;const meta={...fake(),publish:async()=>{calls++;throw Error('timeout');}};await run({queue:[post],store,meta,env});await run({queue:[post],store,meta,env});assert.equal(calls,1);assert.equal(store.read('ledger')['teste_001:instagram'].status,'uncertain');}));
+test('kill switch impede chamadas externas',()=>fixture(async(store)=>{const out=await run({queue:[post],store,meta:{},env:{}});assert.equal(out[0].status,'bloqueado');}));
+test('container ainda processando é retomado',()=>fixture(async(store)=>{let creates=0;let ready=false;const meta={...fake(),create:async()=>{creates++;return {id:'c'};},status:async()=>({status_code:ready?'FINISHED':'IN_PROGRESS'})};await run({queue:[post],store,meta,env});ready=true;await run({queue:[post],store,meta,env});assert.equal(creates,1);assert.equal(store.read('ledger')['teste_001:instagram'].status,'published');}));
+test('bloqueia foto repetida no mesmo canal',()=>fixture(async(store)=>{const out=await run({queue:[post,{...post,id:'teste_002',texto:post.texto+' Contate a equipe.'}],store,meta:fake(),env});assert.equal(out[1].status,'duplicacao_bloqueada');}));
+test('lock exclui concorrência',()=>fixture(async(store)=>{await store.lock(async()=>{await assert.rejects(store.lock(async()=>{}),/ocupado/);});}));
+test('Meta não expõe token nem corpo de erros',async()=>{const m=new Meta({fetcher:async()=>({ok:false,status:429,json:async()=>({error:{code:4,message:'PRIVATE'}})})});await assert.rejects(m.status({access_token:'PRIVATE'},'1'),e=>!e.message.includes('PRIVATE')&&e.message.includes('429'));});
+test('calendário terça e quinta às 9 de São Paulo sem aprovação automática',()=>{const q=calendar({start:'2026-11-14'});assert.equal(q.length,12);for(const p of q){assert.equal(p.status,'rascunho');assert.match(p.scheduled_at,/09:00:00-03:00$/);assert([2,4].includes(new Date(p.scheduled_at).getUTCDay()));}});
+test('renova token próximo de expirar',()=>fixture(async(store)=>{store.write('tokens',{instagram:{access_token:'old',issued_at:Date.now()-2*86400000,expires_at:Date.now()+2*86400000}});let refreshed=0;await run({queue:[],store,meta:{refresh:async(t)=>{refreshed++;return {...t,access_token:'new'};}},env});assert.equal(refreshed,1);assert.equal(store.read('tokens').instagram.access_token,'new');}));
