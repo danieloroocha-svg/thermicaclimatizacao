@@ -2,10 +2,31 @@
   "name": "thermica-social",
   "main": "entry.mjs",
   "compatibility_date": "2026-11-01",
-  "compatibility_flags": ["nodejs_compat"],
+  "compatibility_flags": [
+    "nodejs_compat"
+  ],
   "workers_dev": true,
-  "triggers": {"crons": ["*/30 * * * *"]},
-  "d1_databases": [{"binding": "SOCIAL_DB", "database_name": "thermica-social-state", "database_id": "CONFIGURAR_LOCALMENTE"}],
-  "vars": {"SOCIAL_PUBLISH_ENABLED": "false", "SOCIAL_AUTOMATION_PAUSED": "false", "META_API_VERSION": "v25.0", "SOCIAL_MAX_POSTS_PER_RUN": "1", "SOCIAL_MAX_LATENESS_HOURS": "168"},
-  "observability": {"enabled": false}
+  "triggers": {
+    "crons": [
+      "*/30 * * * *"
+    ]
+  },
+  "d1_databases": [
+    {
+      "binding": "SOCIAL_DB",
+      "database_name": "thermica-social-state",
+      "database_id": "CONFIGURAR_LOCALMENTE"
+    }
+  ],
+  "vars": {
+    "SOCIAL_PUBLISH_ENABLED": "false",
+    "SOCIAL_AUTOMATION_PAUSED": "false",
+    "META_API_VERSION": "v25.0",
+    "SOCIAL_MAX_POSTS_PER_RUN": "1",
+    "SOCIAL_MAX_LATENESS_HOURS": "168",
+    "SOCIAL_SOURCE_MODE": "instagram_only"
+  },
+  "observability": {
+    "enabled": false
+  }
 }
