@@ -3,6 +3,7 @@ import {D1Store} from './d1-store.mjs';
 import {Meta} from '../meta.mjs';
 import {run} from '../worker.mjs';
 import {syncGoogle,recurringQueue} from '../google-sync.mjs';
+import {instagramOnlyBook} from '../instagram-only.mjs';
 const equal=(a,b)=>typeof a==='string'&&typeof b==='string'&&Buffer.byteLength(a)===Buffer.byteLength(b)&&timingSafeEqual(Buffer.from(a),Buffer.from(b));
 const json=(data,status=200,headers={})=>new Response(JSON.stringify(data),{status,headers:{'Content-Type':'application/json','Cache-Control':'no-store','Referrer-Policy':'no-referrer','X-Content-Type-Options':'nosniff',...headers}});
 function authenticated(req,env) {return env.SOCIAL_ADMIN_TOKEN?.length>=32&&equal(req.headers.get('Authorization'),`Bearer ${env.SOCIAL_ADMIN_TOKEN}`);}
@@ -13,7 +14,7 @@ export function mediaURL(env,sha,now=Date.now()) {
 }
 const startPage=`<!doctype html><html lang="pt-BR"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>Conectar THÉRMICA</title><h1>Conectar redes da THÉRMICA</h1><p>Esta conexão não libera publicações. Use somente o endereço oficial do worker.</p><form method="post" action="/connect"><label>Token administrativo <input name="token" type="password" required autocomplete="off"></label><label>Rede <select name="channel"><option value="instagram">Instagram profissional</option><option value="facebook">Página Facebook</option></select></label><button>Autorizar conexão oficial</button></form></html>`;
 export async function oauthStart(req,env,store,channel) {
- if(!['instagram','facebook'].includes(channel)) return json({error:'Canal inválido'},400);
+ if(!['instagram','facebook'].includes(channel)||env.SOCIAL_SOURCE_MODE==='instagram_only'&&channel!=='instagram') return json({error:'Canal inválido'},400);
  const ig=channel==='instagram';const app=ig?env.INSTAGRAM_APP_ID:env.FACEBOOK_APP_ID;
  const redirect=ig?env.INSTAGRAM_REDIRECT_URI:env.FACEBOOK_REDIRECT_URI;
  if(!app||!redirect?.startsWith('https://')||!env.SOCIAL_ADMIN_TOKEN||env.SOCIAL_ADMIN_TOKEN.length<32) throw new Error('Configuração OAuth ausente');
@@ -44,8 +45,8 @@ export async function cycle(env,{store=new D1Store(env.SOCIAL_DB,env.SOCIAL_ENCR
   const previous=await store.read('sync',{});
   // Fail closed on stale/failed sync; do not execute previously approved queue after a Sheet outage.
   if(!previous.at||now-previous.at>=1800000) {
-   const book=await syncGoogle(env,fetcher);await store.write('workbook',{queue:book.queue,media:book.media});
-   await store.write('sync',{at:now,status:'ok'});usage.syncs++;await store.write('usage',usage);
+   const book=env.SOCIAL_SOURCE_MODE==='instagram_only'?instagramOnlyBook():await syncGoogle(env,fetcher);await store.write('workbook',{queue:book.queue,media:book.media});
+   await store.write('sync',{at:now,status:'ok',source:env.SOCIAL_SOURCE_MODE==='instagram_only'?'github':'google'});usage.syncs++;await store.write('usage',usage);
   }
  });
  if(paused) return [{status:'pausado'}];
@@ -83,8 +84,8 @@ async function notify(env,store,fetcher,now) {
 }
 export async function handle(req,env) {
  const u=new URL(req.url),store=new D1Store(env.SOCIAL_DB,env.SOCIAL_ENCRYPTION_KEY),meta=new Meta({version:env.META_API_VERSION||'v25.0'});
- if(u.pathname==='/health') return json({status:'ok'});
- if(u.pathname==='/connect'&&req.method==='GET') return new Response(startPage,{headers:{'Content-Type':'text/html; charset=utf-8','Cache-Control':'no-store','Content-Security-Policy':"default-src 'none'; form-action 'self'; frame-ancestors 'none'; base-uri 'none'",'Referrer-Policy':'no-referrer'}});
+ if(u.pathname==='/health') return json({status:'ok',source:env.SOCIAL_SOURCE_MODE==='instagram_only'?'github':'google'});
+ if(u.pathname==='/connect'&&req.method==='GET') return new Response(env.SOCIAL_SOURCE_MODE==='instagram_only'?startPage.replace('<option value="facebook">Página Facebook</option>',''):startPage,{headers:{'Content-Type':'text/html; charset=utf-8','Cache-Control':'no-store','Content-Security-Policy':"default-src 'none'; form-action 'self'; frame-ancestors 'none'; base-uri 'none'",'Referrer-Policy':'no-referrer'}});
  if(u.pathname==='/connect'&&req.method==='POST') {
   if(req.headers.get('Origin')!==u.origin) return json({error:'Origem inválida'},403);
   const form=await req.formData();if(!env.SOCIAL_ADMIN_TOKEN||!equal(form.get('token'),env.SOCIAL_ADMIN_TOKEN)) return json({error:'Não autorizado'},401);
@@ -106,7 +107,7 @@ export async function handle(req,env) {
  if(u.pathname==='/pause'&&req.method==='POST') return store.lock(async()=>{await store.write('control',{paused:true,at:Date.now()});return json({status:'pausado'});});
  if(u.pathname==='/resume'&&req.method==='POST') return store.lock(async()=>{await store.write('control',{paused:false,at:Date.now()});return json({status:'retomado; autorização de calendário e kill switch ainda se aplicam'});});
  if(u.pathname==='/report'&&req.method==='GET') return store.lock(async()=>json({receipts:Object.entries(await store.read('ledger',{})).map(([id,r])=>({id,status:r.status,remote_id:r.remote_id,url:r.url,verification:r.verification})),control:await store.read('control',{}),report:await store.read('report',{}),usage:await store.read('usage',{}),alert:await store.read('alert',{}),sync:await store.read('sync',{})}));
- if(u.pathname==='/prepare'&&req.method==='POST') return store.lock(async()=>{const book=await syncGoogle(env);await store.write('workbook',{queue:book.queue,media:book.media});await store.write('sync',{at:Date.now(),status:'ok'});return json({queue:book.queue,media:book.media});});
+ if(u.pathname==='/prepare'&&req.method==='POST') return store.lock(async()=>{const book=env.SOCIAL_SOURCE_MODE==='instagram_only'?instagramOnlyBook():await syncGoogle(env);await store.write('workbook',{queue:book.queue,media:book.media});await store.write('sync',{at:Date.now(),status:'ok',source:env.SOCIAL_SOURCE_MODE==='instagram_only'?'github':'google'});return json({queue:book.queue,media:book.media});});
  if(u.pathname==='/assets'&&req.method==='POST') {
   if(Number(req.headers.get('Content-Length'))>600000) return json({error:'Arquivo excede limite'},413);
   const text=await req.text();if(text.length>600000) return json({error:'Arquivo excede limite'},413);const item=JSON.parse(text);
