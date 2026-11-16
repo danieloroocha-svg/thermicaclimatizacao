@@ -60,7 +60,7 @@ for (const file of [
   "src/routes/__root.tsx",
   "src/routes/index.tsx",
 ]) {
-  assert.ok(!/95591\\D*3582/.test(read(file)), "Telefone antigo encontrado em " + file);
+  assert.ok(!/95591\D*3582/.test(read(file)), "Telefone antigo encontrado em " + file);
 }
 
 console.log("GEO OK: 100 páginas comerciais, 121 URLs, 115 rotas TSX, schema unificado e listagem geográfica removida.");
