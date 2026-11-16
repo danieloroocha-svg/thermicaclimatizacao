@@ -116,6 +116,15 @@ function RootShell({ children }: { children: ReactNode }) {
     <html lang="pt-BR">
       <head>
         <HeadContent />
+        {/* Tag do Google Analytics / Google Tag Manager: única instalação global. */}
+        <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-TW3RDKG5" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());`,
+          }}
+        />
         <script
           type="text/javascript"
           dangerouslySetInnerHTML={{
