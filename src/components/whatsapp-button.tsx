@@ -5,10 +5,10 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } f
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { WhatsAppGlyph } from "@/components/whatsapp-icon";
+import { COMMERCIAL_PHONE } from "@/lib/contact";
 
 
 /** Destino no projeto: src/components/whatsapp-button.tsx */
-const NUMBER = "5511955046147";
 const OPEN_WHATSAPP_EVENT = "thermica:open-whatsapp";
 
 function currentPage() {
@@ -74,7 +74,7 @@ export function WhatsAppButton() {
       `Estou na página: ${sourceUrl}\n` +
       `Assunto: ${page}.\n` +
       "Gostaria de conversar sobre uma demanda de climatização e solicitar uma avaliação técnica.";
-    const whatsappUrl = `https://wa.me/${NUMBER}?text=${encodeURIComponent(message)}`;
+    const whatsappUrl = `https://wa.me/${COMMERCIAL_PHONE.digits}?text=${encodeURIComponent(message)}`;
 
     if (win) win.location.href = whatsappUrl;
     else window.location.href = whatsappUrl;

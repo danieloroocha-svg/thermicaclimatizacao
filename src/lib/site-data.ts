@@ -1,3 +1,4 @@
+import { COMMERCIAL_PHONE } from "@/lib/contact";
 import headerLogo from "@/assets/thermica-logo-header.webp";
 import headerLogoMobile from "@/assets/thermica-logo-header-mobile.webp";
 import osasco from "@/assets/obra-osasco.webp";
@@ -36,12 +37,12 @@ import universidadeCard700 from "@/assets/obra-universidade-card-700.webp";
 export const SITE = {
   name: "THÉRMICA Soluções em Climatização Ltda.",
   email: "comercial@thermicaclimatizacao.com.br",
-  phone: "(11) 95504-6147",
-  phoneInternational: "+5511955046147",
+  phone: COMMERCIAL_PHONE.display,
+  phoneInternational: `+${COMMERCIAL_PHONE.digits}`,
   address: "Estrada das Lágrimas, 489 — Ipiranga, São Paulo — SP, CEP 04232-000",
   headerLogo: headerLogo,
   headerLogoMobile: headerLogoMobile,
-  whatsapp: "https://wa.me/5511955046147?text=Ol%C3%A1%21%20Entrei%20em%20contato%20pelo%20site%20da%20TH%C3%89RMICA%20e%20gostaria%20de%20falar%20sobre%20uma%20demanda%20de%20climatiza%C3%A7%C3%A3o.",
+  whatsapp: `https://wa.me/${COMMERCIAL_PHONE.digits}?text=Ol%C3%A1%21%20Entrei%20em%20contato%20pelo%20site%20da%20TH%C3%89RMICA%20e%20gostaria%20de%20falar%20sobre%20uma%20demanda%20de%20climatiza%C3%A7%C3%A3o.`,
 } as const;
 
 export const projects = [

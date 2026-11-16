@@ -42,4 +42,25 @@ assert.ok(read("src/components/seo-keyword-landing.tsx").includes('const provide
 assert.ok(read("src/routes/instalacao-ar-condicionado-vrf-para-empresas.tsx").includes('provider: { "@id": ORGANIZATION_ID }'));
 assert.ok(read("src/routes/conteudo.$slug.tsx").includes('publisher:{"@id":ORGANIZATION_ID}'));
 
+
+const contact = read("src/lib/contact.ts");
+const siteData = read("src/lib/site-data.ts");
+const whatsapp = read("src/components/whatsapp-button.tsx");
+assert.ok(contact.includes('display: "(11) 95504-6147"'), "Telefone comercial visível correto");
+assert.ok(contact.includes('digits: "5511955046147"'), "Destino correto do WhatsApp");
+assert.ok(siteData.includes('phone: COMMERCIAL_PHONE.display'), "Rodapé deve usar telefone centralizado");
+assert.ok(siteData.includes('phoneInternational: `+${COMMERCIAL_PHONE.digits}`'), "JSON-LD deve usar telefone centralizado");
+assert.ok(siteData.includes('https://wa.me/${COMMERCIAL_PHONE.digits}'), "Link fixo deve usar telefone centralizado");
+assert.ok(whatsapp.includes('https://wa.me/${COMMERCIAL_PHONE.digits}'), "Formulário deve usar telefone centralizado");
+for (const file of [
+  "src/lib/contact.ts",
+  "src/lib/site-data.ts",
+  "src/components/site-shell.tsx",
+  "src/components/whatsapp-button.tsx",
+  "src/routes/__root.tsx",
+  "src/routes/index.tsx",
+]) {
+  assert.ok(!/95591\\D*3582/.test(read(file)), "Telefone antigo encontrado em " + file);
+}
+
 console.log("GEO OK: 100 páginas comerciais, 121 URLs, 115 rotas TSX, schema unificado e listagem geográfica removida.");

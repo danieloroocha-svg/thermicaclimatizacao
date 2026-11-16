@@ -5,6 +5,8 @@ on:
     paths:
       - "public/robots.txt"
       - "src/lib/site-data.ts"
+      - "src/lib/contact.ts"
+      - "src/components/whatsapp-button.tsx"
       - "src/routes/__root.tsx"
       - "src/routes/index.tsx"
       - "src/components/seo-keyword-landing.tsx"
