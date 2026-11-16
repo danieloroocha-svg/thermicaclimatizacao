@@ -3,7 +3,6 @@ import {
   ArrowRight,
   Building2,
   CheckCircle2,
-  ChevronDown,
   ClipboardCheck,
   FileCheck2,
   Gauge,
@@ -11,8 +10,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { WhatsAppGlyph } from "@/components/whatsapp-icon";
-import { BASE_URL, SITE, meta } from "@/lib/site-data";
-import municipiosPorEstado from "@/data/municipios-por-estado.json";
+import { BASE_URL, SITE, meta, ORGANIZATION_ID, WEBSITE_ID } from "@/lib/site-data";
 import { seoSiteEntries } from "@/lib/seo-site-directory";
 
 type TextBlock = { title: string; text: string };
@@ -63,13 +61,7 @@ export function seoKeywordHead(page: SeoKeywordPage) {
   const title = `${page.keyword.charAt(0).toUpperCase()}${page.keyword.slice(1)} | THÉRMICA`;
   const base = meta(title, page.description, page.path);
   const imageURL = new URL(page.pictures[0], BASE_URL).href;
-  const provider = {
-    "@type": "Organization",
-    name: SITE.name,
-    url: BASE_URL,
-    telephone: "+5511955046147",
-    email: SITE.email,
-  };
+  const provider = { "@id": ORGANIZATION_ID };
   const schema = {
     "@context": "https://schema.org",
     "@graph": [
@@ -81,7 +73,7 @@ export function seoKeywordHead(page: SeoKeywordPage) {
         description: page.description,
         inLanguage: "pt-BR",
         image: imageURL,
-        isPartOf: { "@type": "WebSite", name: "THÉRMICA", url: BASE_URL },
+        isPartOf: { "@id": WEBSITE_ID },
         mainEntity: { "@id": `${pageURL}#servico` },
       },
       {
@@ -92,7 +84,7 @@ export function seoKeywordHead(page: SeoKeywordPage) {
         description: page.description,
         provider,
         url: pageURL,
-        areaServed: page.audience,
+        areaServed: { "@type": "Country", name: "Brasil" },
         audience: {
           "@type": "BusinessAudience",
           audienceType: "Construtoras, gestores de facilities, suprimentos, empresas e gerenciadoras de obras",
@@ -133,14 +125,6 @@ export function seoKeywordHead(page: SeoKeywordPage) {
     scripts: [{ type: "application/ld+json", children: JSON.stringify(schema) }],
   };
 }
-
-const regions = [
-  { label: "Norte", states: [["Acre", "AC"], ["Amapá", "AP"], ["Amazonas", "AM"], ["Pará", "PA"], ["Rondônia", "RO"], ["Roraima", "RR"], ["Tocantins", "TO"]] },
-  { label: "Nordeste", states: [["Alagoas", "AL"], ["Bahia", "BA"], ["Ceará", "CE"], ["Maranhão", "MA"], ["Paraíba", "PB"], ["Pernambuco", "PE"], ["Piauí", "PI"], ["Rio Grande do Norte", "RN"], ["Sergipe", "SE"]] },
-  { label: "Centro-Oeste", states: [["Distrito Federal", "DF"], ["Goiás", "GO"], ["Mato Grosso", "MT"], ["Mato Grosso do Sul", "MS"]] },
-  { label: "Sudeste", states: [["Espírito Santo", "ES"], ["Minas Gerais", "MG"], ["Rio de Janeiro", "RJ"], ["São Paulo", "SP"]] },
-  { label: "Sul", states: [["Paraná", "PR"], ["Rio Grande do Sul", "RS"], ["Santa Catarina", "SC"]] },
-] as const;
 
 const relatedSolutions = seoSiteEntries.map(({ path, keyword }) => ({ path, label: keyword }));
 
@@ -392,35 +376,14 @@ export function SeoKeywordLanding({ page }: { page: SeoKeywordPage }) {
 
       <section className="bg-secondary py-14" aria-labelledby="cobertura-heading">
         <div className="mx-auto max-w-7xl px-5 lg:px-8">
-          <p className="eyebrow text-primary">Municípios e regiões</p>
-          <h2 id="cobertura-heading" className="mt-3 text-3xl font-semibold md:text-4xl">Climatização corporativa nos 26 estados e no Distrito Federal</h2>
-          <p className="mt-5 max-w-4xl leading-8 text-muted-foreground">{page.regionLead} As solicitações de obras de outras regiões também podem ser avaliadas conforme porte, cronograma e viabilidade de mobilização.</p>
-          <div className="mt-9 space-y-9">
-            {regions.map((region) => (
-              <div key={region.label}>
-                <p className="mb-4 font-display text-xl font-semibold text-primary">Região {region.label} <span className="text-sm font-normal text-muted-foreground">({region.states.length} unidades federativas)</span></p>
-                <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-                  {region.states.map(([stateName, uf]) => {
-                    const municipios = municipiosPorEstado[uf];
-                    return (
-                      <details key={uf} className="group min-w-0 border border-border bg-background open:sm:col-span-2 open:lg:col-span-3">
-                        <summary className="flex cursor-pointer list-none items-center justify-between gap-3 p-5 marker:hidden">
-                          <span className="font-semibold text-primary">{stateName} <span className="font-normal text-muted-foreground">({uf})</span></span>
-                          <span className="ml-auto whitespace-nowrap text-xs text-muted-foreground">{uf === "DF" ? "Brasília" : `${municipios.length} municípios`}</span>
-                          <ChevronDown aria-hidden="true" className="size-5 shrink-0 text-primary transition-transform group-open:rotate-180" />
-                        </summary>
-                        <div className="border-t border-border px-5 pb-6 pt-4">
-                          <ul className="grid max-h-[32rem] grid-cols-1 gap-x-8 gap-y-2 overflow-y-auto border-l-2 border-accent pl-4 text-sm leading-6 text-foreground/85 sm:grid-cols-2 lg:grid-cols-4">
-                            {municipios.map((municipio) => <li key={municipio}>{municipio}</li>)}
-                          </ul>
-                        </div>
-                      </details>
-                    );
-                  })}
-                </div>
-              </div>
-            ))}
-          </div>
+          <p className="eyebrow text-primary">Cobertura e mobilização</p>
+          <h2 id="cobertura-heading" className="mt-3 text-3xl font-semibold md:text-4xl">
+            Atuação empresarial em São Paulo e análise de projetos em outras regiões
+          </h2>
+          <p className="mt-5 max-w-4xl leading-8 text-muted-foreground">{page.regionLead}</p>
+          <p className="mt-4 max-w-4xl leading-8 text-muted-foreground">
+            O atendimento fora da região principal depende do escopo, porte, cronograma e viabilidade de mobilização.
+          </p>
         </div>
       </section>
     </>
