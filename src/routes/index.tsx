@@ -3,11 +3,9 @@ import { ArrowRight, Building2, ClipboardCheck, Gauge, RefreshCcw } from "lucide
 import { Button } from "@/components/ui/button";
 import { ContactBand } from "@/components/site-shell";
 import { ProjectGrid } from "@/components/project-grid";
-import { projects, SITE, meta, BASE_URL, HERO_MOBILE } from "@/lib/site-data";
+import { projects, SITE, meta, HERO_MOBILE } from "@/lib/site-data";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
+// A identidade estruturada do site é publicada uma única vez no __root.tsx.
 export const Route = createFileRoute("/")({
   staticData: { sitemap: true },
   head: () => {
@@ -23,34 +21,7 @@ export const Route = createFileRoute("/")({
         { rel: "preload", as: "image", href: HERO_MOBILE, media: "(max-width: 767px)", type: "image/webp", fetchPriority: "high" as const },
         { rel: "preload", as: "image", href: projects[0].image, media: "(min-width: 768px)", type: "image/webp", fetchPriority: "high" as const },
       ],
-      scripts: [
-        {
-          type: "application/ld+json",
-          children: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "HVACBusiness",
-            name: SITE.name,
-            url: BASE_URL,
-            email: SITE.email,
-            telephone: "+5511955046147",
-            areaServed: "Brasil",
-            address: {
-              "@type": "PostalAddress",
-              streetAddress: "Estrada das Lágrimas, 489",
-              addressLocality: "São Paulo",
-              addressRegion: "SP",
-              postalCode: "04232-000",
-              addressCountry: "BR",
-            },
-            knowsAbout: [
-              "Sistemas VRV/VRF",
-              "Instalação de climatização",
-              "Retrofit de climatização",
-              "Engenharia de climatização",
-            ],
-          }),
-        },
-      ],
+
     };
   },
   component: Index,

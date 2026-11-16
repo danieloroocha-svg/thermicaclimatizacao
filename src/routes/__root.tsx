@@ -13,6 +13,7 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { SiteShell } from "@/components/site-shell";
+import { SITE, siteIdentityJsonLd } from "@/lib/site-data";
 
 function NotFoundComponent() {
   return (
@@ -80,29 +81,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     scripts: [
       {
         type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "Organization",
-          name: "THÉRMICA Soluções em Climatização Ltda.",
-          url: "https://thermicaclimatizacao.com.br",
-          email: "comercial@thermicaclimatizacao.com.br",
-          telephone: "+5511955046147",
-          address: {
-            "@type": "PostalAddress",
-            streetAddress: "Estrada das Lágrimas, 489",
-            addressLocality: "São Paulo",
-            addressRegion: "SP",
-            postalCode: "04232-000",
-            addressCountry: "BR",
-          },
-        }),
+        children: JSON.stringify(siteIdentityJsonLd),
       },
     ],
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { name: "msvalidate.01", content: "D228FB1E04A598DD381DF3D488F05462" },
-       { name: "author", content: "THÉRMICA Soluções em Climatização Ltda." },
+       { name: "author", content: SITE.name },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],

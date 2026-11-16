@@ -3,7 +3,6 @@ import {
   ArrowRight,
   Building2,
   CheckCircle2,
-  ChevronDown,
   ClipboardCheck,
   FileCheck2,
   Gauge,
@@ -15,12 +14,13 @@ import {
   BASE_URL,
   SITE,
   meta,
+  ORGANIZATION_ID,
+  WEBSITE_ID,
 } from "@/lib/site-data";
 import heroImage from "@/assets/seo/instalacao-ar-condicionado-vrf-para-empresas-cobertura.webp";
 import teamImage from "@/assets/seo/instalacao-ar-condicionado-vrf-para-empresas-equipe.webp";
 import corporateOfficeImage from "@/assets/seo/instalacao-ar-condicionado-vrf-para-empresas-escritorio.webp";
 import retrofitImage from "@/assets/seo/instalacao-ar-condicionado-vrf-para-empresas-retrofit.webp";
-import municipiosPorEstado from "@/data/municipios-por-estado.json";
 
 /**
  * Destino no repositório: src/routes/instalacao-ar-condicionado-vrf-para-empresas.tsx
@@ -45,7 +45,7 @@ const serviceSchema = {
       description: DESCRIPTION,
       image: new URL(heroImage, BASE_URL).href,
       inLanguage: "pt-BR",
-      isPartOf: { "@type": "WebSite", name: "THÉRMICA", url: BASE_URL },
+      isPartOf: { "@id": WEBSITE_ID },
       mainEntity: { "@id": `${PAGE_URL}#servico` },
     },
     {
@@ -56,13 +56,7 @@ const serviceSchema = {
       description:
         "Avaliação técnica, planejamento, implantação, testes e entrega de sistemas VRV/VRF para empresas, construtoras, gerenciadoras e operações corporativas.",
       url: PAGE_URL,
-      provider: {
-        "@type": "Organization",
-        name: SITE.name,
-        url: BASE_URL,
-        email: SITE.email,
-        telephone: "+5511955046147",
-      },
+      provider: { "@id": ORGANIZATION_ID },
       areaServed: { "@type": "Country", name: "Brasil" },
       image: new URL(heroImage, BASE_URL).href,
       audience: {
@@ -184,29 +178,6 @@ const audiences = [
   { icon: Gauge, title: "Facilities e patrimônio", text: "Adaptação de sistemas a operações existentes." },
   { icon: ShieldCheck, title: "Empresas e instituições", text: "Escritórios, hotéis, educação e áreas administrativas." },
 ];
-
-const coverageRegions = [
-  {
-    label: "Norte",
-    states: [["Acre", "AC"], ["Amapá", "AP"], ["Amazonas", "AM"], ["Pará", "PA"], ["Rondônia", "RO"], ["Roraima", "RR"], ["Tocantins", "TO"]],
-  },
-  {
-    label: "Nordeste",
-    states: [["Alagoas", "AL"], ["Bahia", "BA"], ["Ceará", "CE"], ["Maranhão", "MA"], ["Paraíba", "PB"], ["Pernambuco", "PE"], ["Piauí", "PI"], ["Rio Grande do Norte", "RN"], ["Sergipe", "SE"]],
-  },
-  {
-    label: "Centro-Oeste",
-    states: [["Distrito Federal", "DF"], ["Goiás", "GO"], ["Mato Grosso", "MT"], ["Mato Grosso do Sul", "MS"]],
-  },
-  {
-    label: "Sudeste",
-    states: [["Espírito Santo", "ES"], ["Minas Gerais", "MG"], ["Rio de Janeiro", "RJ"], ["São Paulo", "SP"]],
-  },
-  {
-    label: "Sul",
-    states: [["Paraná", "PR"], ["Rio Grande do Sul", "RS"], ["Santa Catarina", "SC"]],
-  },
-] as const;
 
 function WhatsAppAction({ label = "Falar pelo WhatsApp" }: { label?: string }) {
   return (
@@ -600,50 +571,15 @@ function InstallationForBusiness() {
 
       <section className="bg-secondary py-14" aria-labelledby="atendimento-brasil-heading">
         <div className="mx-auto max-w-7xl px-5 lg:px-8">
-          <p className="eyebrow text-primary">Abrangência nacional</p>
+          <p className="eyebrow text-primary">Cobertura e mobilização</p>
           <h2 id="atendimento-brasil-heading" className="mt-3 text-3xl font-semibold md:text-4xl">
-            Instalação de VRF para empresas nos 26 estados e no Distrito Federal
+            Instalação VRV/VRF em São Paulo e avaliação de obras em outras regiões
           </h2>
           <p className="mt-5 max-w-4xl leading-8 text-muted-foreground">
-            A THÉRMICA recebe consultas para implantação de sistemas VRV/VRF em todas as
-            unidades federativas. A execução em cada cidade depende de avaliação prévia de
-            distância, escopo, infraestrutura de apoio, disponibilidade e mobilização.
+            A THÉRMICA recebe consultas de empresas e construtoras para instalações de sistemas VRV/VRF.
+            A execução em cada localidade depende da avaliação do escopo, infraestrutura de apoio,
+            cronograma e condições de mobilização.
           </p>
-          <div className="mt-9 space-y-9">
-            {coverageRegions.map((region) => (
-              <div key={region.label}>
-                <p className="mb-4 font-display text-xl font-semibold text-primary">
-                  Região {region.label} <span className="text-sm font-normal text-muted-foreground">({region.states.length} unidades federativas)</span>
-                </p>
-                <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-                  {region.states.map(([stateName, uf]) => {
-                    const municipios = municipiosPorEstado[uf];
-                    return (
-                      <details key={uf} className="group min-w-0 border border-border bg-background open:sm:col-span-2 open:lg:col-span-3">
-                        <summary className="flex cursor-pointer list-none items-center justify-between gap-3 p-5 marker:hidden">
-                          <span className="font-semibold text-primary">{stateName} <span className="font-normal text-muted-foreground">({uf})</span></span>
-                          <span className="ml-auto whitespace-nowrap text-xs text-muted-foreground">
-                            {uf === "DF" ? "Brasília" : `${municipios.length} municípios`}
-                          </span>
-                          <ChevronDown aria-hidden="true" className="size-5 shrink-0 text-primary transition-transform group-open:rotate-180" />
-                        </summary>
-                        <div className="border-t border-border px-5 pb-6 pt-4">
-                          <p className="text-sm leading-6 text-muted-foreground">
-                            {uf === "DF"
-                              ? "O Distrito Federal não se divide em municípios. Brasília consta na base nacional de localidades do IBGE."
-                              : `Relação completa dos ${municipios.length} municípios de ${stateName}, em ordem alfabética. Role a lista para conferir todos os nomes.`}
-                          </p>
-                          <ul className="mt-5 grid max-h-[32rem] grid-cols-1 gap-x-8 gap-y-2 overflow-y-auto border-l-2 border-accent pl-4 text-sm leading-6 text-foreground/85 sm:grid-cols-2 lg:grid-cols-4">
-                            {municipios.map((municipio) => <li key={municipio}>{municipio}</li>)}
-                          </ul>
-                        </div>
-                      </details>
-                    );
-                  })}
-                </div>
-              </div>
-            ))}
-          </div>
         </div>
       </section>
     </>

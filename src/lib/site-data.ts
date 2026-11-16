@@ -37,6 +37,7 @@ export const SITE = {
   name: "THÉRMICA Soluções em Climatização Ltda.",
   email: "comercial@thermicaclimatizacao.com.br",
   phone: "(11) 95504-6147",
+  phoneInternational: "+5511955046147",
   address: "Estrada das Lágrimas, 489 — Ipiranga, São Paulo — SP, CEP 04232-000",
   headerLogo: headerLogo,
   headerLogoMobile: headerLogoMobile,
@@ -61,6 +62,47 @@ export const articles = [
 ] as const;
 
 export const BASE_URL = "https://thermicaclimatizacao.com.br";
+
+/** Identidade única da THÉRMICA; reutilizada pelos dados estruturados das rotas. */
+export const ORGANIZATION_ID = BASE_URL + "/#organization";
+export const WEBSITE_ID = BASE_URL + "/#website";
+
+export const siteIdentityJsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": ["Organization", "HVACBusiness"],
+      "@id": ORGANIZATION_ID,
+      name: SITE.name,
+      url: BASE_URL,
+      email: SITE.email,
+      telephone: SITE.phoneInternational,
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "Estrada das Lágrimas, 489",
+        addressLocality: "São Paulo",
+        addressRegion: "SP",
+        postalCode: "04232-000",
+        addressCountry: "BR",
+      },
+      knowsAbout: [
+        "Sistemas VRV/VRF",
+        "Instalação de climatização",
+        "Retrofit de climatização",
+        "Engenharia de climatização",
+      ],
+    },
+    {
+      "@type": "WebSite",
+      "@id": WEBSITE_ID,
+      name: "THÉRMICA",
+      url: BASE_URL,
+      inLanguage: "pt-BR",
+      publisher: { "@id": ORGANIZATION_ID },
+    },
+  ],
+} as const;
+
 
 export const meta = (title: string, description: string, path = "/") => ({
   meta: [
