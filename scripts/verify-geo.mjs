@@ -63,4 +63,20 @@ for (const file of [
   assert.ok(!/95591\D*3582/.test(read(file)), "Telefone antigo encontrado em " + file);
 }
 
+const googleTagRoot = read("src/routes/__root.tsx");
+const containerId = "GTM-TW3RDKG5";
+assert.equal(
+  googleTagRoot.split(`https://www.googletagmanager.com/gtm.js?id=${containerId}`).length - 1,
+  1,
+  "A tag Google deve existir exatamente uma vez no cabeçalho global",
+);
+assert.ok(
+  googleTagRoot.includes("window.dataLayer = window.dataLayer || [];"),
+  "O dataLayer precisa estar inicializado",
+);
+assert.ok(
+  googleTagRoot.includes("gtag('js', new Date());"),
+  "A inicialização da tag Google deve ser preservada",
+);
+
 console.log("GEO OK: 100 páginas comerciais, 121 URLs, 115 rotas TSX, schema unificado e listagem geográfica removida.");
